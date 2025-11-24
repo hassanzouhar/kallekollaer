@@ -443,9 +443,12 @@ const App = () => {
     const newReports: ScoutingReport[] = [];
     hiredScouts.forEach(scout => {
         if (Math.random() < 0.1) {
-             newReports.push({ id: Date.now()+'', scoutName: scout.name, date: `Week ${currentWeek}`, description: SCOUT_MISHAPS[0], player: null as any });
+             newReports.push({ id: Date.now()+'', scoutName: scout.name, date: `Week ${currentWeek}`, description: SCOUT_MISHAPS[Math.floor(Math.random() * SCOUT_MISHAPS.length)], player: null as any });
         } else {
-             const p = createPlayer(Position.FORWARD, 'scout', 99);
+             // Scout skill affects player quality (skill range and potential)
+             const randomPosition = [Position.FORWARD, Position.CENTER, Position.DEFENDER][Math.floor(Math.random() * 3)];
+             const isWonderkid = Math.random() < (scout.skill / 50); // Higher skill = more wonderkids
+             const p = createPlayer(randomPosition, 'scout', 99, isWonderkid, scout.skill);
              newReports.push({ id: Date.now()+'', scoutName: scout.name, date: `Week ${currentWeek}`, description: "Found player", player: p });
         }
     });
