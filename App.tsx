@@ -16,6 +16,37 @@ import { Team, GameView, MatchResult, Scout, ScoutingReport, Position, TrainingF
 import { getAssistantAdvice } from './services/geminiService';
 import { Trophy, Users, Play, BarChart3, ScanSearch, HandCoins, Dumbbell, Building2, ClipboardList } from 'lucide-react';
 
+// Helper: Apply match result to team stats
+const applyMatchResult = (
+  team: Team,
+  myScore: number,
+  opScore: number,
+  isOt: boolean,
+  userTeamId: string
+): Team => {
+  let pts = 0;
+  let w = 0, l = 0, otl = 0, pokks = 0;
+
+  if (myScore > opScore) {
+    if (isOt) { pts = 2; w = 1; pokks = 2; }
+    else { pts = 3; w = 1; pokks = 2; }
+  } else {
+    if (isOt) { pts = 1; otl = 1; pokks = 1; }
+    else { l = 1; pokks = 0; }
+  }
+
+  return {
+    ...team,
+    wins: team.wins + w,
+    losses: team.losses + l,
+    otLosses: team.otLosses + otl,
+    points: team.points + pts,
+    goalsFor: team.goalsFor + myScore,
+    goalsAgainst: team.goalsAgainst + opScore,
+    wallet: team.id === userTeamId ? team.wallet + pokks : team.wallet
+  };
+};
+
 // Main App Component
 const App = () => {
   const [gameState, setGameState] = useState<GameState>(GameState.ONBOARDING);
@@ -185,38 +216,16 @@ const App = () => {
 
     // 2. Update Stats (Only in Regular Season)
     let teamUpdates = [...teams];
-    
+
     if (phase === 'REGULAR_SEASON') {
-        const applyResult = (team: Team, myScore: number, opScore: number, isOt: boolean) => {
-            let pts = 0;
-            let w = 0, l = 0, otl = 0, pokks = 0;
-            
-            if (myScore > opScore) {
-                if (isOt) { pts = 2; w = 1; pokks = 2; }
-                else { pts = 3; w = 1; pokks = 2; }
-            } else {
-                if (isOt) { pts = 1; otl = 1; pokks = 1; }
-                else { l = 1; pokks = 0; }
-            }
-
-            team.wins += w;
-            team.losses += l;
-            team.otLosses += otl;
-            team.points += pts;
-            team.goalsFor += myScore;
-            team.goalsAgainst += opScore;
-            if (team.id === userTeamId) team.wallet += pokks;
-            return team;
-        };
-
         const userHome = result.homeTeamId === userTeamId;
         const userScore = userHome ? result.homeScore : result.awayScore;
         const oppScore = userHome ? result.awayScore : result.homeScore;
         const isOt = result.isOvertime || result.isShootout;
 
         teamUpdates = teamUpdates.map(t => {
-            if (t.id === userTeamId) return applyResult({...t}, userScore, oppScore, isOt);
-            if (t.id === nextOpponentId) return applyResult({...t}, oppScore, userScore, isOt);
+            if (t.id === userTeamId) return applyMatchResult(t, userScore, oppScore, isOt, userTeamId);
+            if (t.id === nextOpponentId) return applyMatchResult(t, oppScore, userScore, isOt, userTeamId);
             return t;
         });
     }
@@ -225,27 +234,12 @@ const App = () => {
     if (phase === 'REGULAR_SEASON') {
         const otherMatches = schedule.filter(m => m.week === currentWeek && !m.played && m.id !== currentMatch?.id);
         const simulatedResults: ScheduledMatch[] = [];
-        const applyResult = (team: Team, myScore: number, opScore: number, isOt: boolean) => {
-             // Logic repeated from above, ideally refactor, but for speed kept inline
-             let pts = 0;
-             if (myScore > opScore) pts = isOt ? 2 : 3;
-             else pts = isOt ? 1 : 0;
-             
-             if (myScore > opScore) team.wins++;
-             else if (isOt) team.otLosses++;
-             else team.losses++;
-             
-             team.points += pts;
-             team.goalsFor += myScore;
-             team.goalsAgainst += opScore;
-             return team;
-        };
 
         otherMatches.forEach(match => {
             const home = teams.find(t => t.id === match.homeTeamId)!;
             const away = teams.find(t => t.id === match.awayTeamId)!;
             const sim = simulateMatchLogic(home, away);
-            
+
             simulatedResults.push({
                 ...match,
                 played: true,
@@ -253,8 +247,8 @@ const App = () => {
             });
 
             teamUpdates = teamUpdates.map(t => {
-                if (t.id === match.homeTeamId) return applyResult({...t}, sim.homeScore, sim.awayScore, sim.ot);
-                if (t.id === match.awayTeamId) return applyResult({...t}, sim.awayScore, sim.homeScore, sim.ot);
+                if (t.id === match.homeTeamId) return applyMatchResult(t, sim.homeScore, sim.awayScore, sim.ot, userTeamId);
+                if (t.id === match.awayTeamId) return applyMatchResult(t, sim.awayScore, sim.homeScore, sim.ot, userTeamId);
                 return t;
             });
         });
