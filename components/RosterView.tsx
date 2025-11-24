@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Team, Player, LineAssignment, Position } from '../types';
 import { Info, ArrowLeftRight, ShieldAlert } from 'lucide-react';
 import { PlayerModal } from './PlayerModal';
+import { getPlayerImage, getCRTImageStyle } from '../utils/imageHelpers';
 
 interface RosterViewProps {
   team: Team;
@@ -43,49 +44,63 @@ const PlayerCard: React.FC<{
     const isInjured = player.isInjured;
 
     return (
-        <div 
+        <div
             onClick={onClick}
             className={`
-                relative border bg-[#080c08] p-2 flex flex-col justify-between cursor-pointer transition-all h-[90px] select-none group rounded
-                ${isSelected 
-                    ? 'border-green-400 shadow-[0_0_10px_rgba(74,222,128,0.2)] z-10' 
+                relative border bg-[#080c08] p-2 flex gap-2 cursor-pointer transition-all h-[90px] select-none group rounded
+                ${isSelected
+                    ? 'border-green-400 shadow-[0_0_10px_rgba(74,222,128,0.2)] z-10'
                     : 'border-green-800/50 hover:border-green-600 hover:bg-green-900/10'}
                 ${isInjured ? 'border-red-900/60 opacity-80' : ''}
             `}
         >
-            {/* Info Button */}
-            <button 
-                onClick={onInfoClick}
-                className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 hover:text-white text-green-600 z-20 transition-opacity"
-            >
-                <Info className="w-3 h-3" />
-            </button>
+            {/* Player Avatar */}
+            <div className="w-16 h-full flex-shrink-0 relative overflow-hidden border-r border-green-900/30">
+                <img
+                    src={getPlayerImage(player.id, player.position)}
+                    alt={player.name}
+                    className="w-full h-full object-cover"
+                    style={getCRTImageStyle()}
+                />
+                <div className="absolute inset-0 bg-green-500/5 mix-blend-color"></div>
+            </div>
 
-            {/* Header */}
-            <div className="flex justify-between items-start mb-1">
-                <div className={`
-                    text-[9px] font-bold px-1 py-0.5 rounded
-                    ${player.position === Position.GOALIE ? 'bg-yellow-900/20 text-yellow-600' : 
-                      player.position === Position.DEFENDER ? 'bg-blue-900/20 text-blue-400' : 
-                      'bg-green-900/20 text-green-500'}
-                `}>
-                    {player.position}
+            {/* Player Info */}
+            <div className="flex-1 flex flex-col justify-between min-w-0">
+                {/* Info Button */}
+                <button
+                    onClick={onInfoClick}
+                    className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 hover:text-white text-green-600 z-20 transition-opacity"
+                >
+                    <Info className="w-3 h-3" />
+                </button>
+
+                {/* Header */}
+                <div className="flex justify-between items-start mb-1">
+                    <div className={`
+                        text-[9px] font-bold px-1 py-0.5 rounded
+                        ${player.position === Position.GOALIE ? 'bg-yellow-900/20 text-yellow-600' :
+                          player.position === Position.DEFENDER ? 'bg-blue-900/20 text-blue-400' :
+                          'bg-green-900/20 text-green-500'}
+                    `}>
+                        {player.position}
+                    </div>
+                    <div className={`text-lg font-bold leading-none ${player.skill > 80 ? 'text-green-300' : 'text-green-700'}`}>
+                        {player.skill}
+                    </div>
                 </div>
-                <div className={`text-lg font-bold leading-none ${player.skill > 80 ? 'text-green-300' : 'text-green-700'}`}>
-                    {player.skill}
+
+                {/* Name */}
+                <div className="font-bold text-xs truncate uppercase text-green-100 mb-auto pr-3">
+                    {player.name.split(' ').slice(-1)[0]}
                 </div>
-            </div>
-            
-            {/* Name */}
-            <div className="font-bold text-xs truncate uppercase text-green-100 mb-auto pr-3">
-                {player.name.split(' ').slice(-1)[0]}
-            </div>
-            
-            {/* Footer */}
-            <div className="flex justify-between items-end text-[8px] font-mono opacity-70 border-t border-green-900/30 pt-1 mt-1">
-                <div className="flex gap-2">
-                    <span title="Morale" className={player.morale < 50 ? 'text-red-400' : ''}>M:{player.morale}</span>
-                    <span title="Condition" className={isTired ? 'text-red-500' : ''}>C:{100 - player.fatigue}%</span>
+
+                {/* Footer */}
+                <div className="flex justify-between items-end text-[8px] font-mono opacity-70 border-t border-green-900/30 pt-1 mt-1">
+                    <div className="flex gap-2">
+                        <span title="Morale" className={player.morale < 50 ? 'text-red-400' : ''}>M:{player.morale}</span>
+                        <span title="Condition" className={isTired ? 'text-red-500' : ''}>C:{100 - player.fatigue}%</span>
+                    </div>
                 </div>
             </div>
 
@@ -96,7 +111,7 @@ const PlayerCard: React.FC<{
                     <span className="text-[10px]">{player.injuryWeeksLeft}W</span>
                 </div>
             )}
-            
+
             {/* Active Selection Indicator */}
             {isSelected && (
                 <div className="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full shadow-sm"></div>
