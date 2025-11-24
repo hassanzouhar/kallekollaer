@@ -3,7 +3,7 @@
  * All game-related constants including scouts, drills, deals, penalties, and tactics
  */
 
-import { Scout, DirtyDeal, TacticStyle, AggressionLevel } from '../types';
+import { Scout, DirtyDeal, TacticStyle, AggressionLevel, TrainingFocus } from '../types';
 
 // Default user team ID
 export const USER_TEAM_ID = 'valerenga';
@@ -37,11 +37,10 @@ export const SCOUT_MISHAPS = [
 
 // Training drills
 export const DRILLS = [
-  { name: 'Bag Skate Bonanza', cost: 1, effect: 'Stamina +3' },
-  { name: 'Slap Shot Clinic', cost: 2, effect: 'Skill +2' },
-  { name: 'Grit & Grind Session', cost: 1, effect: 'Aggression +2' },
-  { name: 'Passing Precision', cost: 2, effect: 'Vision +2' },
-  { name: 'Dangle Drills', cost: 2, effect: 'Puck Handling +2' }
+  { id: TrainingFocus.TECHNICAL, label: 'TECHNICAL', desc: 'Drills puck control & shooting.', icon: '🏒', boosts: 'SKILL', cost: 'STAMINA' },
+  { id: TrainingFocus.PHYSICAL, label: 'PHYSICAL', desc: 'Suicide sprints & weights.', icon: '🏋️', boosts: 'STAMINA', cost: 'MORALE' },
+  { id: TrainingFocus.REST, label: 'REST', desc: 'Massage and video analysis.', icon: '🛌', boosts: 'MORALE', cost: 'NONE' },
+  { id: TrainingFocus.GENERAL, label: 'BALANCED', desc: 'Standard team practice.', icon: '📋', boosts: 'MIXED', cost: 'LOW' }
 ];
 
 // Dirty deals (high-risk scouting)
@@ -141,17 +140,17 @@ export const PENALTY_REASONS = [
 
 // Tactical styles
 export const TACTICAL_STYLES = [
-  { value: TacticStyle.BALANCED, label: 'Balanced', description: 'Equal focus on offense and defense' },
-  { value: TacticStyle.DUMP_AND_CHASE, label: 'Dump and Chase', description: 'Physical, forecheck heavy' },
-  { value: TacticStyle.SKILL_CYCLE, label: 'Skill Cycle', description: 'Possession-based, technical play' },
-  { value: TacticStyle.TRAP, label: 'The Trap', description: 'Defensive shell, counter-attack' },
-  { value: TacticStyle.RUN_AND_GUN, label: 'Run and Gun', description: 'All-out offense, high risk/reward' }
+  { id: TacticStyle.BALANCED, label: 'Balanced', desc: 'Standard playstyle.' },
+  { id: TacticStyle.DUMP_AND_CHASE, label: 'Dump & Chase', desc: 'Safe, low risk.' },
+  { id: TacticStyle.SKILL_CYCLE, label: 'Skill Cycle', desc: 'Possession based.' },
+  { id: TacticStyle.COUNTER_ATTACK, label: 'Counter Attack', desc: 'Exploit turnovers.' },
+  { id: TacticStyle.TRAP, label: 'Trap', desc: 'Defensive lockdown.' }
 ];
 
 // Aggression levels
 export const AGGRESSION_LEVELS = [
-  { value: AggressionLevel.LOW, label: 'Low', description: 'Clean play, avoid penalties' },
-  { value: AggressionLevel.MEDIUM, label: 'Medium', description: 'Balanced physicality' },
-  { value: AggressionLevel.HIGH, label: 'High', description: 'Physical, intimidating' },
-  { value: AggressionLevel.ENFORCER, label: 'Enforcer', description: 'Maximum grit, lots of PIMs' }
+  { id: AggressionLevel.LOW, label: 'Disciplined', desc: 'Avoid penalties.' },
+  { id: AggressionLevel.MEDIUM, label: 'Normal', desc: 'Standard checking.' },
+  { id: AggressionLevel.HIGH, label: 'Physical', desc: 'Finish checks.' },
+  { id: AggressionLevel.ENFORCER, label: 'Enforcer', desc: 'Intimidate opponents.' }
 ];
