@@ -1,0 +1,336 @@
+RK,Name,Team,GP,G,A,PTS,"""+-""",PIM,PP,PPA,SH,SHA,GWG,SOG,S%,FO,FO%
+1,"Nilsgård, Oskar Kaatorp",STO,11,10,15,25,16,10,2,3,1,0,4,38,26.3,1,0
+2,"Vestberg, Tobias",SPA,10,10,14,24,7,6,1,3,0,0,2,32,31.3,10,60
+3,"Rannstad, Patrick Bekkevold",STO,10,11,11,22,15,0,4,3,0,1,0,30,36.7,0,0
+4,"Mattsson, Elias",SPA,10,5,15,20,9,4,1,2,0,0,0,27,18.5,2,100
+5,"Lien, Olai Høyem",STJ,6,6,12,18,17,2,1,5,0,0,1,36,16.7,0,0
+6,"Ruud, Aleksander Torgrimsen",STO,11,6,11,17,10,4,0,6,0,0,1,21,28.6,166,56
+6,"Andersen, Aksel Stenmoe",STJ,10,7,10,17,6,14,3,4,0,0,1,54,13,0,0
+8,"Bjørnstad, Linus",FRI,12,6,10,16,8,6,1,2,1,0,0,22,27.3,2,50
+8,"Vold, Anders Fuhr",STO,11,9,7,16,15,2,3,2,0,1,1,43,20.9,33,57.6
+8,"Karlsson, Conrad",MAN,10,8,8,16,3,6,1,1,0,0,2,76,10.5,155,46.5
+8,"Lie, Casper Nicolai",STO,11,4,12,16,11,0,0,4,1,0,0,19,21.1,2,50
+12,"Sætre, Ola Noer",KON,13,9,6,15,7,10,1,2,1,0,3,34,26.5,10,60
+12,"Johansen, Jonas",SPA,10,1,14,15,5,6,0,1,0,1,0,23,4.3,0,0
+12,"Skumlien, Oliver Løgith",KON,11,5,10,15,6,0,1,1,0,1,0,24,20.8,155,43.9
+12,"Andersen, Elias Gøsta",STJ,12,7,8,15,0,6,5,3,0,0,0,34,20.6,14,57.1
+12,"Fadnes, Kristian Trinborg",FRI,7,4,11,15,10,0,0,6,1,0,0,15,26.7,3,33.3
+12,"Noer, Alexander Noa Lundell",FRI,13,7,8,15,10,4,1,1,0,1,2,25,28,50,64
+12,"Oommen, Timothy Simon",STJ,13,6,9,15,10,6,0,0,0,0,1,31,19.4,1,0
+12,"Melleby, Tobias Johansen",STO,11,5,10,15,15,2,1,3,1,1,0,35,14.3,165,51.5
+20,"Kuvås, Aron Husevik",VÅL,6,3,11,14,11,0,0,0,0,1,1,22,13.6,3,0
+20,"Messa, Sid James David",LØR,12,4,10,14,4,0,0,5,0,0,1,27,14.8,186,40.9
+20,"Vassøy, Mathias",STA,11,6,8,14,9,0,0,1,0,0,0,30,20,157,58
+20,"Nilsgård, Luka Kaatorp",STO,11,7,7,14,21,6,2,1,0,1,0,42,16.7,1,0
+24,"Lager, Phillip Gjessing",SPA,10,11,2,13,7,4,2,0,1,0,2,26,42.3,232,56.9
+24,"Priede, Martins",STA,12,8,5,13,-1,41,2,2,0,1,2,51,15.7,43,74.4
+26,"Bastiansen, Elias Peter",FRI,13,6,6,12,6,8,1,2,1,0,1,25,24,138,45.7
+26,"Wallace, Martin",LØR,12,3,9,12,7,8,0,1,0,0,1,25,12,6,83.3
+26,"Bratland, Aksel",LØR,12,4,8,12,-3,0,3,4,0,0,0,33,12.1,243,49
+26,"Cederquist, Iver Riise",VÅL,11,2,10,12,6,0,0,3,1,1,0,31,6.5,3,66.7
+26,"Hansen, Lucas",STO,9,3,9,12,12,27,2,2,0,0,0,20,15,0,0
+26,"Flinskau, Daniel",MAN,8,7,5,12,7,33,0,0,0,0,1,32,21.9,8,50
+26,"Næss, Jonas",STA,11,2,10,12,16,6,0,1,0,0,0,25,8,5,40
+26,"Strømsborg, Thomas Lindblad",STJ,11,5,7,12,6,27,1,1,0,0,0,33,15.2,123,57.7
+34,"Hundsnes, Håvard",STA,14,3,8,11,10,13,1,0,0,0,1,36,8.3,2,100
+34,"Flade, Håkon Johannes",STO,6,2,9,11,8,8,1,2,0,0,0,11,18.2,82,59.8
+34,"Engh, Fredrik",VÅL,10,5,6,11,0,6,2,0,0,0,0,28,17.9,149,54.4
+34,"Hyttebakk, Jonas Golberg",FRI,10,4,7,11,9,4,2,2,0,0,0,22,18.2,0,0
+34,"Narvestad, Matias Sveen",FRI,11,6,5,11,10,6,1,1,0,0,1,19,31.6,2,50
+34,"Giske, Lucas",LØR,13,6,5,11,-8,12,1,0,0,0,0,32,18.8,0,0
+34,"Løken, Vegard",FRI,13,4,7,11,14,2,1,2,0,0,1,35,11.4,1,0
+34,"Kleven, Alexander Hoel",STO,11,3,8,11,10,8,1,0,0,0,0,19,15.8,1,0
+34,"Kreutz, Eirik Skaarer",STJ,13,5,6,11,3,0,0,0,0,0,1,26,19.2,75,48
+34,"Lindahl, Sander Froberg",STJ,12,6,5,11,2,4,2,4,0,0,1,26,23.1,2,0
+34,"Naboichenko, Tymofii",STA,11,4,7,11,11,0,0,1,0,0,2,26,15.4,20,85
+45,"Justnes, August Hovind",FRI,13,6,4,10,6,6,2,1,0,0,1,33,18.2,5,60
+45,"Nordrum, Philip Mikael",FRI,8,2,8,10,15,6,0,1,0,0,0,19,10.5,1,0
+45,"Puntervold, Mats André Walaunet",LØR,13,6,4,10,-5,12,3,1,0,0,0,42,14.3,1,100
+45,"Fadnes, Jonas Trinborg",FRI,12,2,8,10,9,0,1,1,0,0,1,15,13.3,1,0
+45,"Kovalenko, Edvin",STA,12,5,5,10,11,10,1,0,0,0,1,37,13.5,0,0
+45,"Kolflaath, Filip Mauritzon",VÅL,5,7,3,10,11,0,0,0,3,0,0,10,70,62,56.5
+45,"Hendrichs, William Wike",FRI,13,6,4,10,7,2,1,0,0,0,1,30,20,144,51.4
+45,"Ulving-Tufte, Martinus",FRI,9,1,9,10,9,6,1,1,0,0,0,19,5.3,0,0
+45,"Dubec, Matheo Werner",STJ,4,6,4,10,5,0,2,3,0,0,0,24,25,3,100
+45,"Norum, Johannes",VÅL,5,4,6,10,5,8,3,3,0,0,1,28,14.3,75,58.7
+55,"Nordstrøm, Mikkel Lund",STO,9,1,8,9,14,0,0,2,0,1,0,13,7.7,0,0
+55,"Grunnreis, Ola",LØR,7,1,8,9,-3,8,1,3,0,0,0,19,5.3,0,0
+55,"Josefsen, Mathias Wister",SPA,10,1,8,9,4,6,0,3,1,1,0,13,7.7,2,50
+55,"Moflag, Sivert Østnor",VÅL,5,5,4,9,2,2,1,1,1,0,1,15,33.3,62,56.5
+55,"Bjølsand, Dennis Sørlie",MAN,10,4,5,9,-1,0,1,0,0,0,0,21,19,2,0
+55,"Temerov, Ilya Romanovich",STA,9,7,2,9,5,6,2,0,1,0,1,52,13.5,8,12.5
+55,"Hulleberg, Tobias Westby",SPA,11,3,6,9,-13,12,0,2,0,0,0,22,13.6,73,49.3
+55,"Storrød-Myrén, Mathias Theodor",VÅL,11,5,4,9,8,29,0,0,0,0,0,25,20,5,40
+55,"Ånerud, Fredrik Sletholen",KON,10,3,6,9,1,2,0,1,0,0,0,18,16.7,173,56.1
+64,"Hura, Tymofii",STA,14,3,5,8,-1,8,0,1,1,0,1,19,15.8,12,41.7
+64,"Owen, Isaac Thomas",STJ,6,2,6,8,-2,2,1,4,0,0,1,19,10.5,127,63
+64,"Årbogen, Oskar Kjærvik",KON,12,5,3,8,5,2,0,0,1,0,2,20,25,12,41.7
+64,"Storsveen, Herman",STO,9,4,4,8,9,0,0,0,0,0,1,8,50,66,51.5
+64,"Nordenson, Nicolai Hodne",VÅL,10,4,4,8,7,2,0,0,0,0,1,28,14.3,1,0
+64,"Ilstad, Sivert",STO,9,2,6,8,15,8,0,1,0,0,0,10,20,0,0
+64,"Proskurnicki, Michael Elton",FRI,13,1,7,8,1,4,1,1,0,1,1,30,3.3,69,58
+64,"Ydsti, Noah Per Eklund",NID,8,1,7,8,-5,2,0,3,0,0,0,38,2.6,11,45.5
+64,"Andersen, Julian Knold",STJ,4,3,5,8,7,0,2,0,0,0,0,13,23.1,49,65.3
+64,"Braaten, Lucas",VÅL,11,6,2,8,7,4,1,1,2,0,1,14,42.9,3,66.7
+64,"Orre, Vincent",FRI,13,3,5,8,11,27,1,1,0,1,0,21,14.3,2,50
+64,"Hermansen, Anton Ekeland",STJ,11,1,7,8,0,2,0,3,0,0,0,12,8.3,137,58.4
+64,"Lingsom, Magnus Flottorp",VÅL,11,0,8,8,15,0,0,0,0,0,0,12,0,0,0
+64,"Pukownik, Kristian David",LØR,7,4,4,8,1,4,0,0,0,0,0,18,22.2,0,0
+78,"Dittmann, Eirik Midtdal",MAN,9,1,6,7,-1,0,0,0,0,0,0,6,16.7,11,36.4
+78,"Antonsen, Markus",KON,13,3,4,7,3,2,0,0,0,0,0,23,13,7,28.6
+78,"Bunæs, Trym",STJ,7,1,6,7,6,4,0,1,0,0,0,27,3.7,0,0
+78,"Bakkerud, Balder Jonsson",STJ,9,5,2,7,4,0,0,0,0,0,1,18,27.8,4,0
+78,"Sollund, Nikolai Sørlie",LØR,6,5,2,7,2,8,1,1,0,0,0,22,22.7,1,0
+78,"Myhre, Adrian",VÅL,11,6,1,7,1,4,2,0,0,0,1,26,23.1,10,40
+78,"Røsås, Jonathan",LIL,7,5,2,7,-6,6,2,1,0,0,0,19,26.3,2,100
+78,"L Heureux, William Kunz",FRI,13,3,4,7,4,6,0,1,0,0,0,30,10,78,42.3
+86,"Larsen, Adrian Leander",LØR,12,3,3,6,1,27,0,1,1,0,0,33,9.1,1,100
+86,"Slette, Jonah",LIL,9,3,3,6,-3,0,1,2,0,0,0,23,13,185,56.8
+86,"Lyngdal, Lars Julian Soza",FRI,12,3,3,6,3,2,0,0,0,0,0,23,13,4,50
+86,"Stautland, Simon",MAN,8,4,2,6,4,0,0,0,0,0,0,14,28.6,2,50
+86,"Rindal, Benjamin Stakston",LIL,9,2,4,6,-8,2,1,4,0,0,0,18,11.1,7,28.6
+86,"Helminsen, Johannes Ruud",STJ,13,0,6,6,-1,8,0,1,0,0,0,21,0,2,0
+86,"Roen, Petter Foyn",MAN,5,1,5,6,1,0,0,1,0,0,0,10,10,67,58.2
+86,"Aanestad, Ola Stangeland",STA,14,1,5,6,5,4,0,1,0,0,0,18,5.6,176,58
+86,"Ribbing, Fredrik Randtun",STO,9,2,4,6,5,10,0,0,0,0,1,19,10.5,6,83.3
+86,"Lystad, Ola Gorset",MAN,11,1,5,6,4,10,0,0,0,0,0,12,8.3,1,0
+86,"Peck, Max Georg Noer",JAR,9,1,5,6,-9,2,0,2,0,0,0,18,5.6,0,0
+86,"Ekberg, Marinius Sixten Arne",FRI,8,2,4,6,10,2,0,0,0,0,0,9,22.2,22,72.7
+86,"Støen, Adrian Aleksander",VÅL,9,0,6,6,7,12,0,3,0,0,0,12,0,0,0
+86,"Holmsen, Simen",KON,12,0,6,6,11,2,0,2,0,0,0,20,0,1,0
+86,"Otterlei, Patrick Alexander Coloma",VÅL,11,1,5,6,7,10,0,3,0,0,1,8,12.5,0,0
+86,"Kolstad, Herman Hjellestad",FRI,13,3,3,6,3,4,0,1,0,0,1,28,10.7,0,0
+86,"Martin-Blikset, Sebastian",VÅL,6,1,5,6,11,4,0,1,0,0,0,14,7.1,0,0
+86,"Olstad, Calvin Emilio",LØR,13,5,1,6,1,2,0,0,0,0,3,12,41.7,0,0
+86,"Thun, Trym Tveiten",KON,10,2,4,6,1,8,0,0,0,0,0,13,15.4,33,42.4
+86,"Engebakken, Isak",STO,9,2,4,6,5,4,0,1,0,0,0,11,18.2,53,52.8
+86,"Lukac, Maxim",FRI,12,3,3,6,5,27,0,1,0,0,0,25,12,108,66.7
+86,"Riise, Theodor Noah",LIL,13,1,5,6,-4,2,1,1,0,0,0,14,7.1,115,56.5
+86,"Burum, Tex",STJ,9,2,4,6,9,0,1,2,0,0,0,16,12.5,1,0
+86,"Lerbakk, Kristoffer",STJ,12,2,4,6,-5,4,0,1,0,0,1,15,13.3,5,100
+86,"Samuelsen, Kurt Magnus",STA,14,3,3,6,-6,4,2,1,0,0,0,29,10.3,2,50
+86,"Kristiansen, Emil Johansson",LØR,12,1,5,6,4,0,0,0,0,0,0,14,7.1,0,0
+112,"Johansson, Sander",SPA,11,3,2,5,-14,6,1,0,1,0,0,14,21.4,42,47.6
+112,"Møller, Henrik Andreas Horjen",STA,14,1,4,5,2,6,0,1,0,0,0,14,7.1,0,0
+112,"Mallaug, Enrico",LIL,12,4,1,5,-4,6,0,0,0,0,1,28,14.3,9,55.6
+112,"Bringager, Sondre",MAN,11,2,3,5,-2,2,0,0,0,0,0,27,7.4,12,41.7
+112,"Vargas, Luca",VÅL,10,0,5,5,5,35,0,0,0,0,0,13,0,110,59.1
+112,"Haug, Oscar Sebastian Auli",JAR,13,2,3,5,-20,2,2,0,0,0,0,14,14.3,4,0
+112,"Bergehagen, Theo Aamodt",LIL,13,4,1,5,-2,8,2,0,0,0,1,20,20,0,0
+112,"Slette, Eliah",LIL,4,2,3,5,0,8,1,1,0,0,1,10,20,7,42.9
+112,"Dal Pan, Tom David",MAN,7,1,4,5,5,12,0,0,0,0,0,17,5.9,63,41.3
+112,"Haugen, Julian",SPA,11,3,2,5,-1,6,0,0,0,1,0,13,23.1,132,49.2
+112,"Morken, Linus",KON,11,2,3,5,2,4,0,0,0,0,0,16,12.5,99,45.5
+112,"Dzenis, Gusts",LØR,12,2,3,5,4,2,0,0,0,0,0,13,15.4,2,100
+112,"Castberg, Theodor Lyngvær",STO,8,1,4,5,5,0,0,0,0,0,1,8,12.5,1,0
+112,"Kononenko, Yaroslav",STA,6,2,3,5,2,10,0,1,0,0,1,15,13.3,94,47.9
+126,"Zouhar, Leo Samuel Moe",LIL,12,3,1,4,-4,10,0,1,0,0,0,14,21.4,3,33.3
+126,"Bratlien, Ulrik Foss",LIL,13,2,2,4,2,8,0,0,0,0,0,11,18.2,0,0
+126,"Liland, Sverre Lillevoll",FRI,4,1,3,4,-2,4,1,2,0,0,0,14,7.1,56,73.2
+126,"Ruud, Heine Johan Solberg",KON,7,3,1,4,-1,4,0,0,0,0,0,5,60,38,31.6
+126,"Cederquist, Johan Riise",VÅL,11,2,2,4,7,4,0,0,0,1,0,11,18.2,0,0
+126,"Skirbekk, Tobias Joachim",KON,10,3,1,4,-1,2,0,0,0,0,1,36,8.3,5,40
+126,"Paulsen, Henrik Hekk",MAN,10,2,2,4,0,2,0,0,0,0,0,9,22.2,149,45.6
+126,"Nastad, Eirik Eriksen",KON,11,3,1,4,1,6,0,0,0,0,0,17,17.6,6,50
+126,"Liu, Wuge",NID,8,2,2,4,-2,2,0,1,1,0,1,15,13.3,26,38.5
+126,"Vestbø, Henrik",STA,6,1,3,4,1,6,0,0,0,0,0,16,6.3,0,0
+126,"Thomassen, Mathias Mæland",STA,8,1,3,4,1,2,1,1,0,0,0,9,11.1,0,0
+126,"Wessel, Daniel André",SPA,11,4,0,4,-1,0,0,0,0,0,1,16,25,6,33.3
+126,"Svendsen, William Konding",STJ,12,0,4,4,-1,4,0,0,0,0,0,6,0,1,100
+126,"Daul, Jonas",JAR,8,2,2,4,-11,2,0,1,0,0,1,16,12.5,13,53.8
+126,"Melgaard, Noah Fonn",STA,10,2,2,4,9,6,0,0,0,0,0,14,14.3,0,0
+126,"West, Henrik Stenrød",JAR,13,0,4,4,-19,4,0,1,0,0,0,11,0,0,0
+126,"Bjørnstad, Bendik",STO,10,1,3,4,5,0,1,1,0,1,0,10,10,0,0
+126,"Oliversen-Kvamme, Solan Jonathan",SPA,11,0,4,4,-4,14,0,0,0,0,0,4,0,0,0
+126,"Myhre, Oliver Hesthagen",LØR,11,3,1,4,-9,0,0,0,0,0,1,25,12,69,53.6
+145,"Bakken, Marius Tessem",KON,9,1,2,3,5,27,0,0,0,0,0,12,8.3,0,0
+145,"Kvale, Brage",KON,11,1,2,3,-6,0,1,0,0,0,0,13,7.7,0,0
+145,"Hasting, Herman Stokka",STA,14,1,2,3,4,2,0,0,0,0,0,14,7.1,3,33.3
+145,"Mørk, Mads Henrik",KON,11,0,3,3,-4,4,0,0,0,0,0,7,0,84,39.3
+145,"Knaben, Eskil",STA,7,2,1,3,0,29,1,0,0,0,0,13,15.4,34,44.1
+145,"Jakobsen, Theodor Liam Strøm",LØR,2,2,1,3,3,2,0,0,0,0,0,10,20,32,59.4
+145,"Johansen, Rio Rafael",STO,1,3,0,3,2,0,1,0,0,0,1,4,75,0,0
+145,"Høyland, Ludvig",STA,2,1,2,3,-2,0,0,1,0,0,0,4,25,0,0
+145,"Hande, Marius",SPA,11,0,3,3,-8,0,0,1,0,0,0,5,0,0,0
+145,"Aasheim, Max Marinius",MAN,6,3,0,3,-5,8,1,0,0,0,0,20,15,16,56.3
+145,"Hestbråten, Storm",KON,10,2,1,3,-5,4,0,0,0,0,0,14,14.3,0,0
+145,"Biagi, Martin Felberg",KON,9,1,2,3,0,0,0,0,0,0,0,8,12.5,25,32
+145,"Bie, Christian Markus",STJ,7,0,3,3,2,2,0,0,0,0,0,1,0,28,60.7
+145,"Wisth, Johannes",NID,3,3,0,3,-1,6,2,0,0,0,1,9,33.3,0,0
+145,"Vågø-Vassbotn, Mathias",NID,6,2,1,3,-4,2,1,1,0,0,0,20,10,102,59.8
+145,"Jessesen, Teo Motzfeldt",SPA,10,2,1,3,-8,12,1,0,0,0,0,14,14.3,0,0
+145,"Mordal, Daniel Nås",MAN,8,0,3,3,-2,6,0,0,0,0,0,10,0,4,50
+145,"Brandt, Brian Gjerlid",STA,4,0,3,3,-3,2,0,1,0,0,0,8,0,0,0
+145,"Myhrvold, Dennis Holmestad",LIL,9,1,2,3,-7,27,1,0,0,0,0,2,50,7,57.1
+145,"Kristensen, Kasper",STA,10,2,1,3,4,2,0,0,0,0,0,15,13.3,4,50
+145,"Rustad, Even",JAR,12,2,1,3,-18,0,1,0,0,0,0,20,10,210,44.8
+145,"Frogner-Kyvik, Sebastian",MAN,11,1,2,3,-4,8,0,1,0,0,0,24,4.2,2,50
+145,"Pirons, Tomass",STA,12,1,2,3,7,4,0,0,0,0,0,19,5.3,0,0
+145,"Wallace, Christoffer André",LØR,13,0,3,3,-2,6,0,0,0,0,0,7,0,0,0
+145,"Cellerosi, Viktor Kopperstad",STA,8,2,1,3,2,4,0,1,0,0,0,20,10,100,45
+145,"Nilsen, Noah",VÅL,11,0,3,3,1,2,0,0,0,1,0,21,0,7,28.6
+145,"Knap, Johan Feragen",MAN,7,1,2,3,-3,2,0,0,0,0,0,4,25,1,100
+145,"Krumins, Rodrigo",LIL,13,1,2,3,-5,0,0,0,0,0,0,10,10,104,35.6
+173,"Hauge, Sverre",STJ,13,0,2,2,2,27,0,0,0,0,0,7,0,0,0
+173,"Barzda, Kristupas",VÅL,8,2,0,2,1,4,0,0,0,0,1,15,13.3,0,0
+173,"Bore, Mats Ji-Seong Worren",MAN,10,1,1,2,-8,2,0,0,0,0,0,10,10,45,44.4
+173,"Setsaas, Edvard William",NID,10,1,1,2,-11,2,0,0,0,0,0,7,14.3,2,50
+173,"Dimitriev-Jensen, Nikolai Georg",STO,2,1,1,2,1,0,0,1,0,0,0,4,25,0,0
+173,"Cao, Chunyang Noah",NID,10,1,1,2,-4,8,1,0,0,0,0,7,14.3,0,0
+173,"Roca Guinovart, Josep",VÅL,1,1,1,2,2,0,0,0,0,0,0,2,50,0,0
+173,"Offenberg, Axel William",STJ,12,0,2,2,5,0,0,0,0,0,0,13,0,0,0
+173,"Lysholm, Chris Wikdahl",NID,3,1,1,2,1,0,0,1,0,0,0,13,7.7,1,0
+173,"Pedersen, Sebastian Candell",JAR,9,0,2,2,-7,2,0,0,0,0,0,16,0,0,0
+173,"Walberg, Lucas Pettersen",SPA,11,1,1,2,-13,2,1,1,0,0,0,13,7.7,121,46.3
+173,"Ilseng, Kevin",VÅL,4,0,2,2,3,2,0,0,0,0,0,5,0,0,0
+173,"Johansen, Ludvik Jordet",LØR,11,0,2,2,-6,6,0,0,0,0,0,13,0,0,0
+173,"Kregnes, Markus",NID,10,2,0,2,-13,6,0,0,0,0,0,11,18.2,0,0
+173,"Helgesen, Adrian Solgaard",SPA,11,0,2,2,-4,33,0,0,0,0,0,7,0,0,0
+173,"Guimaraes, Bernardo Olav Wadstrand",JAR,10,1,1,2,-25,0,1,1,0,0,0,10,10,84,42.9
+173,"Rotegård, Oscar Sanne",MAN,10,0,2,2,-6,2,0,0,0,0,0,2,0,0,0
+173,"Karjalainen-Albertsen, Oliver",NID,10,0,2,2,-12,4,0,1,0,0,0,11,0,0,0
+173,"Hole-Videsjorden, Even",MAN,6,0,2,2,-4,4,0,0,0,0,0,6,0,2,100
+173,"Skaar, Trym",JAR,8,1,1,2,-13,8,0,0,0,0,0,9,11.1,0,0
+173,"Larsen, Markus Solvang",LIL,4,1,1,2,0,0,0,0,0,0,0,6,16.7,1,0
+173,"Juntti, Jesper Alexandersen",STO,2,0,2,2,3,0,0,0,0,0,0,1,0,0,0
+173,"Hågensen, William Burhol",LØR,10,0,2,2,1,4,0,1,0,0,0,2,0,0,0
+173,"Bustgaard, Alexander",VÅL,2,1,1,2,2,0,0,0,0,0,0,6,16.7,4,50
+173,"Svalastog, Even Wettre",LIL,10,0,2,2,-5,12,0,0,0,0,0,10,0,1,100
+173,"Bøe, Melvin René Skjeltorp",SPA,2,1,1,2,-2,0,0,1,0,0,0,5,20,0,0
+173,"Skaug, Aksel",VÅL,5,1,1,2,3,0,0,0,0,0,0,4,25,5,40
+173,"Kaarbø, Erik",LIL,11,1,1,2,-9,8,1,1,0,0,0,9,11.1,21,47.6
+173,"Thorsvik, Sander Bergundhaugen",STA,6,1,1,2,3,2,0,0,0,0,0,10,10,46,54.3
+173,"Platou, Sigurd Kvåle",JAR,13,0,2,2,-19,14,0,0,0,0,0,9,0,2,50
+173,"Odden, Jørgen Tanum",JAR,10,2,0,2,-23,16,0,0,0,0,0,24,8.3,163,33.7
+173,"Haugbro, Heine Tverberg",MAN,4,0,2,2,5,4,0,0,0,0,0,7,0,1,0
+173,"Berntsen, Lukas Melien",LØR,8,1,1,2,1,0,0,0,0,0,0,5,20,44,52.3
+173,"Olasveengen, Mikael Nyland",STO,1,0,2,2,1,0,0,2,0,0,0,0,0,12,58.3
+173,"Hervik, Rasmus Olaisen",JAR,12,1,1,2,-13,12,0,0,0,0,0,5,20,1,0
+173,"Wålberg, Jonathan",LIL,8,2,0,2,-1,0,0,0,0,0,0,20,10,10,30
+173,"Karlsen, Leander Slind",NID,4,0,2,2,-2,4,0,1,0,0,0,7,0,0,0
+173,"Meltveit, Thor-Samuel Rodriguez",KON,3,1,1,2,-2,0,0,0,0,0,0,1,100,0,0
+173,"Strandem, Henning",LØR,11,1,1,2,2,4,0,0,0,0,0,11,9.1,0,0
+173,"Karfjell, Karl Emil Fiskvik",KON,9,0,2,2,4,6,0,0,0,0,0,5,0,0,0
+173,"Wilhelmsen, Theo",NID,6,1,1,2,-2,6,0,0,0,0,0,10,10,99,43.4
+173,"Forsberg, Jonas Sætre",LØR,4,0,2,2,0,8,0,0,0,0,0,5,0,44,52.3
+173,"Skavhaug, Kornelius Andersen",JAR,13,1,1,2,-15,16,0,0,0,0,0,18,5.6,10,20
+216,"Bryni, Joakim Tørmo",STJ,6,1,0,1,2,0,0,0,0,0,0,3,33.3,2,0
+216,"Olsen, Mats Sund",LØR,7,0,1,1,0,0,0,0,0,0,0,0,0,35,42.9
+216,"Aatlo, Axel Gunnar",JAR,6,0,1,1,-9,0,0,1,0,0,0,6,0,0,0
+216,"Hildén, Jonas Westlye",STA,2,0,1,1,1,2,0,0,0,0,0,0,0,1,100
+216,"Coard, Mattias Sebastian",KON,10,0,1,1,2,6,0,0,0,0,0,11,0,0,0
+216,"Otterlei, Sean-Nikolai Coloma",VÅL,3,1,0,1,0,0,0,0,0,0,0,6,16.7,0,0
+216,"Nergård, Berge",VÅL,1,1,0,1,1,0,0,0,0,0,0,1,100,0,0
+216,"Blyverket, Mio Bergh",LIL,13,0,1,1,-5,2,0,0,0,0,0,9,0,0,0
+216,"Solvang, Fredrik Irgens",JAR,5,0,1,1,-8,6,0,0,0,0,0,6,0,66,43.9
+216,"Bråthen, Niklas",STO,9,1,0,1,-1,4,0,0,0,0,0,20,5,1,0
+216,"Torstensen, Magnus Langdalen",KON,8,0,1,1,-5,0,0,0,0,0,0,1,0,0,0
+216,"Forstrøm, Vegar Magne",VÅL,11,0,1,1,4,4,0,0,0,0,0,9,0,0,0
+216,"Hasund, Frithjof",VÅL,4,0,1,1,3,0,0,0,0,0,0,6,0,64,43.8
+216,"Bjønnes, Victor Sangiorgio",SPA,1,0,1,1,1,0,0,0,0,0,0,3,0,14,50
+216,"Brevik, Aksel",SPA,9,0,1,1,-6,2,0,0,0,0,0,11,0,0,0
+216,"Wilberg, Noah Kvarme",NID,10,0,1,1,-8,0,0,0,0,0,0,5,0,2,0
+216,"Skjellet, Rasmus Fjærgård",STO,1,0,1,1,3,0,0,0,0,0,0,5,0,0,0
+216,"Nielsen, Filip Mains",LØR,3,0,1,1,2,0,0,0,0,0,0,3,0,6,50
+216,"Gran, Eskil",VÅL,3,0,1,1,1,0,0,0,0,0,0,3,0,24,33.3
+216,"Music, Sanin",NID,10,0,1,1,-10,6,0,0,0,0,0,3,0,0,0
+216,"Ulset, Lavrans Vold",FRI,1,1,0,1,1,2,0,0,0,0,0,1,100,15,66.7
+216,"Robertsson, Isak Halvari",FRI,1,1,0,1,2,0,0,0,0,0,0,1,100,0,0
+216,"Westergård, Sondre Bjørkum",LIL,3,0,1,1,-5,2,0,0,0,0,0,5,0,14,28.6
+216,"Grinden, Storm René",KON,2,1,0,1,-1,4,0,0,0,0,0,1,100,0,0
+216,"Sveum, Mika",STJ,5,1,0,1,-1,0,0,0,0,0,1,3,33.3,0,0
+216,"Vestre, Joakim",LIL,3,0,1,1,1,0,0,0,0,0,0,4,0,4,0
+216,"Agnalt, Oliver Borchgrevink",STO,8,1,0,1,10,4,0,0,0,0,0,5,20,0,0
+216,"Arnesen, Lucas Marensius",STJ,3,0,1,1,1,0,0,0,0,0,0,0,0,0,0
+216,"Andresen, Adrian Escoto",LØR,1,1,0,1,1,2,0,0,0,0,0,6,16.7,3,100
+216,"Kristensen, William",JAR,7,1,0,1,-11,4,0,0,0,0,0,11,9.1,3,0
+216,"Lunde, Philip Haugen",LIL,13,0,1,1,-10,31,0,1,0,0,0,14,0,1,0
+216,"Fenner, Christopher Gjelstad",VÅL,3,1,0,1,0,2,0,0,0,0,0,4,25,0,0
+216,"Volla, Oliver Marken",STO,9,0,1,1,5,2,0,0,0,0,0,9,0,0,0
+216,"Muzik, Matej",MAN,4,1,0,1,-2,0,0,0,0,0,0,3,33.3,33,48.5
+216,"Hadland, Matheo",LIL,11,0,1,1,-11,6,0,0,0,0,0,14,0,196,44.4
+216,"Michelet, Henrik",JAR,2,0,1,1,-3,0,0,1,0,0,0,1,0,0,0
+216,"Eid, Jakob Marinius Bredland",JAR,8,1,0,1,-7,0,0,0,0,0,0,5,20,1,100
+216,"Kristiansen, Jonathan Lund",KON,7,1,0,1,-4,39,0,0,0,0,0,12,8.3,2,0
+216,"Østberg, Emil",KON,9,0,1,1,4,0,0,0,0,0,0,8,0,0,0
+216,"Moe, Philip Aagesen",KON,11,0,1,1,0,0,0,0,0,0,0,7,0,2,100
+256,"Rosales Casillas, Manel",JAR,3,0,0,0,-5,2,0,0,0,0,0,4,0,1,100
+256,"Nürnberg, William",JAR,1,0,0,0,-1,0,0,0,0,0,0,0,0,0,0
+256,"Sandtangen, Leo",SPA,1,0,0,0,1,2,0,0,0,0,0,0,0,0,0
+256,"Brauska, Mark",JAR,13,0,0,0,-22,2,0,0,0,0,0,11,0,1,100
+256,"Berg, Sondre",STO,1,0,0,0,0,0,0,0,0,0,0,2,0,0,0
+256,"Jerpseth, Markus Rossvoll",LØR,2,0,0,0,0,0,0,0,0,0,0,2,0,0,0
+256,"Fristedt, Liam Valentin",KON,5,0,0,0,-1,0,0,0,0,0,0,3,0,0,0
+256,"Ohrstrand, Elias Ommedal",STO,1,0,0,0,-2,2,0,0,0,0,0,2,0,2,0
+256,"du, Yan",NID,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+256,"Figueroa-Ørsnes, Rayco Alexander",NID,2,0,0,0,-1,4,0,0,0,0,0,0,0,0,0
+256,"Østli, Andreas",MAN,3,0,0,0,4,0,0,0,0,0,0,0,0,0,0
+256,"Finstad-Ødegård, Leon",STO,1,0,0,0,0,0,0,0,0,0,0,3,0,0,0
+256,"Fjeld, Simen Treichel",LIL,2,0,0,0,-1,0,0,0,0,0,0,1,0,0,0
+256,"Dagsland, Ferdinand",STA,4,0,0,0,2,0,0,0,0,0,0,9,0,0,0
+256,"Strengelsrud, Lars Håvard Svarttjernet",KON,3,0,0,0,-2,0,0,0,0,0,0,1,0,8,50
+256,"Lennby, Maximilian Vidar",STJ,4,0,0,0,0,0,0,0,0,0,0,3,0,0,0
+256,"Lilleaas, Jesper Henriksen",MAN,11,0,0,0,-2,4,0,0,0,0,0,17,0,0,0
+256,"Ulrichsen, William Marcelius Evjen",JAR,10,0,0,0,-15,0,0,0,0,0,0,2,0,0,0
+256,"Sollien, Elias",STO,2,0,0,0,-1,2,0,0,0,0,0,4,0,0,0
+256,"Sagaev, Magomed",JAR,6,0,0,0,-11,2,0,0,0,0,0,1,0,5,60
+256,"Brandt, Brian Gjerlid",LIL,4,0,0,0,-1,0,0,0,0,0,0,13,0,0,0
+256,"Ramsli, Mark Steinovich",STJ,4,0,0,0,0,0,0,0,0,0,0,5,0,0,0
+256,"Johansen, Linus Starheim",MAN,1,0,0,0,0,0,0,0,0,0,0,0,0,5,60
+256,"Pettersen, Fredrik",LØR,6,0,0,0,-1,2,0,0,0,0,0,1,0,0,0
+256,"Kalinka, Andrej Normann",STO,2,0,0,0,-2,14,0,0,0,0,0,7,0,14,50
+256,"Christensen, Anton Nærby",JAR,6,0,0,0,-7,4,0,0,0,0,0,4,0,1,0
+256,"Fossen, Olander Andreas",JAR,6,0,0,0,-8,0,0,0,0,0,0,6,0,0,0
+256,"Moe, Isak Rambæk",LIL,8,0,0,0,-2,2,0,0,0,0,0,2,0,0,0
+256,"Berg, Adam Dahis",NID,9,0,0,0,-5,0,0,0,0,0,0,1,0,12,50
+256,"Adsen, Petter Laurits",NID,4,0,0,0,-4,29,0,0,0,0,0,1,0,0,0
+256,"Fossum, Marlon",VÅL,3,0,0,0,0,2,0,0,0,0,0,3,0,0,0
+256,"Sæther, Marcus Wigdahl",FRI,1,0,0,0,1,4,0,0,0,0,0,0,0,0,0
+256,"Rønning, Eskil Laukholm",NID,8,0,0,0,-14,12,0,0,0,0,0,4,0,0,0
+256,"Saxrud, Liam Killingrød",STJ,3,0,0,0,-1,2,0,0,0,0,0,1,0,0,0
+256,"Arnesen, Johannes Elis",VÅL,2,0,0,0,-1,0,0,0,0,0,0,2,0,17,47.1
+256,"Aas, Aleksander Amundsen",NID,4,0,0,0,-6,0,0,0,0,0,0,5,0,0,0
+256,"Olsen, Sander Pedersen",KON,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+256,"Haugen, Theo",SPA,1,0,0,0,-1,0,0,0,0,0,0,2,0,0,0
+256,"Bjørknes, Trym Marius",LØR,3,0,0,0,-1,0,0,0,0,0,0,2,0,0,0
+256,"Polzin, Aleksander Thorvaldsen",JAR,7,0,0,0,-12,2,0,0,0,0,0,2,0,0,0
+256,"Dabrowski, Hubert",MAN,1,0,0,0,-2,0,0,0,0,0,0,0,0,0,0
+256,"Lundberg, Simon Justnes",NID,2,0,0,0,-3,2,0,0,0,0,0,2,0,2,0
+256,"Engebrigtsen, Casper",FRI,2,0,0,0,-3,0,0,0,0,0,0,2,0,0,0
+256,"Wilberg, Theo Kvarme",NID,10,0,0,0,-14,0,0,0,0,0,1,9,0,71,29.6
+256,"Furelid, Felix",NID,10,0,0,0,-10,4,0,0,0,0,0,4,0,21,42.9
+256,"Bjarheim, Viktor",KON,5,0,0,0,-2,0,0,0,0,0,0,1,0,2,100
+256,"Hveding, Johannes",NID,7,0,0,0,-4,0,0,0,0,0,0,1,0,0,0
+256,"Jarberg, Robin",SPA,11,0,0,0,-1,2,0,0,0,0,0,1,0,1,0
+256,"Arnestad, Linus Johan Eidsa",LIL,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+256,"Bugge-Paulsen, Mads Bahr",JAR,1,0,0,0,-2,2,0,0,0,0,0,0,0,0,0
+256,"Reistad-Gysler, Tinius",VÅL,1,0,0,0,0,0,0,0,0,0,0,4,0,3,100
+256,"Ballovarre, Aksel",STJ,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+256,"Simensen, Lukas",SPA,1,0,0,0,0,0,0,0,0,0,0,3,0,0,0
+256,"Olafsen, Casper Opiana",STA,2,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+256,"Gjerpe, Florian Eikrem",JAR,1,0,0,0,-2,0,0,0,0,0,0,0,0,0,0
+256,"Sandberg, Robin Bergsløkken",KON,3,0,0,0,0,0,0,0,0,0,0,2,0,0,0
+256,"Eggers, Sindre",LØR,3,0,0,0,1,0,0,0,0,0,0,2,0,0,0
+256,"Risjord, Adrian Stanes",JAR,5,0,0,0,-4,0,0,0,0,0,0,5,0,20,30
+256,"Snellingen, Ola",LØR,2,0,0,0,1,0,0,0,0,0,0,1,0,0,0
+256,"Ankjell, Alexander Emil",JAR,4,0,0,0,-7,0,0,0,0,0,0,5,0,3,0
+256,"Olsen-Bærem, Noah Leander",SPA,2,0,0,0,-1,0,0,0,0,0,0,0,0,0,0
+256,"Buberget, Victor",KON,7,0,0,0,0,0,0,0,0,0,0,4,0,0,0
+256,"Stenbæk, Heine Hollstedt",MAN,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+256,"Solvang-Moran, Casper",LØR,1,0,0,0,2,0,0,0,0,0,0,4,0,0,0
+256,"Mortvedt, Oscar Grothe",FRI,5,0,0,0,1,2,0,0,0,0,0,2,0,0,0
+256,"Jenssveen, Emil",LIL,11,0,0,0,-6,8,0,0,0,0,0,15,0,0,0
+256,"Takala, Elias Juhani",STJ,5,0,0,0,0,2,0,0,0,0,0,6,0,0,0
+256,"Svane-Riaz, Noah",MAN,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+256,"Tronsvang, Noah",NID,2,0,0,0,-3,0,0,0,0,0,0,1,0,0,0
+256,"Strand, Håkon Sunde",NID,6,0,0,0,-13,0,0,0,0,0,0,3,0,44,45.5
+256,"Dahle, Thomas Behialu",JAR,1,0,0,0,-2,0,0,0,0,0,0,1,0,0,0
+256,"Gimmestad, Embrik Midtsand Andersen",NID,10,0,0,0,-7,2,0,0,0,0,0,2,0,3,66.7
+256,"Storesund, Felix André",NID,3,0,0,0,-2,4,0,0,0,0,0,2,0,0,0
+256,"Hotic-Kvernstad, Arian",NID,10,0,0,0,-4,4,0,0,0,0,0,4,0,70,44.3
+256,"Angeltvedt, Eirik",JAR,10,0,0,0,-16,2,0,0,0,0,0,2,0,123,34.1
+256,"Hårstad-Evjen, Magnus Nathaniel",FRI,4,0,0,0,0,4,0,0,0,0,0,2,0,0,0
+256,"Gulinski, Oskar",LIL,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+256,"Stoveland, Isak",FRI,2,0,0,0,-1,2,0,0,0,0,0,3,0,0,0
+256,"Holen, Vebjørn Olasveen",LIL,12,0,0,0,-6,4,0,0,0,0,0,0,0,0,0
+256,"Solhaug, Lukas Trondsen",NID,4,0,0,0,-4,2,0,0,0,0,0,2,0,1,0
