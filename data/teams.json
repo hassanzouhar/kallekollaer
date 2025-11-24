@@ -1,0 +1,266 @@
+[
+  {
+    "id": "frisk",
+    "name": "Frisk Asker/NTG",
+    "code": "FRI",
+    "city": "Frisk",
+    "colors": [
+      "#FFA500",
+      "#000000"
+    ],
+    "stats": {
+      "gamesPlayed": 13,
+      "powerPlayGoalsFor": 15,
+      "powerPlayAdvantages": 47,
+      "powerPlayPercent": 31.9,
+      "shortHandedGoalsAgainst": 2,
+      "powerPlayGoalsAgainst": 12,
+      "timesShortHanded": 44,
+      "penaltyKillPercent": 72.7,
+      "shortHandedGoalsFor": 3,
+      "faceOffPercent": 0
+    }
+  },
+  {
+    "id": "jar",
+    "name": "Jar/Jutul",
+    "code": "JAR",
+    "city": "Jar/Jutul",
+    "colors": [
+      "#0000FF",
+      "#FF0000"
+    ],
+    "stats": {
+      "gamesPlayed": 13,
+      "powerPlayGoalsFor": 4,
+      "powerPlayAdvantages": 44,
+      "powerPlayPercent": 9.1,
+      "shortHandedGoalsAgainst": 4,
+      "powerPlayGoalsAgainst": 10,
+      "timesShortHanded": 53,
+      "penaltyKillPercent": 81.1,
+      "shortHandedGoalsFor": 0,
+      "faceOffPercent": 0
+    }
+  },
+  {
+    "id": "kongsvinger",
+    "name": "Kongsvinger",
+    "code": "KON",
+    "city": "Kongsvinger",
+    "colors": [
+      "#FF0000",
+      "#FFFFFF"
+    ],
+    "stats": {
+      "gamesPlayed": 13,
+      "powerPlayGoalsFor": 3,
+      "powerPlayAdvantages": 40,
+      "powerPlayPercent": 7.5,
+      "shortHandedGoalsAgainst": 1,
+      "powerPlayGoalsAgainst": 11,
+      "timesShortHanded": 39,
+      "penaltyKillPercent": 71.8,
+      "shortHandedGoalsFor": 2,
+      "faceOffPercent": 0
+    }
+  },
+  {
+    "id": "lillehammer",
+    "name": "Lillehammer Elite/NTG",
+    "code": "LIL",
+    "city": "Lillehammer",
+    "colors": [
+      "#FF0000",
+      "#0000FF"
+    ],
+    "stats": {
+      "gamesPlayed": 13,
+      "powerPlayGoalsFor": 10,
+      "powerPlayAdvantages": 51,
+      "powerPlayPercent": 19.6,
+      "shortHandedGoalsAgainst": 5,
+      "powerPlayGoalsAgainst": 12,
+      "timesShortHanded": 51,
+      "penaltyKillPercent": 76.5,
+      "shortHandedGoalsFor": 0,
+      "faceOffPercent": 0
+    }
+  },
+  {
+    "id": "lorenskog",
+    "name": "Lørenskog/Furuset",
+    "code": "LØR",
+    "city": "Lørenskog/Furuset",
+    "colors": [
+      "#FF0000",
+      "#0000FF"
+    ],
+    "stats": {
+      "gamesPlayed": 13,
+      "powerPlayGoalsFor": 9,
+      "powerPlayAdvantages": 49,
+      "powerPlayPercent": 18.4,
+      "shortHandedGoalsAgainst": 0,
+      "powerPlayGoalsAgainst": 6,
+      "timesShortHanded": 44,
+      "penaltyKillPercent": 86.4,
+      "shortHandedGoalsFor": 1,
+      "faceOffPercent": 0
+    }
+  },
+  {
+    "id": "manglerud",
+    "name": "Manglerud Star",
+    "code": "MAN",
+    "city": "Manglerud",
+    "colors": [
+      "#00FF00",
+      "#000000"
+    ],
+    "stats": {
+      "gamesPlayed": 11,
+      "powerPlayGoalsFor": 3,
+      "powerPlayAdvantages": 29,
+      "powerPlayPercent": 10.3,
+      "shortHandedGoalsAgainst": 3,
+      "powerPlayGoalsAgainst": 10,
+      "timesShortHanded": 37,
+      "penaltyKillPercent": 73,
+      "shortHandedGoalsFor": 0,
+      "faceOffPercent": 0
+    }
+  },
+  {
+    "id": "nidaros",
+    "name": "Nidaros",
+    "code": "NID",
+    "city": "Nidaros",
+    "colors": [
+      "#000000",
+      "#0000FF"
+    ],
+    "stats": {
+      "gamesPlayed": 10,
+      "powerPlayGoalsFor": 4,
+      "powerPlayAdvantages": 29,
+      "powerPlayPercent": 13.8,
+      "shortHandedGoalsAgainst": 0,
+      "powerPlayGoalsAgainst": 9,
+      "timesShortHanded": 40,
+      "penaltyKillPercent": 77.5,
+      "shortHandedGoalsFor": 1,
+      "faceOffPercent": 0
+    }
+  },
+  {
+    "id": "sparta",
+    "name": "Sparta Sarp",
+    "code": "SPA",
+    "city": "Sparta",
+    "colors": [
+      "#0000FF",
+      "#FFFFFF"
+    ],
+    "stats": {
+      "gamesPlayed": 11,
+      "powerPlayGoalsFor": 7,
+      "powerPlayAdvantages": 33,
+      "powerPlayPercent": 21.2,
+      "shortHandedGoalsAgainst": 2,
+      "powerPlayGoalsAgainst": 13,
+      "timesShortHanded": 41,
+      "penaltyKillPercent": 68.3,
+      "shortHandedGoalsFor": 3,
+      "faceOffPercent": 0
+    }
+  },
+  {
+    "id": "oilers",
+    "name": "Stavanger",
+    "code": "STA",
+    "city": "Stavanger",
+    "colors": [
+      "#000000",
+      "#FFFFFF"
+    ],
+    "stats": {
+      "gamesPlayed": 14,
+      "powerPlayGoalsFor": 10,
+      "powerPlayAdvantages": 49,
+      "powerPlayPercent": 20.4,
+      "shortHandedGoalsAgainst": 2,
+      "powerPlayGoalsAgainst": 9,
+      "timesShortHanded": 55,
+      "penaltyKillPercent": 83.6,
+      "shortHandedGoalsFor": 2,
+      "faceOffPercent": 0
+    }
+  },
+  {
+    "id": "stjernen",
+    "name": "Stjernen",
+    "code": "STJ",
+    "city": "Stjernen",
+    "colors": [
+      "#FF0000",
+      "#FFFFFF"
+    ],
+    "stats": {
+      "gamesPlayed": 13,
+      "powerPlayGoalsFor": 18,
+      "powerPlayAdvantages": 60,
+      "powerPlayPercent": 30,
+      "shortHandedGoalsAgainst": 1,
+      "powerPlayGoalsAgainst": 6,
+      "timesShortHanded": 29,
+      "penaltyKillPercent": 79.3,
+      "shortHandedGoalsFor": 0,
+      "faceOffPercent": 0
+    }
+  },
+  {
+    "id": "storhamar",
+    "name": "Storhamar YA/Stange",
+    "code": "STO",
+    "city": "Storhamar",
+    "colors": [
+      "#FFFF00",
+      "#0000FF"
+    ],
+    "stats": {
+      "gamesPlayed": 11,
+      "powerPlayGoalsFor": 18,
+      "powerPlayAdvantages": 45,
+      "powerPlayPercent": 40,
+      "shortHandedGoalsAgainst": 1,
+      "powerPlayGoalsAgainst": 6,
+      "timesShortHanded": 37,
+      "penaltyKillPercent": 83.8,
+      "shortHandedGoalsFor": 3,
+      "faceOffPercent": 0
+    }
+  },
+  {
+    "id": "valerenga",
+    "name": "Vålerenga",
+    "code": "VÅL",
+    "city": "Vålerenga",
+    "colors": [
+      "#0000FF",
+      "#FF0000"
+    ],
+    "stats": {
+      "gamesPlayed": 11,
+      "powerPlayGoalsFor": 9,
+      "powerPlayAdvantages": 34,
+      "powerPlayPercent": 26.5,
+      "shortHandedGoalsAgainst": 1,
+      "powerPlayGoalsAgainst": 6,
+      "timesShortHanded": 40,
+      "penaltyKillPercent": 85,
+      "shortHandedGoalsFor": 7,
+      "faceOffPercent": 0
+    }
+  }
+]

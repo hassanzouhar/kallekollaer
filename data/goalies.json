@@ -1,0 +1,699 @@
+[
+  {
+    "name": "Ola August Kviteng",
+    "team": "nidaros",
+    "teamCode": "NID",
+    "stats": {
+      "rank": 1,
+      "gamesPlayed": 4,
+      "timeOnIce": 118,
+      "wins": 2,
+      "losses": 0,
+      "shutouts": 0,
+      "goalsAgainst": 3,
+      "goalsAgainstAverage": 1.53,
+      "saves": 47,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Henrik Desmot",
+    "team": "valerenga",
+    "teamCode": "VÅL",
+    "stats": {
+      "rank": 2,
+      "gamesPlayed": 6,
+      "timeOnIce": 120,
+      "wins": 2,
+      "losses": 0,
+      "shutouts": 0,
+      "goalsAgainst": 1,
+      "goalsAgainstAverage": 0.5,
+      "saves": 15,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Lucas Nysted Berry",
+    "team": "lorenskog",
+    "teamCode": "LØR",
+    "stats": {
+      "rank": 3,
+      "gamesPlayed": 4,
+      "timeOnIce": 180,
+      "wins": 2,
+      "losses": 1,
+      "shutouts": 0,
+      "goalsAgainst": 7,
+      "goalsAgainstAverage": 2.33,
+      "saves": 87,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Kristian Stenrød West",
+    "team": "jar",
+    "teamCode": "JAR",
+    "stats": {
+      "rank": 4,
+      "gamesPlayed": 2,
+      "timeOnIce": 52,
+      "wins": 0,
+      "losses": 1,
+      "shutouts": 0,
+      "goalsAgainst": 2,
+      "goalsAgainstAverage": 2.31,
+      "saves": 24,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Kalle Falch Grotnes",
+    "team": "stjernen",
+    "teamCode": "STJ",
+    "stats": {
+      "rank": 5,
+      "gamesPlayed": 7,
+      "timeOnIce": 300,
+      "wins": 5,
+      "losses": 0,
+      "shutouts": 0,
+      "goalsAgainst": 7,
+      "goalsAgainstAverage": 1.4,
+      "saves": 80,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Daniel Strømberg",
+    "team": "oilers",
+    "teamCode": "STA",
+    "stats": {
+      "rank": 5,
+      "gamesPlayed": 13,
+      "timeOnIce": 411,
+      "wins": 5,
+      "losses": 2,
+      "shutouts": 0,
+      "goalsAgainst": 16,
+      "goalsAgainstAverage": 2.34,
+      "saves": 183,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Oliver Skartveit Jacobsen",
+    "team": "oilers",
+    "teamCode": "STA",
+    "stats": {
+      "rank": 7,
+      "gamesPlayed": 9,
+      "timeOnIce": 262,
+      "wins": 3,
+      "losses": 1,
+      "shutouts": 0,
+      "goalsAgainst": 9,
+      "goalsAgainstAverage": 2.06,
+      "saves": 84,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Viktor Langbråten Smestad",
+    "team": "storhamar",
+    "teamCode": "STO",
+    "stats": {
+      "rank": 8,
+      "gamesPlayed": 7,
+      "timeOnIce": 300,
+      "wins": 5,
+      "losses": 0,
+      "shutouts": 0,
+      "goalsAgainst": 9,
+      "goalsAgainstAverage": 1.8,
+      "saves": 81,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Samuel Selvikvåg Kvarme",
+    "team": "manglerud",
+    "teamCode": "MAN",
+    "stats": {
+      "rank": 9,
+      "gamesPlayed": 5,
+      "timeOnIce": 226,
+      "wins": 0,
+      "losses": 4,
+      "shutouts": 0,
+      "goalsAgainst": 15,
+      "goalsAgainstAverage": 4,
+      "saves": 127,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Herman Hushagen",
+    "team": "lillehammer",
+    "teamCode": "LIL",
+    "stats": {
+      "rank": 10,
+      "gamesPlayed": 9,
+      "timeOnIce": 180,
+      "wins": 2,
+      "losses": 1,
+      "shutouts": 0,
+      "goalsAgainst": 12,
+      "goalsAgainstAverage": 4,
+      "saves": 93,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Edvard Nordli",
+    "team": "kongsvinger",
+    "teamCode": "KON",
+    "stats": {
+      "rank": 11,
+      "gamesPlayed": 11,
+      "timeOnIce": 400,
+      "wins": 4,
+      "losses": 3,
+      "shutouts": 0,
+      "goalsAgainst": 23,
+      "goalsAgainstAverage": 3.45,
+      "saves": 175,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Anders Otterlei",
+    "team": "lorenskog",
+    "teamCode": "LØR",
+    "stats": {
+      "rank": 12,
+      "gamesPlayed": 3,
+      "timeOnIce": 185,
+      "wins": 1,
+      "losses": 1,
+      "shutouts": 1,
+      "goalsAgainst": 13,
+      "goalsAgainstAverage": 4.22,
+      "saves": 97,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Vebjørn Elvebakk Rønningen",
+    "team": "lillehammer",
+    "teamCode": "LIL",
+    "stats": {
+      "rank": 13,
+      "gamesPlayed": 9,
+      "timeOnIce": 334,
+      "wins": 1,
+      "losses": 4,
+      "shutouts": 0,
+      "goalsAgainst": 20,
+      "goalsAgainstAverage": 3.59,
+      "saves": 142,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Aksel Bjørgum Taftø",
+    "team": "nidaros",
+    "teamCode": "NID",
+    "stats": {
+      "rank": 14,
+      "gamesPlayed": 8,
+      "timeOnIce": 239,
+      "wins": 0,
+      "losses": 4,
+      "shutouts": 0,
+      "goalsAgainst": 22,
+      "goalsAgainstAverage": 5.52,
+      "saves": 156,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Aleksander Leira",
+    "team": "lorenskog",
+    "teamCode": "LØR",
+    "stats": {
+      "rank": 14,
+      "gamesPlayed": 8,
+      "timeOnIce": 362,
+      "wins": 2,
+      "losses": 4,
+      "shutouts": 0,
+      "goalsAgainst": 23,
+      "goalsAgainstAverage": 3.82,
+      "saves": 162,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Max Aadne Bay",
+    "team": "valerenga",
+    "teamCode": "VÅL",
+    "stats": {
+      "rank": 16,
+      "gamesPlayed": 11,
+      "timeOnIce": 481,
+      "wins": 6,
+      "losses": 2,
+      "shutouts": 0,
+      "goalsAgainst": 26,
+      "goalsAgainstAverage": 3.25,
+      "saves": 182,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Benjamin Johan Foldøy",
+    "team": "frisk",
+    "teamCode": "FRI",
+    "stats": {
+      "rank": 17,
+      "gamesPlayed": 13,
+      "timeOnIce": 359,
+      "wins": 4,
+      "losses": 2,
+      "shutouts": 0,
+      "goalsAgainst": 18,
+      "goalsAgainstAverage": 3.01,
+      "saves": 123,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Petter Mørland",
+    "team": "jar",
+    "teamCode": "JAR",
+    "stats": {
+      "rank": 18,
+      "gamesPlayed": 11,
+      "timeOnIce": 398,
+      "wins": 1,
+      "losses": 6,
+      "shutouts": 0,
+      "goalsAgainst": 32,
+      "goalsAgainstAverage": 4.85,
+      "saves": 217,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Ole Blytt Jerven",
+    "team": "frisk",
+    "teamCode": "FRI",
+    "stats": {
+      "rank": 19,
+      "gamesPlayed": 13,
+      "timeOnIce": 423,
+      "wins": 6,
+      "losses": 1,
+      "shutouts": 0,
+      "goalsAgainst": 21,
+      "goalsAgainstAverage": 2.98,
+      "saves": 141,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Aleksander Tørmo Bryni",
+    "team": "stjernen",
+    "teamCode": "STJ",
+    "stats": {
+      "rank": 20,
+      "gamesPlayed": 5,
+      "timeOnIce": 60,
+      "wins": 1,
+      "losses": 0,
+      "shutouts": 0,
+      "goalsAgainst": 4,
+      "goalsAgainstAverage": 4,
+      "saves": 26,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Theodor Flåm",
+    "team": "stjernen",
+    "teamCode": "STJ",
+    "stats": {
+      "rank": 21,
+      "gamesPlayed": 13,
+      "timeOnIce": 417,
+      "wins": 3,
+      "losses": 4,
+      "shutouts": 0,
+      "goalsAgainst": 26,
+      "goalsAgainstAverage": 3.75,
+      "saves": 168,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Leon Andrés Nereng-Olsen",
+    "team": "storhamar",
+    "teamCode": "STO",
+    "stats": {
+      "rank": 22,
+      "gamesPlayed": 2,
+      "timeOnIce": 59,
+      "wins": 0,
+      "losses": 1,
+      "shutouts": 0,
+      "goalsAgainst": 3,
+      "goalsAgainstAverage": 3.05,
+      "saves": 19,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Eldar Baltic",
+    "team": "sparta",
+    "teamCode": "SPA",
+    "stats": {
+      "rank": 23,
+      "gamesPlayed": 9,
+      "timeOnIce": 306,
+      "wins": 3,
+      "losses": 3,
+      "shutouts": 0,
+      "goalsAgainst": 25,
+      "goalsAgainstAverage": 4.92,
+      "saves": 158,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Jakob Cabarrubias Spanne",
+    "team": "lillehammer",
+    "teamCode": "LIL",
+    "stats": {
+      "rank": 23,
+      "gamesPlayed": 8,
+      "timeOnIce": 254,
+      "wins": 0,
+      "losses": 5,
+      "shutouts": 0,
+      "goalsAgainst": 20,
+      "goalsAgainstAverage": 4.72,
+      "saves": 126,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Emil Hoem",
+    "team": "nidaros",
+    "teamCode": "NID",
+    "stats": {
+      "rank": 25,
+      "gamesPlayed": 8,
+      "timeOnIce": 238,
+      "wins": 0,
+      "losses": 4,
+      "shutouts": 0,
+      "goalsAgainst": 26,
+      "goalsAgainstAverage": 6.58,
+      "saves": 160,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Henrik Nordnes Bukten",
+    "team": "storhamar",
+    "teamCode": "STO",
+    "stats": {
+      "rank": 26,
+      "gamesPlayed": 9,
+      "timeOnIce": 304,
+      "wins": 5,
+      "losses": 0,
+      "shutouts": 0,
+      "goalsAgainst": 12,
+      "goalsAgainstAverage": 2.37,
+      "saves": 73,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Samuel Lars Elon Sonefors",
+    "team": "sparta",
+    "teamCode": "SPA",
+    "stats": {
+      "rank": 27,
+      "gamesPlayed": 4,
+      "timeOnIce": 80,
+      "wins": 0,
+      "losses": 1,
+      "shutouts": 0,
+      "goalsAgainst": 7,
+      "goalsAgainstAverage": 5.25,
+      "saves": 42,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Martin Falch Baklund",
+    "team": "valerenga",
+    "teamCode": "VÅL",
+    "stats": {
+      "rank": 28,
+      "gamesPlayed": 5,
+      "timeOnIce": 60,
+      "wins": 0,
+      "losses": 1,
+      "shutouts": 0,
+      "goalsAgainst": 3,
+      "goalsAgainstAverage": 3,
+      "saves": 17,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Leo Thomas Dal Pan",
+    "team": "manglerud",
+    "teamCode": "MAN",
+    "stats": {
+      "rank": 29,
+      "gamesPlayed": 8,
+      "timeOnIce": 334,
+      "wins": 2,
+      "losses": 3,
+      "shutouts": 1,
+      "goalsAgainst": 34,
+      "goalsAgainstAverage": 6.13,
+      "saves": 188,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Mikkel Foronda Oustad",
+    "team": "kongsvinger",
+    "teamCode": "KON",
+    "stats": {
+      "rank": 30,
+      "gamesPlayed": 13,
+      "timeOnIce": 377,
+      "wins": 2,
+      "losses": 4,
+      "shutouts": 0,
+      "goalsAgainst": 27,
+      "goalsAgainstAverage": 4.31,
+      "saves": 146,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Marius Rotefoss Skrøder",
+    "team": "sparta",
+    "teamCode": "SPA",
+    "stats": {
+      "rank": 31,
+      "gamesPlayed": 9,
+      "timeOnIce": 273,
+      "wins": 2,
+      "losses": 2,
+      "shutouts": 0,
+      "goalsAgainst": 27,
+      "goalsAgainstAverage": 5.93,
+      "saves": 130,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Leon Høvik",
+    "team": "lorenskog",
+    "teamCode": "LØR",
+    "stats": {
+      "rank": 32,
+      "gamesPlayed": 11,
+      "timeOnIce": 60,
+      "wins": 1,
+      "losses": 0,
+      "shutouts": 0,
+      "goalsAgainst": 4,
+      "goalsAgainstAverage": 4,
+      "saves": 17,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Pascal Uribe Nordberg",
+    "team": "manglerud",
+    "teamCode": "MAN",
+    "stats": {
+      "rank": 33,
+      "gamesPlayed": 9,
+      "timeOnIce": 100,
+      "wins": 1,
+      "losses": 1,
+      "shutouts": 0,
+      "goalsAgainst": 6,
+      "goalsAgainstAverage": 3.6,
+      "saves": 25,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Håkon Angeltvedt",
+    "team": "jar",
+    "teamCode": "JAR",
+    "stats": {
+      "rank": 34,
+      "gamesPlayed": 11,
+      "timeOnIce": 319,
+      "wins": 0,
+      "losses": 5,
+      "shutouts": 0,
+      "goalsAgainst": 51,
+      "goalsAgainstAverage": 9.62,
+      "saves": 165,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Petter Bjørnsgaard",
+    "team": "oilers",
+    "teamCode": "STA",
+    "stats": {
+      "rank": 35,
+      "gamesPlayed": 5,
+      "timeOnIce": 163,
+      "wins": 1,
+      "losses": 1,
+      "shutouts": 0,
+      "goalsAgainst": 13,
+      "goalsAgainstAverage": 4.79,
+      "saves": 33,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Sofian Daniel Rafiqi",
+    "team": "jar",
+    "teamCode": "JAR",
+    "stats": {
+      "rank": 36,
+      "gamesPlayed": 1,
+      "timeOnIce": 7,
+      "wins": 0,
+      "losses": 0,
+      "shutouts": 0,
+      "goalsAgainst": 5,
+      "goalsAgainstAverage": 42.86,
+      "saves": 2,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Mikkel Kristiansen",
+    "team": "kongsvinger",
+    "teamCode": "KON",
+    "stats": {
+      "rank": 37,
+      "gamesPlayed": 2,
+      "timeOnIce": 0,
+      "wins": 0,
+      "losses": 0,
+      "shutouts": 0,
+      "goalsAgainst": 0,
+      "goalsAgainstAverage": 0,
+      "saves": 0,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Sander Jenvild Ek",
+    "team": "stjernen",
+    "teamCode": "STJ",
+    "stats": {
+      "rank": 37,
+      "gamesPlayed": 1,
+      "timeOnIce": 0,
+      "wins": 0,
+      "losses": 0,
+      "shutouts": 0,
+      "goalsAgainst": 0,
+      "goalsAgainstAverage": 0,
+      "saves": 0,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Oskar Daniel Solberg",
+    "team": "jar",
+    "teamCode": "JAR",
+    "stats": {
+      "rank": 37,
+      "gamesPlayed": 1,
+      "timeOnIce": 0,
+      "wins": 0,
+      "losses": 0,
+      "shutouts": 0,
+      "goalsAgainst": 0,
+      "goalsAgainstAverage": 0,
+      "saves": 0,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Emil Egeland",
+    "team": "oilers",
+    "teamCode": "STA",
+    "stats": {
+      "rank": 37,
+      "gamesPlayed": 1,
+      "timeOnIce": 0,
+      "wins": 0,
+      "losses": 0,
+      "shutouts": 0,
+      "goalsAgainst": 0,
+      "goalsAgainstAverage": 0,
+      "saves": 0,
+      "savePercent": 0
+    }
+  },
+  {
+    "name": "Herman Alme Bjerke-Narud",
+    "team": "storhamar",
+    "teamCode": "STO",
+    "stats": {
+      "rank": 37,
+      "gamesPlayed": 4,
+      "timeOnIce": 0,
+      "wins": 0,
+      "losses": 0,
+      "shutouts": 0,
+      "goalsAgainst": 0,
+      "goalsAgainstAverage": 0,
+      "saves": 0,
+      "savePercent": 0
+    }
+  }
+]
