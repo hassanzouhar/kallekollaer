@@ -102,6 +102,15 @@ export const MatchSimulator: React.FC<MatchSimulatorProps> = ({ homeTeam, awayTe
   const getRandomPlayer = (roster: Player[]) => roster[Math.floor(Math.random() * roster.length)];
   const getCenter = (roster: Player[]) => roster.find(p => p.position === Position.CENTER) || getRandomPlayer(roster);
 
+  // Weighted player selection based on personality
+  const getPlayerByPersonality = (roster: Player[], preferredPersonality: string) => {
+    const preferred = roster.filter(p => p.personality === preferredPersonality);
+    if (preferred.length > 0 && Math.random() < 0.6) {
+      return preferred[Math.floor(Math.random() * preferred.length)];
+    }
+    return getRandomPlayer(roster);
+  };
+
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
 
@@ -167,8 +176,15 @@ export const MatchSimulator: React.FC<MatchSimulatorProps> = ({ homeTeam, awayTe
           const homeOffense = homeBaseSkill * homeStrengthMod * homeMomentumMod * otModifier * homeTacticalBonus;
           const awayOffense = awayBaseSkill * awayStrengthMod * awayMomentumMod * otModifier * awayTacticalBonus;
 
-          const homeGoalThreshold = 2.5 + (homeOffense - awayOffense) * 0.15;
-          const awayGoalThreshold = 2.5 + (awayOffense - homeOffense) * 0.15;
+          // Goalie-specific save mechanics: better goalies reduce opponent's goal threshold
+          const homeGoalie = homeRoster.find(p => p.position === Position.GOALIE && p.line === 'G1') || homeRoster.find(p => p.position === Position.GOALIE);
+          const awayGoalie = awayRoster.find(p => p.position === Position.GOALIE && p.line === 'G1') || awayRoster.find(p => p.position === Position.GOALIE);
+
+          const homeGoalieSaveMod = homeGoalie ? (1 - (getEffectiveSkill(homeGoalie, homeTeam) / 150)) : 1.0; // Max ~0.33 reduction
+          const awayGoalieSaveMod = awayGoalie ? (1 - (getEffectiveSkill(awayGoalie, awayTeam) / 150)) : 1.0;
+
+          const homeGoalThreshold = (2.5 + (homeOffense - awayOffense) * 0.15) * awayGoalieSaveMod;
+          const awayGoalThreshold = (2.5 + (awayOffense - homeOffense) * 0.15) * homeGoalieSaveMod;
 
           const roll = Math.random() * 100;
           let goalScored = false;
@@ -186,11 +202,13 @@ export const MatchSimulator: React.FC<MatchSimulatorProps> = ({ homeTeam, awayTe
           // Goals
           if (roll < homeGoalThreshold) {
             setHomeScore(s => s + 1);
-            const scorer = getRandomPlayer(homeRoster);
-            const assist = getRandomPlayer(homeRoster);
+            // SNIPER personality more likely to score
+            const scorer = getPlayerByPersonality(homeRoster, 'SNIPER');
+            // PLAYMAKER personality more likely to assist
+            const assist = getPlayerByPersonality(homeRoster.filter(p => p.id !== scorer.id), 'PLAYMAKER');
             updatePlayerStat(scorer.id, 'goals', 2);
-            updatePlayerStat(scorer.id, 'shots', 0); 
-            if (scorer.id !== assist.id) updatePlayerStat(assist.id, 'assists', 1);
+            updatePlayerStat(scorer.id, 'shots', 0);
+            if (assist) updatePlayerStat(assist.id, 'assists', 1);
 
             const isPP = awayStrengthMod < 1.0;
             setEvents(prev => [...prev, {
@@ -219,11 +237,13 @@ export const MatchSimulator: React.FC<MatchSimulatorProps> = ({ homeTeam, awayTe
 
           } else if (roll > 100 - awayGoalThreshold) {
             setAwayScore(s => s + 1);
-            const scorer = getRandomPlayer(awayRoster);
-            const assist = getRandomPlayer(awayRoster);
+            // SNIPER personality more likely to score
+            const scorer = getPlayerByPersonality(awayRoster, 'SNIPER');
+            // PLAYMAKER personality more likely to assist
+            const assist = getPlayerByPersonality(awayRoster.filter(p => p.id !== scorer.id), 'PLAYMAKER');
             updatePlayerStat(scorer.id, 'goals', 2);
             updatePlayerStat(scorer.id, 'shots', 0);
-            if (scorer.id !== assist.id) updatePlayerStat(assist.id, 'assists', 1);
+            if (assist) updatePlayerStat(assist.id, 'assists', 1);
 
             const isPP = homeStrengthMod < 1.0;
             setEvents(prev => [...prev, {
@@ -252,9 +272,10 @@ export const MatchSimulator: React.FC<MatchSimulatorProps> = ({ homeTeam, awayTe
           } 
           // Roughing
           else if (!goalScored && Math.random() < (0.008 * Math.max(getAggressionMod(homeAggression), getAggressionMod(awayAggression))) && phase !== 'SHOOTOUT') {
-              const hPlayer = getRandomPlayer(homeRoster);
-              const aPlayer = getRandomPlayer(awayRoster);
-              updatePlayerStat(hPlayer.id, 'pim', 3); 
+              // ENFORCER personalities more likely to fight
+              const hPlayer = getPlayerByPersonality(homeRoster, 'ENFORCER');
+              const aPlayer = getPlayerByPersonality(awayRoster, 'ENFORCER');
+              updatePlayerStat(hPlayer.id, 'pim', 3);
               updatePlayerStat(aPlayer.id, 'pim', 3);
               setPenalties(prev => [
                   ...prev, 

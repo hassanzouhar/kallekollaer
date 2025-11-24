@@ -52,7 +52,12 @@ export interface Player {
   assists: number;
   shots: number; // Shots on Goal
   pim: number; // Penalties in Minutes
-  
+
+  // Career Totals (persist across seasons)
+  careerGoals?: number;
+  careerAssists?: number;
+  careerGames?: number;
+
   // Management
   trainingFocus: TrainingFocus;
   isInjured: boolean;
