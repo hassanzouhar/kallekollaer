@@ -409,12 +409,19 @@ export const assignPersonality = (skill: number, aggression: number, vision: num
     return PlayerPersonality.NONE;
 };
 
-export const createPlayer = (position: Position, idPrefix: string, index: number, isWonderkid = false): Player => {
+export const createPlayer = (position: Position, idPrefix: string, index: number, isWonderkid = false, scoutSkill = 0): Player => {
     // Generates procedural player (fallback)
     const firstNames = ["Lars", "Ole", "Magnus", "Henrik", "Kristian", "Anders", "Jonas", "Håkon", "Eirik", "Fredrik"];
     const lastNames = ["Hansen", "Johansen", "Olsen", "Larsen", "Andersen", "Pedersen", "Nilsen", "Kristiansen", "Jensen"];
-    const baseSkill = isWonderkid ? 60 : Math.floor(Math.random() * 40) + 30;
-    
+
+    // Scout skill (0-10) boosts base skill range
+    // Low skill scout (2): 30-70 range
+    // High skill scout (9): 45-85 range
+    const scoutBonus = scoutSkill * 3; // 0-30 bonus
+    const baseSkill = isWonderkid
+        ? 60 + scoutBonus
+        : Math.floor(Math.random() * 40) + 30 + scoutBonus;
+
     const aggression = Math.floor(Math.random() * 60) + 20;
     const vision = Math.floor(Math.random() * 60) + 20;
     const puckHandling = Math.floor(Math.random() * 60) + 20;
@@ -427,8 +434,8 @@ export const createPlayer = (position: Position, idPrefix: string, index: number
         id: `${idPrefix}-proc-${index}-${Date.now()}-${uniqueSuffix}`,
         name: `${firstNames[Math.floor(Math.random() * firstNames.length)]} ${lastNames[Math.floor(Math.random() * lastNames.length)]}`,
         position,
-        skill: baseSkill, 
-        potential: Math.min(100, baseSkill + 20),
+        skill: Math.min(100, baseSkill),
+        potential: Math.min(100, baseSkill + 20 + scoutSkill), // Better scouts find higher potential
         age: Math.floor(Math.random() * 3) + 16,
         stamina,
         fatigue: 0,
@@ -864,9 +871,12 @@ export const replenishRosters = (teams: Team[]): Team[] => {
        roster.push(p);
     }
     
-    // 3. Reset stats
+    // 3. Reset stats (preserve career totals)
     roster = roster.map(p => ({
         ...p,
+        careerGoals: (p.careerGoals || 0) + p.goals,
+        careerAssists: (p.careerAssists || 0) + p.assists,
+        careerGames: (p.careerGames || 0) + 1, // Increment by 1 season
         goals: 0, assists: 0, shots: 0, pim: 0,
         fatigue: 0, isInjured: false, injuryWeeksLeft: 0
     }));

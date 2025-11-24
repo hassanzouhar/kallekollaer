@@ -45,8 +45,27 @@ export const ScoutingAndDeals: React.FC<ScoutingAndDealsProps> = ({
           setDealFeedback(`INSUFFICIENT PØKKS! NEED ${deal.cost}.`);
           return;
       }
-      onSignPlayer(selectedReport, deal);
-      setSelectedReport(null); // Clear selection after attempt
+
+      // Calculate success chance (random between min and max)
+      const successChance = deal.minSuccessChance +
+          (Math.random() * (deal.maxSuccessChance - deal.minSuccessChance));
+
+      // Apply difficulty modifier if player is contracted to another team
+      const difficultyMod = selectedReport.sourceTeamId ? 0.7 : 1.0;
+      const finalChance = successChance * difficultyMod;
+
+      // Roll for success
+      const roll = Math.random();
+
+      if (roll < finalChance) {
+          // Success! Sign player and deduct cost
+          onSignPlayer(selectedReport, deal);
+          setDealFeedback(`SUCCESS! ${selectedReport.player.name} signed for ${deal.cost} PØKKS. (${Math.round(finalChance * 100)}% success rate)`);
+          setSelectedReport(null);
+      } else {
+          // Failure - player refused. Keep money and report, user can try again with better deal
+          setDealFeedback(`DEAL REJECTED! ${selectedReport.player.name} declined ${deal.label}. Try a better offer? (Had ${Math.round(finalChance * 100)}% chance)`);
+      }
   };
 
   return (
