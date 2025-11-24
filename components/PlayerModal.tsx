@@ -1,6 +1,7 @@
 import React from 'react';
 import { Player } from '../types';
 import { X, TrendingUp, Zap, Brain, Shield, Hand } from 'lucide-react';
+import { getPlayerImage, getCRTImageStyle } from '../utils/imageHelpers';
 
 interface PlayerModalProps {
   player: Player | null;
@@ -32,8 +33,17 @@ export const PlayerModal: React.FC<PlayerModalProps> = ({ player, onClose }) => 
         <div className="p-6 overflow-y-auto custom-scrollbar">
             {/* Top ID Block */}
             <div className="flex gap-6 mb-8">
-                <div className="w-32 h-32 border-2 border-green-500 bg-green-900/20 flex items-center justify-center text-4xl font-bold text-green-700">
-                    {player.position}
+                <div className="w-32 h-32 border-2 border-green-500 bg-black flex items-center justify-center overflow-hidden relative group">
+                    <img
+                        src={getPlayerImage(player.id, player.position)}
+                        alt={player.name}
+                        className="w-full h-full object-cover"
+                        style={getCRTImageStyle()}
+                    />
+                    <div className="absolute inset-0 bg-green-500/10 mix-blend-color"></div>
+                    <div className="absolute bottom-0 right-0 bg-black/80 text-green-400 px-2 py-1 text-xs font-bold border-t border-l border-green-500">
+                        {player.position}
+                    </div>
                 </div>
                 <div className="flex-1 font-mono text-sm space-y-2">
                     <div className="grid grid-cols-2 gap-4">
