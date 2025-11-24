@@ -202,9 +202,19 @@ export const MatchSimulator: React.FC<MatchSimulatorProps> = ({ homeTeam, awayTe
             }]);
             goalScored = true;
             if (isPP) {
-                 setPenalties(prev => prev.filter(p => p.teamId === awayTeam.id).slice(1));
+                 // Clear one minor penalty from penalized team (standard hockey rules)
+                 setPenalties(prev => {
+                   let removed = false;
+                   return prev.filter(p => {
+                     if (p.teamId === awayTeam.id && !removed) {
+                       removed = true;
+                       return false;
+                     }
+                     return true;
+                   });
+                 });
             }
-            setPendingFaceoff(true); 
+            setPendingFaceoff(true);
             setMomentum(2); 
 
           } else if (roll > 100 - awayGoalThreshold) {
@@ -225,7 +235,17 @@ export const MatchSimulator: React.FC<MatchSimulatorProps> = ({ homeTeam, awayTe
             }]);
             goalScored = true;
              if (isPP) {
-                 setPenalties(prev => prev.filter(p => p.teamId === homeTeam.id).slice(1));
+                 // Clear one minor penalty from penalized team (standard hockey rules)
+                 setPenalties(prev => {
+                   let removed = false;
+                   return prev.filter(p => {
+                     if (p.teamId === homeTeam.id && !removed) {
+                       removed = true;
+                       return false;
+                     }
+                     return true;
+                   });
+                 });
             }
             setPendingFaceoff(true);
             setMomentum(-2); 
@@ -321,26 +341,94 @@ export const MatchSimulator: React.FC<MatchSimulatorProps> = ({ homeTeam, awayTe
   }, [isSimulating, phase, homeTeam, awayTeam, homeScore, awayScore, penalties, momentum, pendingFaceoff, homeStyle, awayStyle, homeAggression, awayAggression]);
 
   const runShootout = () => {
+    // Select top 5 shooters from each team (sorted by puckHandling + skill)
+    const homeShooters = [...homeRoster]
+      .filter(p => p.position !== Position.GOALIE)
+      .sort((a, b) => (b.puckHandling + b.skill) - (a.puckHandling + a.skill))
+      .slice(0, 5);
+
+    const awayShooters = [...awayRoster]
+      .filter(p => p.position !== Position.GOALIE)
+      .sort((a, b) => (b.puckHandling + b.skill) - (a.puckHandling + a.skill))
+      .slice(0, 5);
+
+    // Get goalies
+    const homeGoalie = homeRoster.find(p => p.position === Position.GOALIE) || homeRoster[0];
+    const awayGoalie = awayRoster.find(p => p.position === Position.GOALIE) || awayRoster[0];
+
     let hScore = homeScore;
     let aScore = awayScore;
     let rounds = 0;
+    const shootoutEvents: string[] = [];
+
     while (hScore === aScore && rounds < 10) {
-      if (Math.random() > 0.5) hScore++;
-      if (Math.random() > 0.5) aScore++;
+      // Home shooter vs away goalie
+      const homeShooter = homeShooters[rounds % homeShooters.length];
+      const homeSuccessChance = (homeShooter.puckHandling + homeShooter.skill) / 300; // Max ~0.67
+      const homeSaveChance = awayGoalie.skill / 200; // Max ~0.50
+      const homeGoalChance = Math.max(0.2, homeSuccessChance - homeSaveChance);
+
+      if (Math.random() < homeGoalChance) {
+        hScore++;
+        shootoutEvents.push(`${homeShooter.name} SCORES!`);
+        updatePlayerStat(homeShooter.id, 'goals', 2);
+      } else {
+        shootoutEvents.push(`${awayGoalie.name} SAVES!`);
+      }
+
+      // Away shooter vs home goalie (only if still tied)
+      if (hScore === aScore || rounds === 0) {
+        const awayShooter = awayShooters[rounds % awayShooters.length];
+        const awaySuccessChance = (awayShooter.puckHandling + awayShooter.skill) / 300;
+        const awaySaveChance = homeGoalie.skill / 200;
+        const awayGoalChance = Math.max(0.2, awaySuccessChance - awaySaveChance);
+
+        if (Math.random() < awayGoalChance) {
+          aScore++;
+          shootoutEvents.push(`${awayShooter.name} SCORES!`);
+          updatePlayerStat(awayShooter.id, 'goals', 2);
+        } else {
+          shootoutEvents.push(`${homeGoalie.name} SAVES!`);
+        }
+      }
+
       rounds++;
     }
-    if (hScore === aScore) hScore++; 
+
+    // Sudden death if still tied after 10 rounds
+    if (hScore === aScore) hScore++;
+
     const winner = hScore > aScore ? homeTeam.name : awayTeam.name;
     setHomeScore(hScore);
     setAwayScore(aScore);
     setEvents(prev => [...prev, {
       minute: 65,
       type: 'GOAL',
-      description: `SHOOTOUT WINNER: ${winner}`,
+      description: `SHOOTOUT (${rounds} rounds): ${winner} WINS! ${shootoutEvents.slice(-3).join(', ')}`,
       teamId: hScore > aScore ? homeTeam.id : awayTeam.id
     }]);
     setPhase('FINISHED');
   };
+
+  // Generate match recap when match finishes
+  useEffect(() => {
+    if (phase === 'FINISHED' && !commentary) {
+      const matchResult: MatchResult = {
+        homeTeamId: homeTeam.id,
+        awayTeamId: awayTeam.id,
+        homeScore,
+        awayScore,
+        events,
+        playerStats: playerUpdates,
+        isOvertime: minutes > 60 && minutes <= 65,
+        isShootout: minutes > 65
+      };
+
+      generateMatchRecap(homeTeam, awayTeam, matchResult).then(recap => {
+        setCommentary(recap);
+      });
+    }
+  }, [phase, commentary, homeTeam, awayTeam, homeScore, awayScore, events, playerUpdates, minutes]);
 
   const handleFinish = () => {
     onMatchComplete({
