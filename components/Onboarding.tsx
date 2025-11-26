@@ -69,7 +69,6 @@ export const Onboarding: React.FC<OnboardingProps> = ({ teams, onComplete, onCon
 
       <div className="text-center mb-8">
           <h1 className="text-4xl md:text-6xl font-bold text-green-400 font-vt323 mb-2 text-glow">MANAGER PROFILE</h1>
-          <p className="text-xl opacity-70 uppercase tracking-widest">Initialize Career Protocol</p>
 
           {/* Welcome Character */}
           <div className="mt-6 flex items-center justify-center gap-4 bg-black/50 border border-green-800 p-4 rounded">
