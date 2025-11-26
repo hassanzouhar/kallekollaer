@@ -1,14 +1,6 @@
-import Groq from "groq-sdk";
+import { generateText } from 'ai';
+import { groq } from '@ai-sdk/groq';
 import { Team, MatchResult } from '../types';
-
-let client: Groq | null = null;
-
-const getClient = () => {
-  if (!client && process.env.API_KEY) {
-    client = new Groq({ apiKey: process.env.API_KEY });
-  }
-  return client;
-};
 
 // Fallback phrases when API fails
 const FALLBACK_RECAPS = [
@@ -33,8 +25,9 @@ export const generateMatchRecap = async (
   awayTeam: Team,
   result: MatchResult
 ): Promise<string> => {
-  const groq = getClient();
-  if (!groq) return FALLBACK_RECAPS[0];
+  if (!process.env.GROQ_API_KEY) {
+    return FALLBACK_RECAPS[0];
+  }
 
   // Calculate average fatigue for context
   const homeAvgFatigue = homeTeam.roster.reduce((a, b) => a + b.fatigue, 0) / homeTeam.roster.length;
@@ -54,15 +47,13 @@ export const generateMatchRecap = async (
   `;
 
   try {
-    const response = await groq.chat.completions.create({
-      model: "llama-3.3-70b-versatile",
-      messages: [
-        { role: "user", content: prompt }
-      ],
+    const response = await generateText({
+      model: groq('llama-3.3-70b-versatile'),
+      prompt: prompt,
       temperature: 0.8,
-      max_tokens: 150,
+      maxTokens: 150,
     });
-    return response.choices[0]?.message?.content || FALLBACK_RECAPS[Math.floor(Math.random() * FALLBACK_RECAPS.length)];
+    return response.text || FALLBACK_RECAPS[Math.floor(Math.random() * FALLBACK_RECAPS.length)];
   } catch (error) {
     console.warn("Groq API Error (Recap):", error);
     return FALLBACK_RECAPS[Math.floor(Math.random() * FALLBACK_RECAPS.length)];
@@ -73,8 +64,9 @@ export const getAssistantAdvice = async (
   team: Team,
   nextOpponent: Team
 ): Promise<string> => {
-   const groq = getClient();
-  if (!groq) return FALLBACK_ADVICE[0];
+  if (!process.env.GROQ_API_KEY) {
+    return FALLBACK_ADVICE[0];
+  }
 
   const prompt = `
     You are a grumpy but wise assistant hockey coach in the 90s.
@@ -86,15 +78,13 @@ export const getAssistantAdvice = async (
   `;
 
   try {
-     const response = await groq.chat.completions.create({
-      model: "llama-3.3-70b-versatile",
-      messages: [
-        { role: "user", content: prompt }
-      ],
+    const response = await generateText({
+      model: groq('llama-3.3-70b-versatile'),
+      prompt: prompt,
       temperature: 0.9,
-      max_tokens: 50,
+      maxTokens: 50,
     });
-    return response.choices[0]?.message?.content || FALLBACK_ADVICE[Math.floor(Math.random() * FALLBACK_ADVICE.length)];
+    return response.text || FALLBACK_ADVICE[Math.floor(Math.random() * FALLBACK_ADVICE.length)];
   } catch (error) {
     console.warn("Groq API Error (Advice):", error);
     return FALLBACK_ADVICE[Math.floor(Math.random() * FALLBACK_ADVICE.length)];
