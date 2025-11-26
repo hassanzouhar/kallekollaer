@@ -14,7 +14,7 @@ import { Onboarding } from './components/Onboarding';
 import { ContractDesk } from './components/ContractDesk';
 import { INITIAL_TEAMS, SCOUT_MISHAPS, createPlayer, generateSchedule, replenishRosters } from './constants';
 import { Team, GameView, MatchResult, Scout, ScoutingReport, Position, TrainingFocus, Player, DirtyDeal, LineAssignment, StaffRole, TacticStyle, AggressionLevel, SeasonPhase, ScheduledMatch, PlayoffSeries, GameState, JobOffer } from './types';
-import { getAssistantAdvice } from './services/geminiService';
+import { getAssistantAdvice } from './services/groqService';
 import { Trophy, Users, Play, BarChart3, ScanSearch, HandCoins, Dumbbell, Building2, ClipboardList } from 'lucide-react';
 
 // Helper: Apply match result to team stats
