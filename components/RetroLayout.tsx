@@ -39,8 +39,8 @@ export const RetroLayout: React.FC<RetroLayoutProps> = ({ children, title, walle
         {/* Header */}
         <header className="border-b-2 border-green-800/50 pb-3 mb-4 flex justify-between items-end uppercase tracking-widest shrink-0">
           <div>
-            <h1 className="text-3xl md:text-5xl font-bold text-glow font-vt323 leading-none tracking-wide">NORDIC PUCK '98</h1>
-            <p className="text-xs opacity-60 tracking-[0.2em] mt-1">U18 Elite Manager</p>
+            <h1 className="text-3xl md:text-5xl font-bold text-glow font-vt323 leading-none tracking-wide">Retro Hockey Manager</h1>
+            <p className="text-xs opacity-60 tracking-[0.2em] mt-1">Norwegian U18 Elite Edition</p>
           </div>
           <div className="text-right hidden md:block text-xs font-mono opacity-80">
             <p>SYS.DATE: {new Date().toLocaleDateString()}</p>
@@ -69,8 +69,8 @@ export const RetroLayout: React.FC<RetroLayoutProps> = ({ children, title, walle
 
         {/* Footer */}
         <footer className="border-t border-green-900/50 pt-2 mt-2 text-[10px] flex justify-between opacity-40 uppercase shrink-0 font-sans">
-          <span>v1.4.0-CLEAN</span>
-          <span>(C) 1998 SIM-NORDIC SOFT</span>
+          <span>v1.5.0-CLEAN</span>
+          <span>(C) 1998 Rastlaus</span>
         </footer>
       </div>
     </div>
