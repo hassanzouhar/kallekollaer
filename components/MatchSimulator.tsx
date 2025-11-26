@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Team, MatchResult, MatchEvent, Penalty, PlayerStatUpdate, Player, Position, StaffRole, TacticStyle, AggressionLevel } from '../types';
 import { RetroButton } from './RetroButton';
-import { generateMatchRecap } from '../services/geminiService';
+import { generateMatchRecap } from '../services/groqService';
 import { PENALTY_REASONS } from '../constants';
 import { ACTION_IMAGES, CHARACTER_IMAGES, getCRTImageStyle } from '../utils/imageHelpers';
 
