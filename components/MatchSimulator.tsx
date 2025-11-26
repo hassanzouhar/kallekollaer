@@ -4,6 +4,7 @@ import { Team, MatchResult, MatchEvent, Penalty, PlayerStatUpdate, Player, Posit
 import { RetroButton } from './RetroButton';
 import { generateMatchRecap } from '../services/geminiService';
 import { PENALTY_REASONS } from '../constants';
+import { ACTION_IMAGES, CHARACTER_IMAGES, getCRTImageStyle } from '../utils/imageHelpers';
 
 interface MatchSimulatorProps {
   homeTeam: Team;
@@ -26,6 +27,7 @@ export const MatchSimulator: React.FC<MatchSimulatorProps> = ({ homeTeam, awayTe
   const [playerUpdates, setPlayerUpdates] = useState<PlayerStatUpdate[]>([]);
   const [momentum, setMomentum] = useState(0); 
   const [pendingFaceoff, setPendingFaceoff] = useState<boolean>(true);
+  const [lastGoalEvent, setLastGoalEvent] = useState<MatchEvent | null>(null);
 
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -211,13 +213,15 @@ export const MatchSimulator: React.FC<MatchSimulatorProps> = ({ homeTeam, awayTe
             if (assist) updatePlayerStat(assist.id, 'assists', 1);
 
             const isPP = awayStrengthMod < 1.0;
-            setEvents(prev => [...prev, {
+            const goalEvent: MatchEvent = {
               minute: nextMinute,
               type: 'GOAL',
               description: `GOAL! ${scorer.name} (${homeTeam.name})${isPP ? ' (PP)' : ''}`,
               teamId: homeTeam.id,
               playerId: scorer.id
-            }]);
+            };
+            setEvents(prev => [...prev, goalEvent]);
+            setLastGoalEvent(goalEvent);
             goalScored = true;
             if (isPP) {
                  // Clear one minor penalty from penalized team (standard hockey rules)
@@ -246,13 +250,15 @@ export const MatchSimulator: React.FC<MatchSimulatorProps> = ({ homeTeam, awayTe
             if (assist) updatePlayerStat(assist.id, 'assists', 1);
 
             const isPP = homeStrengthMod < 1.0;
-            setEvents(prev => [...prev, {
+            const goalEvent: MatchEvent = {
               minute: nextMinute,
               type: 'GOAL',
               description: `GOAL! ${scorer.name} (${awayTeam.name})${isPP ? ' (PP)' : ''}`,
               teamId: awayTeam.id,
               playerId: scorer.id
-            }]);
+            };
+            setEvents(prev => [...prev, goalEvent]);
+            setLastGoalEvent(goalEvent);
             goalScored = true;
              if (isPP) {
                  // Clear one minor penalty from penalized team (standard hockey rules)
@@ -497,29 +503,73 @@ export const MatchSimulator: React.FC<MatchSimulatorProps> = ({ homeTeam, awayTe
         </div>
       </div>
 
-      {/* Match Log - Responsive Height */}
-      <div className="border border-green-900/30 bg-[#080808] p-2 overflow-hidden flex flex-col relative rounded min-h-[200px] max-h-[60vh]">
-        <div className="absolute top-0 right-0 p-1 bg-green-900/20 text-[10px] text-green-600 z-10">LIVE FEED</div>
-        <div ref={scrollRef} className="overflow-y-auto space-y-1 h-full font-mono text-sm px-2 pb-4">
-          {events.length === 0 && <p className="opacity-30 text-center mt-10">WAITING FOR PUCK DROP...</p>}
-          {events.map((e, idx) => (
-            <div key={idx} className={`flex gap-3 py-1 border-b border-green-900/10 ${
-                e.type === 'GOAL' ? 'text-green-300 font-bold bg-green-900/10' : 
-                e.type === 'PENALTY' ? 'text-red-400' : 
-                e.type === 'ROUGHING' ? 'text-yellow-600 font-bold' :
-                e.type === 'FACEOFF' ? 'text-cyan-600 opacity-70 text-xs' :
-                e.type === 'INJURY' ? 'text-red-600 font-bold bg-red-900/10' :
-                'text-green-600'
-            }`}>
-              <span className="w-8 text-right opacity-50 text-xs pt-0.5">{e.minute}'</span>
-              <span>{e.description}</span>
+      {/* Match Visuals and Log */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 min-h-[200px] max-h-[60vh]">
+
+        {/* Action Shot Display */}
+        <div className="lg:col-span-1 border border-green-900/30 bg-black p-2 flex items-center justify-center relative overflow-hidden">
+          {lastGoalEvent && isSimulating ? (
+            <div className="relative w-full h-full flex flex-col items-center justify-center">
+              <img
+                src={ACTION_IMAGES.goalScorer}
+                alt="Goal!"
+                className="max-w-full max-h-[200px] object-contain"
+                style={getCRTImageStyle()}
+              />
+              <div className="absolute inset-0 bg-green-500/10 mix-blend-color pointer-events-none"></div>
+              <div className="absolute bottom-2 left-2 right-2 bg-black/90 border border-green-500 p-2 text-center">
+                <div className="text-green-400 font-bold text-sm uppercase">GOAL!</div>
+                <div className="text-xs text-green-300">{lastGoalEvent.description}</div>
+              </div>
             </div>
-          ))}
-          {phase === 'FINISHED' && (
-             <div className="text-center py-4 text-green-500 border-t border-green-900 mt-4">
-                *** MATCH FINISHED ***
-             </div>
+          ) : phase === 'FINISHED' ? (
+            <div className="text-center p-4">
+              <div className="text-4xl mb-2">🏒</div>
+              <div className="text-green-400 font-bold uppercase">Match Complete</div>
+              <div className="text-xs opacity-60 mt-2">Final: {homeScore} - {awayScore}</div>
+            </div>
+          ) : isSimulating ? (
+            <div className="relative w-full h-full flex items-center justify-center">
+              <img
+                src={ACTION_IMAGES.gameAction}
+                alt="Game Action"
+                className="max-w-full max-h-[200px] object-contain opacity-60"
+                style={getCRTImageStyle()}
+              />
+              <div className="absolute inset-0 bg-green-500/5 mix-blend-color pointer-events-none"></div>
+            </div>
+          ) : (
+            <div className="text-center text-green-700 text-sm">
+              <div className="text-4xl mb-2">🏒</div>
+              <div className="uppercase">Ready to Start</div>
+            </div>
           )}
+        </div>
+
+        {/* Match Log */}
+        <div className="lg:col-span-2 border border-green-900/30 bg-[#080808] p-2 overflow-hidden flex flex-col relative rounded">
+          <div className="absolute top-0 right-0 p-1 bg-green-900/20 text-[10px] text-green-600 z-10">LIVE FEED</div>
+          <div ref={scrollRef} className="overflow-y-auto space-y-1 h-full font-mono text-sm px-2 pb-4">
+            {events.length === 0 && <p className="opacity-30 text-center mt-10">WAITING FOR PUCK DROP...</p>}
+            {events.map((e, idx) => (
+              <div key={idx} className={`flex gap-3 py-1 border-b border-green-900/10 ${
+                  e.type === 'GOAL' ? 'text-green-300 font-bold bg-green-900/10' :
+                  e.type === 'PENALTY' ? 'text-red-400' :
+                  e.type === 'ROUGHING' ? 'text-yellow-600 font-bold' :
+                  e.type === 'FACEOFF' ? 'text-cyan-600 opacity-70 text-xs' :
+                  e.type === 'INJURY' ? 'text-red-600 font-bold bg-red-900/10' :
+                  'text-green-600'
+              }`}>
+                <span className="w-8 text-right opacity-50 text-xs pt-0.5">{e.minute}'</span>
+                <span>{e.description}</span>
+              </div>
+            ))}
+            {phase === 'FINISHED' && (
+               <div className="text-center py-4 text-green-500 border-t border-green-900 mt-4">
+                  *** MATCH FINISHED ***
+               </div>
+            )}
+          </div>
         </div>
       </div>
 

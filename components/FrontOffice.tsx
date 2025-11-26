@@ -3,6 +3,7 @@ import React from 'react';
 import { Team, StaffMember, StaffRole } from '../types';
 import { RetroButton } from './RetroButton';
 import { Briefcase, Dumbbell, Gem, GraduationCap, Shirt, Wrench, HandCoins } from 'lucide-react';
+import { CHARACTER_IMAGES, getCRTImageStyle } from '../utils/imageHelpers';
 
 interface FrontOfficeProps {
   team: Team;
@@ -53,13 +54,20 @@ export const FrontOffice: React.FC<FrontOfficeProps> = ({ team, onUpgradeStaff, 
       </div>
 
       {/* FUNDRAISING */}
-      <div className="bg-black border-2 border-green-800 p-4 flex justify-between items-center">
-        <div>
+      <div className="bg-black border-2 border-green-800 p-4 flex gap-4 items-center">
+        {/* Hockey Mom Image */}
+        <img
+          src={CHARACTER_IMAGES.fan}
+          alt="Community Support"
+          className="w-20 h-20 border-2 border-green-600 flex-shrink-0"
+          style={getCRTImageStyle()}
+        />
+        <div className="flex-1">
             <h3 className="text-xl font-bold uppercase text-green-300">Community Dugnad</h3>
             <p className="text-sm opacity-60">Organize waffle sales and lotteries to raise funds.</p>
         </div>
-        <RetroButton 
-            onClick={onDugnad} 
+        <RetroButton
+            onClick={onDugnad}
             disabled={dugnadCooldown}
             className={dugnadCooldown ? 'opacity-50 cursor-not-allowed' : ''}
         >

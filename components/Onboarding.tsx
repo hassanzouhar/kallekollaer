@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Team } from '../types';
 import { RetroButton } from './RetroButton';
 import { Shield, Star, Briefcase, CheckCircle } from 'lucide-react';
+import { CHARACTER_IMAGES, getCRTImageStyle } from '../utils/imageHelpers';
 
 interface OnboardingProps {
   teams: Team[];
@@ -37,10 +38,23 @@ export const Onboarding: React.FC<OnboardingProps> = ({ teams, onComplete }) => 
 
   return (
     <div className="flex flex-col items-center justify-center h-full p-4 max-w-4xl mx-auto">
-      
+
       <div className="text-center mb-8">
           <h1 className="text-4xl md:text-6xl font-bold text-green-400 font-vt323 mb-2 text-glow">MANAGER PROFILE</h1>
           <p className="text-xl opacity-70 uppercase tracking-widest">Initialize Career Protocol</p>
+
+          {/* Welcome Character */}
+          <div className="mt-6 flex items-center justify-center gap-4 bg-black/50 border border-green-800 p-4 rounded">
+            <img
+              src={CHARACTER_IMAGES.fan}
+              alt="Welcome"
+              className="w-16 h-16 border-2 border-green-600"
+              style={getCRTImageStyle()}
+            />
+            <div className="text-left text-sm italic text-green-300">
+              "Welcome to Norwegian youth hockey!<br/>Let's build your coaching career."
+            </div>
+          </div>
       </div>
 
       {step === 1 && (
@@ -101,11 +115,22 @@ export const Onboarding: React.FC<OnboardingProps> = ({ teams, onComplete }) => 
                   You are now the Head Coach of <br/>
                   <span className="text-2xl text-green-400 font-bold">{teams.find(t => t.id === selectedStarterId)?.name}</span>
               </div>
-              <div className="bg-green-900/20 p-4 border border-green-800 mb-6 text-sm italic">
-                  "Welcome aboard. The board expects you to work hard. Don't let us down."
+
+              {/* Board Representative */}
+              <div className="bg-green-900/20 p-4 border border-green-800 mb-6 flex items-center gap-4">
+                  <img
+                    src={CHARACTER_IMAGES.sponsor}
+                    alt="Board Rep"
+                    className="w-20 h-20 border-2 border-green-600 flex-shrink-0"
+                    style={getCRTImageStyle()}
+                  />
+                  <div className="text-sm italic text-left text-green-200">
+                      "Welcome aboard. The board expects you to work hard. Don't let us down."
+                  </div>
               </div>
-              <RetroButton 
-                variant="primary" 
+
+              <RetroButton
+                variant="primary"
                 className="w-full py-4 text-xl"
                 onClick={() => onComplete(selectedStarterId, dreamTeamId!)}
               >
