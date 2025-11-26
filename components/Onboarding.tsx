@@ -1,23 +1,36 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Team } from '../types';
 import { RetroButton } from './RetroButton';
-import { Shield, Star, Briefcase, CheckCircle } from 'lucide-react';
+import { Shield, Star, Briefcase, CheckCircle, Play, Plus } from 'lucide-react';
 import { CHARACTER_IMAGES, getCRTImageStyle } from '../utils/imageHelpers';
+import { getSaveMetadata, deleteSaveGame } from '../services/saveService';
 
 interface OnboardingProps {
   teams: Team[];
   onComplete: (starterTeamId: string, dreamTeamId: string) => void;
+  onContinue?: () => void;
 }
 
-export const Onboarding: React.FC<OnboardingProps> = ({ teams, onComplete }) => {
-  const [step, setStep] = useState<1 | 2 | 3>(1);
+export const Onboarding: React.FC<OnboardingProps> = ({ teams, onComplete, onContinue }) => {
+  const [step, setStep] = useState<0 | 1 | 2 | 3>(0);
   const [dreamTeamId, setDreamTeamId] = useState<string | null>(null);
   const [selectedStarterId, setSelectedStarterId] = useState<string | null>(null);
+  const [saveMetadata, setSaveMetadata] = useState<{ savedAt: string; seasonCount: number; teamName: string } | null>(null);
 
+  // Step 0: Main Menu (Continue/New Game)
   // Step 1: Choose Favorite
   // Step 2: Choose Starter (Low Tier)
   // Step 3: Confirm
+
+  useEffect(() => {
+    const metadata = getSaveMetadata();
+    setSaveMetadata(metadata);
+    // If no save exists, skip to step 1 (new game)
+    if (!metadata) {
+      setStep(1);
+    }
+  }, []);
 
   // Filter lower tier teams for starter options (e.g. bottom 50% by default points if we had them, or random)
   // For now, lets just pick 3 random teams excluding the dream team
@@ -34,6 +47,21 @@ export const Onboarding: React.FC<OnboardingProps> = ({ teams, onComplete }) => 
   const handleSelectStarter = (id: string) => {
       setSelectedStarterId(id);
       setStep(3);
+  };
+
+  const handleContinue = () => {
+      if (onContinue) {
+        onContinue();
+      }
+  };
+
+  const handleNewGame = () => {
+      const confirmDelete = window.confirm('Starting a new game will delete your current save. Continue?');
+      if (confirmDelete) {
+        deleteSaveGame();
+        setSaveMetadata(null);
+        setStep(1);
+      }
   };
 
   return (
@@ -56,6 +84,63 @@ export const Onboarding: React.FC<OnboardingProps> = ({ teams, onComplete }) => 
             </div>
           </div>
       </div>
+
+      {step === 0 && saveMetadata && (
+          <div className="w-full max-w-lg animate-in fade-in duration-500">
+              <h2 className="text-3xl text-center mb-8 border-b-2 border-green-800 pb-4 flex items-center justify-center gap-2">
+                  <Play className="text-green-400"/> MAIN MENU
+              </h2>
+
+              <div className="space-y-6 mb-8">
+                  {/* Continue Game Card */}
+                  <div className="border-2 border-green-600 bg-black/70 p-6">
+                      <div className="flex items-center gap-3 mb-4">
+                          <Play className="w-8 h-8 text-green-400"/>
+                          <div>
+                              <div className="text-2xl font-bold text-green-300">CONTINUE GAME</div>
+                              <div className="text-xs text-green-600 uppercase mt-1">Resume Career</div>
+                          </div>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2 text-sm mb-4 bg-green-900/20 p-3 border border-green-800">
+                          <div>
+                              <div className="text-xs opacity-60">TEAM</div>
+                              <div className="font-bold">{saveMetadata.teamName}</div>
+                          </div>
+                          <div>
+                              <div className="text-xs opacity-60">SEASON</div>
+                              <div className="font-bold">Year {saveMetadata.seasonCount}</div>
+                          </div>
+                          <div className="col-span-2">
+                              <div className="text-xs opacity-60">LAST SAVED</div>
+                              <div className="font-bold text-xs">{new Date(saveMetadata.savedAt).toLocaleString()}</div>
+                          </div>
+                      </div>
+                      <RetroButton
+                          variant="primary"
+                          className="w-full py-3 text-lg animate-pulse"
+                          onClick={handleContinue}
+                      >
+                          <Play className="inline mr-2 w-5 h-5"/> CONTINUE
+                      </RetroButton>
+                  </div>
+
+                  {/* New Game Card */}
+                  <div className="border border-green-800 bg-black/50 p-6">
+                      <div className="flex items-center gap-3 mb-3">
+                          <Plus className="w-6 h-6 text-green-600"/>
+                          <div className="text-xl font-bold text-green-500">NEW GAME</div>
+                      </div>
+                      <p className="text-sm opacity-70 mb-4">Start a fresh career. This will delete your current save.</p>
+                      <RetroButton
+                          onClick={handleNewGame}
+                          className="w-full"
+                      >
+                          <Plus className="inline mr-2 w-4 h-4"/> NEW CAREER
+                      </RetroButton>
+                  </div>
+              </div>
+          </div>
+      )}
 
       {step === 1 && (
           <div className="w-full animate-in fade-in duration-500">
