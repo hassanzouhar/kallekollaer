@@ -37,10 +37,11 @@ export const SCOUT_MISHAPS = [
 
 // Training drills
 export const DRILLS = [
-  { id: TrainingFocus.TECHNICAL, label: 'TECHNICAL', desc: 'Drills puck control & shooting.', icon: '🏒', boosts: 'SKILL', cost: 'STAMINA' },
-  { id: TrainingFocus.PHYSICAL, label: 'PHYSICAL', desc: 'Suicide sprints & weights.', icon: '🏋️', boosts: 'STAMINA', cost: 'MORALE' },
-  { id: TrainingFocus.REST, label: 'REST', desc: 'Massage and video analysis.', icon: '🛌', boosts: 'MORALE', cost: 'NONE' },
-  { id: TrainingFocus.GENERAL, label: 'BALANCED', desc: 'Standard team practice.', icon: '📋', boosts: 'MIXED', cost: 'LOW' }
+  { id: TrainingFocus.TECHNICAL, label: 'TECHNICAL', desc: 'Drills puck control & shooting.', icon: '🏒', boosts: 'SKILL', cost: 'STAMINA', tpCost: 2 },
+  { id: TrainingFocus.PHYSICAL, label: 'PHYSICAL', desc: 'Suicide sprints & weights.', icon: '🏋️', boosts: 'STAMINA', cost: 'MORALE', tpCost: 2 },
+  { id: TrainingFocus.TACTICAL, label: 'TACTICAL', desc: 'Film study & tactical drills.', icon: '🧠', boosts: 'POTENTIAL', cost: 'FOCUS', tpCost: 3 },
+  { id: TrainingFocus.REST, label: 'REST', desc: 'Massage and video analysis.', icon: '🛌', boosts: 'MORALE', cost: 'NONE', tpCost: 0 },
+  { id: TrainingFocus.GENERAL, label: 'BALANCED', desc: 'Standard team practice.', icon: '📋', boosts: 'MIXED', cost: 'LOW', tpCost: 1 }
 ];
 
 // Dirty deals (high-risk scouting)

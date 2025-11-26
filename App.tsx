@@ -468,36 +468,77 @@ const App = () => {
     const swagBonus = userTeam.upgrades ? (userTeam.upgrades.swagLevel * 2) : 0;
 
     updates = updates.map(t => {
-        if (t.id !== userTeamId) return t; 
+        if (t.id !== userTeamId) return t;
         const newRoster = t.roster.map(p => {
-            let { skill, stamina, morale, fatigue, isInjured, injuryWeeksLeft, trainingFocus, potential } = p;
-            
+            let { skill, stamina, morale, fatigue, isInjured, injuryWeeksLeft, trainingFocus, potential, trainingPoints, age } = p;
+
+            // Age factor: younger players (15-16) are more susceptible to burnout
+            // Older players (17-18) handle training better
+            const ageFactor = age <= 16 ? 1.5 : 1.0;
+
             if (isInjured) {
                 injuryWeeksLeft = Math.max(0, injuryWeeksLeft - 1);
                 if (injuryWeeksLeft === 0) isInjured = false;
                 fatigue = Math.max(0, fatigue - 30);
             } else {
                 fatigue = Math.max(0, fatigue - 15);
-                switch (trainingFocus) {
-                    case TrainingFocus.TECHNICAL:
-                        if (skill < potential && Math.random() < (0.2 + trainingBonusChance)) skill++;
-                        fatigue = Math.min(100, fatigue + 5);
-                        break;
-                    case TrainingFocus.PHYSICAL:
-                        if (stamina < 100 && Math.random() < (0.4 + trainingBonusChance)) stamina += 2;
-                        fatigue = Math.min(100, fatigue + 10);
-                        break;
-                    case TrainingFocus.REST:
-                        morale = Math.min(100, morale + 5 + swagBonus);
-                        stamina = Math.min(100, stamina + 5);
-                        fatigue = Math.max(0, fatigue - 30);
-                        break;
-                    default:
-                        if (Math.random() < (0.1 + trainingBonusChance) && skill < potential) skill++;
-                        fatigue = Math.min(100, fatigue + 2);
+
+                // Get TP cost for current training focus
+                const tpCost = {
+                    [TrainingFocus.TECHNICAL]: 2,
+                    [TrainingFocus.PHYSICAL]: 2,
+                    [TrainingFocus.TACTICAL]: 3,
+                    [TrainingFocus.REST]: 0,
+                    [TrainingFocus.GENERAL]: 1
+                }[trainingFocus] || 0;
+
+                // Check if player has enough TP
+                if (trainingPoints >= tpCost) {
+                    trainingPoints -= tpCost;
+
+                    switch (trainingFocus) {
+                        case TrainingFocus.TECHNICAL:
+                            if (skill < potential && Math.random() < (0.2 + trainingBonusChance)) skill++;
+                            fatigue = Math.min(100, fatigue + Math.ceil(5 * ageFactor));
+                            break;
+                        case TrainingFocus.PHYSICAL:
+                            if (stamina < 100 && Math.random() < (0.4 + trainingBonusChance)) stamina += 2;
+                            fatigue = Math.min(100, fatigue + Math.ceil(10 * ageFactor));
+                            morale = Math.max(0, morale - Math.ceil(3 * ageFactor)); // Physical training can hurt morale
+                            break;
+                        case TrainingFocus.TACTICAL:
+                            // Tactical training: small chance to boost potential, helps with vision/intelligence
+                            if (potential < 100 && Math.random() < (0.05 + trainingBonusChance)) potential++;
+                            if (skill < potential && Math.random() < (0.15 + trainingBonusChance)) skill++;
+                            // Younger players struggle more with focus-intensive tactical training
+                            const burnoutChance = age <= 16 ? 0.15 : 0.05;
+                            if (Math.random() < burnoutChance) {
+                                morale = Math.max(0, morale - Math.ceil(8 * ageFactor));
+                                fatigue = Math.min(100, fatigue + Math.ceil(8 * ageFactor));
+                            } else {
+                                fatigue = Math.min(100, fatigue + Math.ceil(6 * ageFactor));
+                            }
+                            break;
+                        case TrainingFocus.REST:
+                            morale = Math.min(100, morale + 5 + swagBonus);
+                            stamina = Math.min(100, stamina + 5);
+                            fatigue = Math.max(0, fatigue - 30);
+                            break;
+                        default: // GENERAL
+                            if (Math.random() < (0.1 + trainingBonusChance) && skill < potential) skill++;
+                            fatigue = Math.min(100, fatigue + Math.ceil(2 * ageFactor));
+                    }
+                } else {
+                    // Not enough TP: player "slacks off" or just does light training
+                    morale = Math.max(0, morale - Math.ceil(5 * ageFactor));
+                    fatigue = Math.max(0, fatigue - 10);
                 }
             }
-            return { ...p, skill, stamina, morale, fatigue, isInjured, injuryWeeksLeft };
+
+            // Regenerate TP at end of week (10 base TP)
+            trainingPoints = 10;
+
+            return { ...p, skill, stamina, morale, fatigue, isInjured, injuryWeeksLeft, potential, trainingPoints };
         });
         return { ...t, roster: newRoster };
     });
