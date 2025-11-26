@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from '@vercel/analytics/react';
 import { RetroLayout } from './components/RetroLayout';
 import { RetroButton } from './components/RetroButton';
 import { RosterView } from './components/RosterView';
