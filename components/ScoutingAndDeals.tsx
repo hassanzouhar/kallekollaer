@@ -83,7 +83,7 @@ export const ScoutingAndDeals: React.FC<ScoutingAndDealsProps> = ({
                             <div className="font-bold">{s.name}</div>
                             <div className="opacity-60">{s.region} ({s.costPerWeek}p/w)</div>
                         </div>
-                        <button onClick={() => onFire(s.id)} className="text-red-400 hover:text-red-300 underline">FIRE</button>
+                        <button type="button" onClick={() => onFire(s.id)} className="text-red-400 hover:text-red-300 underline">FIRE</button>
                     </div>
                 ))}
             </div>
@@ -99,7 +99,8 @@ export const ScoutingAndDeals: React.FC<ScoutingAndDealsProps> = ({
                         <div className="flex justify-between items-center">
                              <span className="opacity-70">Skl: {scout.skill} | {scout.region}</span>
                              {!isHired(scout.id) && (
-                                <button 
+                                <button
+                                    type="button"
                                     onClick={() => onHire(scout)}
                                     disabled={wallet < scout.costPerWeek}
                                     className={`px-2 py-0.5 border ${wallet >= scout.costPerWeek ? 'border-green-500 hover:bg-green-900' : 'border-red-900 text-red-900'}`}
@@ -199,6 +200,7 @@ export const ScoutingAndDeals: React.FC<ScoutingAndDealsProps> = ({
                   <div className="space-y-2 overflow-y-auto flex-1 custom-scrollbar pr-1">
                       {DIRTY_DEALS.map(deal => (
                           <button
+                            type="button"
                             key={deal.id}
                             onClick={() => handleAttemptDeal(deal)}
                             disabled={wallet < deal.cost}
