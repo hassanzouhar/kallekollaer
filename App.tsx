@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/next';
 import { RetroLayout } from './components/RetroLayout';
 import { RetroButton } from './components/RetroButton';
 import { RosterView } from './components/RosterView';
@@ -499,6 +500,7 @@ const App = () => {
       return (
           <RetroLayout>
               <Onboarding teams={teams} onComplete={handleOnboardingComplete} />
+              <Analytics />
           </RetroLayout>
       );
   }
@@ -513,6 +515,7 @@ const App = () => {
                   onRenew={() => startNewSeason(userTeamId, 0)}
                   onAcceptOffer={(offer) => startNewSeason(offer.teamId, offer.signingBonus)}
               />
+              <Analytics />
           </RetroLayout>
       );
   }
@@ -606,6 +609,7 @@ const App = () => {
       {view === GameView.OFFICE && <FrontOffice team={userTeam} onUpgradeStaff={handleUpgradeStaff} onBuyUpgrade={handleBuyUpgrade} onDugnad={handleDugnad} dugnadCooldown={dugnadCooldown} />}
       {view === GameView.LEAGUE && <LeagueView teams={teams} schedule={schedule} currentWeek={currentWeek} phase={phase} playoffSeries={playoffSeries} />}
       {view === GameView.MATCH && <MatchSimulator homeTeam={nextOpponentId === userTeamId ? userTeam : nextOpponent} awayTeam={nextOpponentId === userTeamId ? nextOpponent : userTeam} onMatchComplete={handleMatchComplete} />}
+      <Analytics />
     </RetroLayout>
   );
 };
