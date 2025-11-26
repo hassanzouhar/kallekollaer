@@ -15,7 +15,8 @@ import { ContractDesk } from './components/ContractDesk';
 import { INITIAL_TEAMS, SCOUT_MISHAPS, createPlayer, generateSchedule, replenishRosters } from './constants';
 import { Team, GameView, MatchResult, Scout, ScoutingReport, Position, TrainingFocus, Player, DirtyDeal, LineAssignment, StaffRole, TacticStyle, AggressionLevel, SeasonPhase, ScheduledMatch, PlayoffSeries, GameState, JobOffer } from './types';
 import { getAssistantAdvice } from './services/groqService';
-import { Trophy, Users, Play, BarChart3, ScanSearch, HandCoins, Dumbbell, Building2, ClipboardList } from 'lucide-react';
+import { saveGame, loadGame, hasSaveGame, SaveGame, exportSaveGame } from './services/saveService';
+import { Trophy, Users, Play, BarChart3, ScanSearch, HandCoins, Dumbbell, Building2, ClipboardList, Save, Download } from 'lucide-react';
 
 // Helper: Apply match result to team stats
 const applyMatchResult = (
@@ -78,7 +79,58 @@ const App = () => {
   const [newsFeed, setNewsFeed] = useState<string[]>([]);
 
   const userTeam = teams.find(t => t.id === userTeamId) || teams[0]; // Safety fallback
-  
+
+  // Helper: Auto-save current game state
+  const autoSaveGame = () => {
+    const currentState: Omit<SaveGame, 'savedAt' | 'version'> = {
+      gameState,
+      view,
+      userTeamId,
+      dreamTeamId,
+      seasonCount,
+      jobOffers,
+      teams,
+      schedule,
+      currentWeek,
+      phase,
+      playoffSeries,
+      lastMatchResult,
+      advice,
+      adviceCache,
+      hiredScouts,
+      scoutingReports,
+      dugnadCooldown,
+      newsFeed
+    };
+    saveGame(currentState, true);
+  };
+
+  // Handler: Load saved game
+  const handleContinueSave = () => {
+    const savedGame = loadGame(true); // Try autosave first
+    if (savedGame) {
+      console.log('[App] Loading saved game...');
+      setGameState(savedGame.gameState);
+      setView(savedGame.view);
+      setTeams(savedGame.teams);
+      setUserTeamId(savedGame.userTeamId);
+      setDreamTeamId(savedGame.dreamTeamId);
+      setJobOffers(savedGame.jobOffers);
+      setSeasonCount(savedGame.seasonCount);
+      setSchedule(savedGame.schedule);
+      setCurrentWeek(savedGame.currentWeek);
+      setPhase(savedGame.phase);
+      setPlayoffSeries(savedGame.playoffSeries);
+      setLastMatchResult(savedGame.lastMatchResult);
+      setAdvice(savedGame.advice);
+      setAdviceCache(savedGame.adviceCache);
+      setHiredScouts(savedGame.hiredScouts);
+      setScoutingReports(savedGame.scoutingReports);
+      setDugnadCooldown(savedGame.dugnadCooldown);
+      setNewsFeed(savedGame.newsFeed);
+    }
+  };
+
   // Init Schedule when season starts (or teams load if already in season)
   useEffect(() => {
       if (gameState === GameState.SEASON && schedule.length === 0 && phase === 'REGULAR_SEASON') {
@@ -117,6 +169,9 @@ const App = () => {
       setGameState(GameState.SEASON);
       setSchedule(generateSchedule(teams));
       setView(GameView.DASHBOARD);
+
+      // Auto-save after career starts
+      setTimeout(() => autoSaveGame(), 100);
   };
 
   const handleSeasonEnd = () => {
@@ -151,7 +206,7 @@ const App = () => {
 
   const startNewSeason = (newTeamId: string, signingBonus: number = 0) => {
       setUserTeamId(newTeamId);
-      
+
       // Reset Season Data
       setCurrentWeek(1);
       setPhase('REGULAR_SEASON');
@@ -162,14 +217,17 @@ const App = () => {
       setSeasonCount(prev => prev + 1);
 
       // Replenish Rosters (Age up, retire, recruit) and apply bonus
-      const refreshedTeams = replenishRosters(teams).map(t => 
+      const refreshedTeams = replenishRosters(teams).map(t =>
         t.id === newTeamId ? { ...t, wallet: t.wallet + signingBonus } : t
       );
-      
+
       setTeams(refreshedTeams);
       setSchedule(generateSchedule(refreshedTeams));
       setGameState(GameState.SEASON);
       setView(GameView.DASHBOARD);
+
+      // Auto-save after new season starts
+      setTimeout(() => autoSaveGame(), 100);
   };
 
   // --- MATCH LOGIC ---
@@ -357,13 +415,16 @@ const App = () => {
         } else {
             setCurrentWeek(prev => prev + 1);
             processWeeklyEvents(teamUpdates);
-            setDugnadCooldown(false); 
+            setDugnadCooldown(false);
             setView(GameView.DASHBOARD);
         }
     } else {
         // Playoffs: Stay on Match View or go to Dashboard
          setView(GameView.DASHBOARD);
     }
+
+    // Auto-save after match complete
+    setTimeout(() => autoSaveGame(), 100);
   };
 
   const setupPlayoffs = (currentTeams: Team[]) => {
@@ -494,12 +555,25 @@ const App = () => {
       }
   };
 
+  const handleManualSave = () => {
+      autoSaveGame();
+      alert("Game saved successfully!");
+  };
+
+  const handleExportSave = () => {
+      exportSaveGame();
+  };
+
   // --- RENDER ---
 
   if (gameState === GameState.ONBOARDING) {
       return (
           <RetroLayout>
-              <Onboarding teams={teams} onComplete={handleOnboardingComplete} />
+              <Onboarding
+                  teams={teams}
+                  onComplete={handleOnboardingComplete}
+                  onContinue={handleContinueSave}
+              />
               <Analytics />
           </RetroLayout>
       );
@@ -530,7 +604,13 @@ const App = () => {
         <RetroButton onClick={() => setView(GameView.SCOUTING)} className={view === GameView.SCOUTING ? 'bg-green-700 text-black' : ''}><ScanSearch className="inline mr-2 w-4 h-4"/>Scouts</RetroButton>
         <RetroButton onClick={() => setView(GameView.OFFICE)} className={view === GameView.OFFICE ? 'bg-green-700 text-black' : ''}><Building2 className="inline mr-2 w-4 h-4"/>Office</RetroButton>
         <RetroButton onClick={() => setView(GameView.LEAGUE)} className={view === GameView.LEAGUE ? 'bg-green-700 text-black' : ''}><Trophy className="inline mr-2 w-4 h-4"/>League</RetroButton>
-        <div className="ml-auto flex items-center gap-4">
+        <div className="ml-auto flex items-center gap-2">
+             <RetroButton onClick={handleManualSave} className="text-xs py-1 px-2">
+               <Save className="inline mr-1 w-3 h-3"/> Save
+             </RetroButton>
+             <RetroButton onClick={handleExportSave} className="text-xs py-1 px-2">
+               <Download className="inline mr-1 w-3 h-3"/> Export
+             </RetroButton>
              <div className="bg-green-900/50 px-2 py-2 border border-green-600 text-xs text-center">
                <div>{phase === 'REGULAR_SEASON' ? `WEEK ${currentWeek}` : 'PLAYOFFS'}</div>
              </div>
