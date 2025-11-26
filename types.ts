@@ -29,7 +29,7 @@ export interface Player {
   id: string;
   name: string;
   position: Position;
-  
+
   // Core Stats
   skill: number; // 0-100 (Overall Ability)
   potential: number; // 0-100 (Max Ability)
@@ -37,7 +37,8 @@ export interface Player {
   fatigue: number; // 0-100 (Long term tiredness)
   morale: number; // 0-100
   age: number; // 15-18
-  
+  trainingPoints: number; // 0-10 (Weekly training capacity)
+
   // Tactical
   line: LineAssignment;
   personality: PlayerPersonality;

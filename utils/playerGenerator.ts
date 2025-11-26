@@ -69,6 +69,7 @@ export const createPlayer = (
     stamina,
     fatigue: 0,
     morale: 80,
+    trainingPoints: 10,
     line: 'BENCH',
     aggression,
     vision,
