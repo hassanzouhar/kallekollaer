@@ -2,31 +2,31 @@ import { Position } from '../types';
 
 // Image paths for player portraits
 export const PLAYER_IMAGES = [
-  '/images/player1 - middels.jpeg',
-  '/images/player2 - middels.jpeg',
-  '/images/player3 - middels.jpeg',
-  '/images/player5 - middels.jpeg',
+  '/images/player1-middels.jpeg',
+  '/images/player2-middels.jpeg',
+  '/images/player3-middels.jpeg',
+  '/images/player5-middels.jpeg',
 ];
 
 export const GOALIE_IMAGES = [
-  '/images/goalie1 - middels.jpeg',
-  '/images/goalie2 - middels.jpeg',
-  '/images/goalie3 - middels.jpeg',
-  '/images/goalie4 - middels.jpeg',
+  '/images/goalie1-middels.jpeg',
+  '/images/goalie2-middels.jpeg',
+  '/images/goalie3-middels.jpeg',
+  '/images/goalie4-middels.jpeg',
 ];
 
 // Action shot images for match events
 export const ACTION_IMAGES = {
-  goalScorer: '/images/goalscorer_gameshot1 - middels.jpeg',
-  gameAction: '/images/gameshot1 - middels.jpeg',
-  goalieSave: '/images/gameshot_goalie - middels.jpeg',
+  goalScorer: '/images/goalscorer_gameshot1-middels.jpeg',
+  gameAction: '/images/gameshot1-middels.jpeg',
+  goalieSave: '/images/gameshot_goalie-middels.jpeg',
 };
 
 // Character images for narrative elements
 export const CHARACTER_IMAGES = {
-  fan: '/images/happyhockeymom - middels.jpeg',
-  sponsor: '/images/sponsor - middels.jpeg',
-  referee: '/images/refferee - middels.jpeg',
+  fan: '/images/happyhockeymom-middels.jpeg',
+  sponsor: '/images/sponsor-middels.jpeg',
+  referee: '/images/refferee-middels.jpeg',
 };
 
 /**
