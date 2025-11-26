@@ -5,7 +5,7 @@ let client: Groq | null = null;
 
 const getClient = () => {
   if (!client && process.env.API_KEY) {
-    client = new Groq({ apiKey: process.env.API_KEY, dangerouslyAllowBrowser: true });
+    client = new Groq({ apiKey: process.env.API_KEY });
   }
   return client;
 };
@@ -33,8 +33,8 @@ export const generateMatchRecap = async (
   awayTeam: Team,
   result: MatchResult
 ): Promise<string> => {
-  const ai = getClient();
-  if (!ai) return FALLBACK_RECAPS[0];
+  const groq = getClient();
+  if (!groq) return FALLBACK_RECAPS[0];
 
   // Calculate average fatigue for context
   const homeAvgFatigue = homeTeam.roster.reduce((a, b) => a + b.fatigue, 0) / homeTeam.roster.length;
@@ -45,18 +45,20 @@ export const generateMatchRecap = async (
     Home Team: ${homeTeam.name} (Avg Fatigue: ${Math.round(homeAvgFatigue)}%)
     Away Team: ${awayTeam.name} (Avg Fatigue: ${Math.round(awayAvgFatigue)}%)
     Final Score: ${result.homeScore} - ${result.awayScore}
-    
+
     Key events: ${result.events.filter(e => e.type === 'GOAL' || e.type === 'ROUGHING').map(e => `${e.minute}': ${e.description}`).join(', ')}.
-    
+
     If fatigue levels are high (>40%), mention the tired legs.
     If there were fights (ROUGHING), mention the aggressive atmosphere.
     Tone: Enthusiastic, retro, slightly gritty. Keep it under 80 words.
   `;
 
   try {
-    const response = await ai.chat.completions.create({
+    const response = await groq.chat.completions.create({
       model: "llama-3.3-70b-versatile",
-      messages: [{ role: "user", content: prompt }],
+      messages: [
+        { role: "user", content: prompt }
+      ],
       temperature: 0.8,
       max_tokens: 150,
     });
@@ -71,22 +73,24 @@ export const getAssistantAdvice = async (
   team: Team,
   nextOpponent: Team
 ): Promise<string> => {
-   const ai = getClient();
-  if (!ai) return FALLBACK_ADVICE[0];
+   const groq = getClient();
+  if (!groq) return FALLBACK_ADVICE[0];
 
   const prompt = `
     You are a grumpy but wise assistant hockey coach in the 90s.
     We (Vålerenga U18) are playing against ${nextOpponent.name}.
     Our top player has skill ${Math.max(...team.roster.map(p => p.skill))}.
     Their team city is ${nextOpponent.city}.
-    
+
     Give me one short sentence of tactical advice, using hockey slang.
   `;
 
   try {
-     const response = await ai.chat.completions.create({
+     const response = await groq.chat.completions.create({
       model: "llama-3.3-70b-versatile",
-      messages: [{ role: "user", content: prompt }],
+      messages: [
+        { role: "user", content: prompt }
+      ],
       temperature: 0.9,
       max_tokens: 50,
     });

@@ -9,7 +9,7 @@
 - **Frontend:** React 19.2 + TypeScript
 - **Build Tool:** Vite 6.2
 - **Styling:** TailwindCSS (via CDN) + Inline CSS
-- **AI Integration:** Google Gemini API (@google/genai 1.30.0)
+- **AI Integration:** Groq API (groq-sdk 0.36.0)
 - **Icons:** Lucide React
 - **Font:** VT323 (Google Fonts - retro terminal style)
 
@@ -50,7 +50,7 @@ kallekollaer/
 │   └── Standings.tsx       # League standings table
 │
 ├── services/
-│   └── geminiService.ts    # Google Gemini AI integration for match recaps/advice
+│   └── groqService.ts      # Groq AI integration for match recaps/advice
 │
 ├── sampledata/             # CSV source data
 │   ├── Teams.csv           # Team statistics
@@ -148,14 +148,14 @@ kallekollaer/
 
 ### AI Integration
 
-1. **Gemini Service** (`services/geminiService.ts`)
+1. **Groq Service** (`services/groqService.ts`)
    - **Purpose:** Generate match recaps and coaching advice
-   - **Model:** `gemini-2.5-flash`
+   - **Model:** `llama-3.3-70b-versatile`
    - **Fallback Strategy:** Always provide hardcoded fallbacks if API fails
    - **Caching:** Advice cached per week to reduce API calls
 
 2. **Environment Variables**
-   - Required: `GEMINI_API_KEY` in `.env.local`
+   - Required: `GROQ_API_KEY` in `.env.local`
    - Accessed via `process.env.API_KEY` (defined in vite.config.ts)
 
 3. **Error Handling**
@@ -191,7 +191,7 @@ kallekollaer/
 npm install
 
 # Set up environment
-# Create .env.local and add: GEMINI_API_KEY=your_key_here
+# Create .env.local and add: GROQ_API_KEY=your_key_here
 
 # Start development server (port 3000)
 npm run dev
@@ -317,7 +317,7 @@ npm run preview
 5. Ensure retro aesthetic is maintained
 
 **Modifying AI Prompts:**
-1. Edit `services/geminiService.ts`
+1. Edit `services/groqService.ts`
 2. Keep 90s hockey theme in prompts
 3. Update fallback arrays accordingly
 4. Test both success and failure paths
@@ -382,7 +382,7 @@ npm run preview
 
 ```bash
 # .env.local
-GEMINI_API_KEY=your_api_key_here
+GROQ_API_KEY=your_api_key_here
 ```
 
 ### Port Configuration
@@ -416,7 +416,7 @@ import Component from '@/components/Component'  // '@/' maps to root
    - Manual testing only
 
 4. **API Dependency**
-   - Requires Gemini API key for full experience
+   - Requires Groq API key for full experience
    - Fallbacks work but reduce immersion
 
 ### Future Enhancement Ideas
@@ -447,7 +447,7 @@ import Component from '@/components/Component'  // '@/' maps to root
 1. `types.ts` - Understand all data structures
 2. `App.tsx` - Main game state and view routing
 3. `constants.ts` - Game data and generators
-4. `services/geminiService.ts` - AI integration
+4. `services/groqService.ts` - AI integration
 5. `components/RetroLayout.tsx` - Layout wrapper
 
 ### Common State Variables in App.tsx
