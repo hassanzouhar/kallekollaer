@@ -33,14 +33,24 @@ export const generateMatchRecap = async (
   const homeAvgFatigue = homeTeam.roster.reduce((a, b) => a + b.fatigue, 0) / homeTeam.roster.length;
   const awayAvgFatigue = awayTeam.roster.reduce((a, b) => a + b.fatigue, 0) / awayTeam.roster.length;
 
+  // Get player personalities from goal scorers
+  const goalEvents = result.events.filter(e => e.type === 'GOAL' && e.playerId);
+  const scorers = goalEvents.map(e => {
+    const allRoster = [...homeTeam.roster, ...awayTeam.roster];
+    const player = allRoster.find(p => p.id === e.playerId);
+    return player ? `${player.name} (${player.personality})` : '';
+  }).filter(Boolean).join(', ');
+
   const prompt = `
     Write a short, intense, 1990s style sportscaster recap for a Norwegian U18 hockey match.
     Home Team: ${homeTeam.name} (Avg Fatigue: ${Math.round(homeAvgFatigue)}%)
     Away Team: ${awayTeam.name} (Avg Fatigue: ${Math.round(awayAvgFatigue)}%)
     Final Score: ${result.homeScore} - ${result.awayScore}
 
+    Key scorers: ${scorers || 'Multiple players'}
     Key events: ${result.events.filter(e => e.type === 'GOAL' || e.type === 'ROUGHING').map(e => `${e.minute}': ${e.description}`).join(', ')}.
 
+    If personality is SNIPER, emphasize deadly accuracy. If ENFORCER, emphasize physical play.
     If fatigue levels are high (>40%), mention the tired legs.
     If there were fights (ROUGHING), mention the aggressive atmosphere.
     Tone: Enthusiastic, retro, slightly gritty. Keep it under 80 words.

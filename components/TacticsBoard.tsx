@@ -99,10 +99,15 @@ export const TacticsBoard: React.FC<TacticsBoardProps> = ({ team, onUpdateTactic
                     {currentStyle === TacticStyle.DUMP_AND_CHASE || currentAggression === AggressionLevel.HIGH ? ' HIGH' : ' NORMAL'}
                 </li>
                 <li>
-                    PENALTY RISK: 
+                    PENALTY RISK:
                     {currentAggression === AggressionLevel.ENFORCER ? ' CRITICAL' : currentAggression === AggressionLevel.HIGH ? ' HIGH' : ' LOW'}
                 </li>
              </ul>
+             <div className="mt-3 pt-3 border-t border-green-800 text-[10px] opacity-70">
+               <div className="font-bold text-green-400 mb-1">LINE TACTICS:</div>
+               <div>• L1-L2: Offensive lines (most ice time)</div>
+               <div>• L3-L4: Defensive/checking lines</div>
+             </div>
           </div>
         </div>
 

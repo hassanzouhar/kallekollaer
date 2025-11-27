@@ -27,6 +27,7 @@ export const TrainingCamp: React.FC<TrainingCampProps> = ({ team, onUpdatePlayer
         <div>
           <h2 className="text-3xl font-bold text-green-400 uppercase tracking-widest text-glow">Training Camp</h2>
           <p className="text-sm opacity-70">Assign drills to improve player attributes over time.</p>
+          <p className="text-xs text-cyan-400 mt-1">⚡ All players regenerate +5 TP next week</p>
         </div>
         <div className="mt-4 md:mt-0 bg-green-900/20 p-2 border border-green-800">
            <div className="text-xs uppercase font-bold mb-2 text-center text-green-300">Bulk Assign Team</div>
@@ -107,7 +108,11 @@ export const TrainingCamp: React.FC<TrainingCampProps> = ({ team, onUpdatePlayer
                       </div>
                     </td>
                     <td className="p-2 text-xs opacity-80 text-center">
-                      SKL:{player.skill} STM:{player.stamina} MOR:{player.morale}
+                      <div>SKL:{player.skill} STM:{player.stamina} MOR:{player.morale}</div>
+                      <div className={`text-[10px] ${player.fatigue > 70 ? 'text-red-400 font-bold' : 'opacity-60'}`}>
+                        FAT:{player.fatigue}
+                        {player.fatigue > 70 && <span className="ml-1" title="High injury risk (2x chance)">⚠️</span>}
+                      </div>
                     </td>
                     <td className="p-2">
                       <select

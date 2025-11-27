@@ -56,8 +56,13 @@ export const ScoutingReportsFeed: React.FC<ScoutingReportsFeedProps> = ({
                   <span className="text-white bg-green-800 px-1">{report.player.position}</span>
                 </div>
                 <div className="my-1 opacity-80 italic">"{report.description}"</div>
-                <div className="flex justify-between items-end mt-2 text-[10px] uppercase">
-                  <span>Est. Skill: {report.player.skill}</span>
+                <div className="grid grid-cols-2 gap-1 text-[10px] mt-2">
+                  <span>Age: {report.player.age}</span>
+                  <span>Skill: {report.player.skill}</span>
+                  <span>Potential: {report.player.potential}</span>
+                  <span className="text-purple-400">{report.player.personality}</span>
+                </div>
+                <div className="flex justify-between items-end mt-1 text-[10px] uppercase">
                   {report.sourceTeamId ? (
                     <span className="text-red-400 font-bold">RIVAL: {teams.find(t => t.id === report.sourceTeamId)?.name}</span>
                   ) : (
