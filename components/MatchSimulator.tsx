@@ -170,10 +170,10 @@ export const MatchSimulator: React.FC<MatchSimulatorProps> = ({ homeTeam, awayTe
           let homeTacticalBonus = 1.0;
           let awayTacticalBonus = 1.0;
 
-          if (homeStyle === TacticStyle.COUNTER_ATTACK && (awayAggression === AggressionLevel.HIGH || awayAggression === AggressionLevel.ENFORCER)) homeTacticalBonus += 0.15;
-          if (awayStyle === TacticStyle.COUNTER_ATTACK && (homeAggression === AggressionLevel.HIGH || homeAggression === AggressionLevel.ENFORCER)) awayTacticalBonus += 0.15;
-          if (homeStyle === TacticStyle.DUMP_AND_CHASE) homeTacticalBonus += 0.05;
-          if (awayStyle === TacticStyle.DUMP_AND_CHASE) awayTacticalBonus += 0.05;
+          if (homeStyle === TacticStyle.COUNTER_ATTACK && (awayAggression === AggressionLevel.HIGH || awayAggression === AggressionLevel.ENFORCER)) homeTacticalBonus += 0.25;
+          if (awayStyle === TacticStyle.COUNTER_ATTACK && (homeAggression === AggressionLevel.HIGH || homeAggression === AggressionLevel.ENFORCER)) awayTacticalBonus += 0.25;
+          if (homeStyle === TacticStyle.DUMP_AND_CHASE) homeTacticalBonus += 0.10;
+          if (awayStyle === TacticStyle.DUMP_AND_CHASE) awayTacticalBonus += 0.10;
 
           const homeOffense = homeBaseSkill * homeStrengthMod * homeMomentumMod * otModifier * homeTacticalBonus;
           const awayOffense = awayBaseSkill * awayStrengthMod * awayMomentumMod * otModifier * awayTacticalBonus;
@@ -185,8 +185,8 @@ export const MatchSimulator: React.FC<MatchSimulatorProps> = ({ homeTeam, awayTe
           const homeGoalieSaveMod = homeGoalie ? (1 - (getEffectiveSkill(homeGoalie, homeTeam) / 150)) : 1.0; // Max ~0.33 reduction
           const awayGoalieSaveMod = awayGoalie ? (1 - (getEffectiveSkill(awayGoalie, awayTeam) / 150)) : 1.0;
 
-          const homeGoalThreshold = (2.5 + (homeOffense - awayOffense) * 0.15) * awayGoalieSaveMod;
-          const awayGoalThreshold = (2.5 + (awayOffense - homeOffense) * 0.15) * homeGoalieSaveMod;
+          const homeGoalThreshold = Math.max(0.3, Math.min(3.5, (1.2 + (homeOffense - awayOffense) * 0.4) * awayGoalieSaveMod));
+          const awayGoalThreshold = Math.max(0.3, Math.min(3.5, (1.2 + (awayOffense - homeOffense) * 0.4) * homeGoalieSaveMod));
 
           const roll = Math.random() * 100;
           let goalScored = false;

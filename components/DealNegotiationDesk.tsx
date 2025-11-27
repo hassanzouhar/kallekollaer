@@ -64,26 +64,33 @@ export const DealNegotiationDesk: React.FC<DealNegotiationDeskProps> = ({
 
           <div className="text-xs uppercase mb-2 font-bold opacity-70">Select Approach:</div>
           <div className="space-y-2 overflow-y-auto flex-1 custom-scrollbar pr-1">
-            {DIRTY_DEALS.map(deal => (
-              <button
-                type="button"
-                key={deal.id}
-                onClick={() => onAttemptDeal(deal)}
-                disabled={wallet < deal.cost}
-                className={`w-full text-left p-2 border transition-all flex justify-between items-center group
-                  ${wallet < deal.cost ? 'border-gray-800 opacity-40 cursor-not-allowed' : 'border-green-700 hover:bg-green-900/40 hover:border-green-400'}
-                `}
-              >
-                <div className="flex items-center gap-2">
-                  {getIcon(deal.id)}
-                  <div>
-                    <div className="font-bold text-sm">{deal.label}</div>
-                    <div className="text-[10px] opacity-60 hidden group-hover:block">{deal.description}</div>
+            {DIRTY_DEALS.map(deal => {
+              const difficultyMod = selectedTarget?.sourceTeamId ? 0.7 : 1.0;
+              const minChance = Math.round((deal.minSuccessChance / 10) * difficultyMod * 100);
+              const maxChance = Math.round((deal.maxSuccessChance / 10) * difficultyMod * 100);
+
+              return (
+                <button
+                  type="button"
+                  key={deal.id}
+                  onClick={() => onAttemptDeal(deal)}
+                  disabled={wallet < deal.cost}
+                  className={`w-full text-left p-2 border transition-all flex justify-between items-center group
+                    ${wallet < deal.cost ? 'border-gray-800 opacity-40 cursor-not-allowed' : 'border-green-700 hover:bg-green-900/40 hover:border-green-400'}
+                  `}
+                >
+                  <div className="flex items-center gap-2 flex-1">
+                    {getIcon(deal.id)}
+                    <div className="flex-1">
+                      <div className="font-bold text-sm">{deal.label}</div>
+                      <div className="text-[10px] opacity-60 hidden group-hover:block">{deal.description}</div>
+                      <div className="text-[10px] text-cyan-400 mt-0.5">Success: {minChance}-{maxChance}%</div>
+                    </div>
                   </div>
-                </div>
-                <div className="font-bold text-amber-400 text-sm whitespace-nowrap">{deal.cost} P</div>
-              </button>
-            ))}
+                  <div className="font-bold text-amber-400 text-sm whitespace-nowrap">{deal.cost} P</div>
+                </button>
+              );
+            })}
           </div>
         </div>
       ) : (

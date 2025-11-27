@@ -30,10 +30,10 @@ const applyMatchResult = (
   let w = 0, l = 0, otl = 0, pokks = 0;
 
   if (myScore > opScore) {
-    if (isOt) { pts = 2; w = 1; pokks = 2; }
-    else { pts = 3; w = 1; pokks = 2; }
+    if (isOt) { pts = 2; w = 1; pokks = 1.5; }
+    else { pts = 3; w = 1; pokks = 1.5; }
   } else {
-    if (isOt) { pts = 1; otl = 1; pokks = 1; }
+    if (isOt) { pts = 1; otl = 1; pokks = 0.5; }
     else { l = 1; pokks = 0; }
   }
 
@@ -359,9 +359,14 @@ const App = () => {
              }]);
              setCurrentWeek(24);
         } else if (final && final.winnerId) {
-             // Season Over
+             // Season Over - Award Championship
+             const championTeam = teamUpdates.find(t => t.id === final.winnerId);
+             if (championTeam) {
+                 championTeam.championships = (championTeam.championships || 0) + 1;
+                 setTeams([...teamUpdates]);
+             }
              setTimeout(() => {
-                 alert(`SEASON OVER! CHAMPION: ${teams.find(t => t.id === final.winnerId)?.name}`);
+                 alert(`SEASON OVER! CHAMPION: ${championTeam?.name}${championTeam?.championships && championTeam.championships > 1 ? ` (${championTeam.championships}x CHAMPION!)` : ''}`);
                  handleSeasonEnd();
              }, 2000);
         }
@@ -393,6 +398,9 @@ const App = () => {
                     assists: player.assists + updates.assists,
                     shots: player.shots + updates.shots,
                     pim: player.pim + updates.pim,
+                    careerGoals: (player.careerGoals || 0) + updates.goals,
+                    careerAssists: (player.careerAssists || 0) + updates.assists,
+                    careerGames: (player.careerGames || 0) + 1,
                     fatigue: Math.min(100, player.fatigue + updates.fatigueAdded),
                     isInjured: !!updates.injuryWeeks || player.isInjured,
                     injuryWeeksLeft: updates.injuryWeeks ? player.injuryWeeksLeft + updates.injuryWeeks : player.injuryWeeksLeft
@@ -459,9 +467,10 @@ const App = () => {
 
   const processWeeklyEvents = (currentTeams: Team[]) => {
     let updates = [...currentTeams];
-    
+
     const wages = hiredScouts.reduce((acc, s) => acc + s.costPerWeek, 0);
-    updates = updates.map(t => t.id === userTeamId ? { ...t, wallet: Math.max(0, t.wallet - wages) } : t);
+    const facilityRent = 2; // Weekly facility maintenance cost
+    updates = updates.map(t => t.id === userTeamId ? { ...t, wallet: Math.max(0, t.wallet - wages - facilityRent) } : t);
 
     const asstCoach = userTeam.staff?.find(s => s.role === StaffRole.ASSISTANT);
     const trainingBonusChance = asstCoach ? (asstCoach.level * 0.02) : 0;
@@ -535,17 +544,35 @@ const App = () => {
                 }
             }
 
-            // Regenerate TP at end of week (10 base TP)
-            trainingPoints = 3;
+            // Regenerate TP at end of week (5 TP for balanced training economy)
+            trainingPoints = 5;
 
             return { ...p, skill, stamina, morale, fatigue, isInjured, injuryWeeksLeft, potential, trainingPoints };
         });
+
+        // Player morale events (10% chance per week)
+        if (Math.random() < 0.1 && newRoster.length > 0) {
+          const benchPlayers = newRoster.filter(p => p.line === 'BENCH' && !p.isInjured);
+          const topPlayers = newRoster.filter(p => (p.line === 'L1' || p.line === 'G1') && p.goals >= 5);
+
+          if (benchPlayers.length > 0 && Math.random() < 0.5) {
+            const unhappyPlayer = benchPlayers[Math.floor(Math.random() * benchPlayers.length)];
+            unhappyPlayer.morale = Math.max(20, unhappyPlayer.morale - 15);
+            addNews(`${unhappyPlayer.name} wants more ice time (morale -15)`);
+          } else if (topPlayers.length > 0) {
+            const hotPlayer = topPlayers[Math.floor(Math.random() * topPlayers.length)];
+            hotPlayer.morale = Math.min(100, hotPlayer.morale + 10);
+            addNews(`${hotPlayer.name} is loving the season! (morale +10)`);
+          }
+        }
+
         return { ...t, roster: newRoster };
     });
 
     const newReports: ScoutingReport[] = [];
     hiredScouts.forEach(scout => {
-        if (Math.random() < 0.1) {
+        const mishapChance = Math.max(0, 0.2 - (scout.skill * 0.02)); // 20% base, reduced by 2% per skill level
+        if (Math.random() < mishapChance) {
              newReports.push({ id: Date.now()+'', scoutName: scout.name, date: `Week ${currentWeek}`, description: SCOUT_MISHAPS[Math.floor(Math.random() * SCOUT_MISHAPS.length)], player: null as any });
         } else {
              // Scout skill affects player quality (skill range and potential)
@@ -556,6 +583,47 @@ const App = () => {
         }
     });
     setScoutingReports(prev => [...prev, ...newReports]);
+
+    // Mid-season random events (every 4-6 weeks)
+    if (currentWeek % 5 === 0 && Math.random() < 0.6) {
+      const events = [
+        {
+          type: 'hot_streak',
+          apply: () => {
+            addNews(`HOT STREAK! Team morale boosted after week ${currentWeek} success!`);
+            updates = updates.map(t => t.id === userTeamId ? {
+              ...t,
+              roster: t.roster.map(p => ({ ...p, morale: Math.min(100, p.morale + 15) }))
+            } : t);
+          }
+        },
+        {
+          type: 'sponsor_bonus',
+          apply: () => {
+            const sorted = [...updates].sort((a, b) => b.points - a.points);
+            const userRank = sorted.findIndex(t => t.id === userTeamId);
+            if (userRank < 6) {
+              addNews(`SPONSOR BONUS! Local business donated 5 PØKKS for top-6 performance!`);
+              updates = updates.map(t => t.id === userTeamId ? { ...t, wallet: t.wallet + 5 } : t);
+            }
+          }
+        },
+        {
+          type: 'equipment_malfunction',
+          apply: () => {
+            addNews(`EQUIPMENT ISSUE! Jersey shipment delayed - temporary morale hit.`);
+            updates = updates.map(t => t.id === userTeamId ? {
+              ...t,
+              roster: t.roster.map(p => ({ ...p, morale: Math.max(20, p.morale - 10) }))
+            } : t);
+          }
+        }
+      ];
+
+      const randomEvent = events[Math.floor(Math.random() * events.length)];
+      randomEvent.apply();
+    }
+
     setTeams(updates);
   };
 
@@ -662,6 +730,13 @@ const App = () => {
       {view === GameView.DASHBOARD && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-6">
+            {userTeam.championships && userTeam.championships > 0 && (
+              <div className="bg-black border-2 border-amber-600 p-3 text-center">
+                <div className="text-xs uppercase opacity-70 mb-1">Trophy Cabinet</div>
+                <div className="text-3xl">🏆</div>
+                <div className="text-amber-400 font-bold text-xl">{userTeam.championships}x CHAMPION</div>
+              </div>
+            )}
             <div className="bg-black border-2 border-green-700 p-4">
               <h3 className="text-xl font-bold mb-4 border-b border-green-800">NEXT MATCHUP (Week {currentWeek})</h3>
               <div className="flex justify-between items-center text-center">

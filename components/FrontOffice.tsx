@@ -14,8 +14,8 @@ interface FrontOfficeProps {
 }
 
 const STAFF_UPGRADE_COST_BASE = 5;
-const EQUIPMENT_COST_BASE = 10;
-const SWAG_COST_BASE = 8;
+const EQUIPMENT_COST_BASE = 15;
+const SWAG_COST_BASE = 12;
 
 export const FrontOffice: React.FC<FrontOfficeProps> = ({ team, onUpgradeStaff, onBuyUpgrade, onDugnad, dugnadCooldown }) => {
 

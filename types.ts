@@ -122,6 +122,7 @@ export interface Team {
   goalsFor: number;
   goalsAgainst: number;
   wallet: number; // Currency: Pøkks
+  championships?: number; // Career championships won
 }
 
 export interface MatchEvent {

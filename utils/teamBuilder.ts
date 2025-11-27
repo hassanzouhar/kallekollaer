@@ -233,9 +233,23 @@ function assignLines(team: Team): void {
 
 /**
  * Replenishes rosters by filling gaps with new procedurally generated players
+ * Preserves career stats while resetting season stats
  */
 export const replenishRosters = (teams: Team[]): Team[] => {
   teams.forEach(team => {
+    // Reset season stats but preserve career stats
+    team.roster = team.roster.map(player => ({
+      ...player,
+      goals: 0,
+      assists: 0,
+      shots: 0,
+      pim: 0,
+      fatigue: 0,
+      isInjured: false,
+      injuryWeeksLeft: 0
+      // careerGoals, careerAssists, careerGames are preserved
+    }));
+
     fillRosterGaps(team);
     assignLines(team);
   });
