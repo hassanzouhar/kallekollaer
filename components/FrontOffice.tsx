@@ -49,7 +49,7 @@ export const FrontOffice: React.FC<FrontOfficeProps> = ({ team, onUpgradeStaff, 
             <p className="text-sm opacity-70">Manage staff, upgrade facilities, and buy team gear.</p>
         </div>
         <div className="text-xl font-bold text-amber-400 bg-black px-4 py-1 border border-green-600">
-            FUNDS: {team.wallet} P
+            Lagkassa: {team.wallet} P
         </div>
       </div>
 

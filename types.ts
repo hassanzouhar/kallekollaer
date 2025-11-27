@@ -197,6 +197,8 @@ export interface DirtyDeal {
   id: string;
   label: string;
   cost: number;
+  risk: number; // 0-1
+  reward: string;
   description: string;
   minSuccessChance: number; // 0-1
   maxSuccessChance: number; // 0-1

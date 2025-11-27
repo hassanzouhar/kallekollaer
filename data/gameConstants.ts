@@ -19,11 +19,11 @@ export const REGIONS = [
 
 // Available scouts for hiring
 export const AVAILABLE_SCOUTS: Scout[] = [
-  { id: 's1', name: 'Bjørn "The Nose" Hansen', skill: 3, region: REGIONS[0], salary: 2 },
-  { id: 's2', name: 'Kari "Eagle Eye" Johansen', skill: 5, region: REGIONS[1], salary: 3 },
-  { id: 's3', name: 'Leif "The Wanderer" Olsen', skill: 7, region: REGIONS[2], salary: 4 },
-  { id: 's4', name: 'Astrid "Icepick" Andersen', skill: 9, region: REGIONS[3], salary: 5 },
-  { id: 's5', name: 'Tor "Gambler" Kristiansen', skill: 1, region: REGIONS[4], salary: 1 }
+  { id: 's1', name: 'Bjørn "The Nose" Hansen', skill: 3, region: REGIONS[0], costPerWeek: 2 },
+  { id: 's2', name: 'Kari "Eagle Eye" Johansen', skill: 5, region: REGIONS[1], costPerWeek: 3 },
+  { id: 's3', name: 'Leif "The Wanderer" Olsen', skill: 7, region: REGIONS[2], costPerWeek: 4 },
+  { id: 's4', name: 'Astrid "Icepick" Andersen', skill: 9, region: REGIONS[3], costPerWeek: 5 },
+  { id: 's5', name: 'Tor "Gambler" Kristiansen', skill: 1, region: REGIONS[4], costPerWeek: 1 }
 ];
 
 // Scout mishaps (random events when scouting)
@@ -48,83 +48,103 @@ export const DRILLS = [
 export const DIRTY_DEALS: DirtyDeal[] = [
   {
     id: 'dd1',
-    title: 'Warehouse Wonderkid',
+    label: 'Warehouse Wonderkid',
     description: 'Shady fixer claims he has a 90+ OVR prospect hidden away. Might be legit, might be a bust.',
     cost: 8,
     risk: 0.6,
-    reward: 'elite'
+    reward: 'elite',
+    minSuccessChance: 5,
+    maxSuccessChance: 9
   },
   {
     id: 'dd2',
-    title: 'Refugee Roulette',
+    label: 'Refugee Roulette',
     description: 'New immigrant player, untested but raw talent. High ceiling, unknown floor.',
     cost: 4,
     risk: 0.4,
-    reward: 'good'
+    reward: 'good',
+    minSuccessChance: 2,
+    maxSuccessChance: 5
   },
   {
     id: 'dd3',
-    title: 'Bribed Scout Report',
+    label: 'Bribed Scout Report',
     description: 'Steal a rival scout\'s top prospect list. Illegal? Maybe. Effective? Definitely.',
     cost: 6,
     risk: 0.5,
-    reward: 'good'
+    reward: 'good',
+    minSuccessChance: 1,
+    maxSuccessChance: 5
   },
   {
     id: 'dd4',
-    title: 'Late Bloomer Lottery',
+    label: 'Late Bloomer Lottery',
     description: 'Older player (19) with chip on shoulder. Might dominate or disappear.',
     cost: 3,
     risk: 0.3,
-    reward: 'average'
+    reward: 'average',
+    minSuccessChance: 2,
+    maxSuccessChance: 5
   },
   {
     id: 'dd5',
-    title: 'Black Market Finn',
+    label: 'Black Market Finn',
     description: 'Finnish prospect with "paperwork issues". No questions asked.',
     cost: 10,
     risk: 0.7,
-    reward: 'elite'
+    reward: 'elite',
+    minSuccessChance: 2,
+    maxSuccessChance: 5
   },
   {
     id: 'dd6',
-    title: 'Injured Diamond',
+    label: 'Injured Diamond',
     description: 'Star prospect recovering from injury. Could be steal of the century or career-ender.',
     cost: 5,
     risk: 0.5,
-    reward: 'elite'
+    reward: 'elite',
+    minSuccessChance: 2,
+    maxSuccessChance: 5
   },
   {
     id: 'dd7',
-    title: 'Enforcer Exchange',
+    label: 'Enforcer Exchange',
     description: 'Tough guy from rival team wants out. All muscle, questionable skill.',
     cost: 2,
     risk: 0.2,
-    reward: 'enforcer'
+    reward: 'enforcer',
+    minSuccessChance: 2,
+    maxSuccessChance: 5
   },
   {
     id: 'dd8',
-    title: 'Swedish Shadow',
+    label: 'Swedish Shadow',
     description: 'Swedish import with attitude problem. Talented but volatile.',
     cost: 7,
     risk: 0.6,
-    reward: 'good'
+    reward: 'good',
+    minSuccessChance: 2,
+    maxSuccessChance: 5
   },
   {
     id: 'dd9',
-    title: 'Goalie Gambit',
+    label: 'Goalie Gambit',
     description: 'Unproven goalie with size advantage. Coin flip between starter and bust.',
     cost: 4,
     risk: 0.5,
-    reward: 'goalie'
+    reward: 'goalie',
+    minSuccessChance: 2,
+    maxSuccessChance: 5
   },
   {
     id: 'dd10',
-    title: 'Coach\'s Nephew',
+    label: 'Coach\'s Nephew',
     description: 'Nepotism special. Family connections, questionable talent.',
     cost: 1,
     risk: 0.8,
-    reward: 'average'
+    reward: 'average',
+    minSuccessChance: 2,
+    maxSuccessChance: 5
   }
 ];
 

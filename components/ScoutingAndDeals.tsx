@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Scout, ScoutingReport, DirtyDeal, Team } from '../types';
 import { RetroButton } from './RetroButton';
-import { AVAILABLE_SCOUTS, DIRTY_DEALS } from '../constants';
-import { ScanSearch, Briefcase, Beer, Gamepad2, Car, Heart, Gavel } from 'lucide-react';
+import { AVAILABLE_SCOUTS } from '../constants';
+import { DealNegotiationDesk } from './DealNegotiationDesk';
+import { ScoutingReportsFeed } from './ScoutingReportsFeed';
 
 interface ScoutingAndDealsProps {
   wallet: number;
@@ -27,17 +28,6 @@ export const ScoutingAndDeals: React.FC<ScoutingAndDealsProps> = ({
   const [dealFeedback, setDealFeedback] = useState<string>("");
 
   const isHired = (id: string) => hiredScouts.some(s => s.id === id);
-
-  const getIcon = (id: string) => {
-    switch(id) {
-        case 'soda': return <Beer className="w-4 h-4"/>;
-        case 'game': return <Gamepad2 className="w-4 h-4"/>;
-        case 'dad': return <Briefcase className="w-4 h-4"/>; 
-        case 'car': return <Car className="w-4 h-4"/>;
-        case 'mom': return <Heart className="w-4 h-4"/>;
-        default: return <Gavel className="w-4 h-4"/>;
-    }
-  };
 
   const handleAttemptDeal = (deal: DirtyDeal) => {
       if (!selectedReport) return;
@@ -116,123 +106,31 @@ export const ScoutingAndDeals: React.FC<ScoutingAndDealsProps> = ({
       </div>
 
       {/* CENTER: REPORT FEED */}
-      <div className="bg-black border-2 border-green-800 flex flex-col min-h-0">
-          <div className="bg-green-900/40 p-2 text-center font-bold border-b border-green-700 flex justify-between items-center">
-              <span>INCOMING LEADS</span>
-              <span className="text-xs bg-green-900 px-2 rounded">{reports.length}</span>
-          </div>
-          <div className="overflow-y-auto flex-1 p-2 space-y-3 custom-scrollbar">
-              {reports.length === 0 && (
-                  <div className="text-center opacity-40 mt-10">
-                      <ScanSearch className="w-12 h-12 mx-auto mb-2"/>
-                      <p>Awaiting reports...</p>
-                      <p className="text-xs">Hire scouts and wait for weekly updates.</p>
-                  </div>
-              )}
-              {[...reports].reverse().map(report => (
-                  <div 
-                    key={report.id} 
-                    onClick={() => {
-                        if (report.player) {
-                            setSelectedReport(report);
-                            setDealFeedback("");
-                        }
-                    }}
-                    className={`border p-2 cursor-pointer transition-colors text-xs md:text-sm relative
-                        ${selectedReport?.id === report.id ? 'bg-green-900/40 border-green-400' : 'border-green-900 hover:bg-green-900/10'}
-                        ${!report.player ? 'border-red-900/50 opacity-70' : ''}
-                    `}
-                  >
-                      <div className="flex justify-between opacity-50 text-[10px] mb-1">
-                          <span>{report.date}</span>
-                          <span>SCOUT: {report.scoutName}</span>
-                      </div>
-                      
-                      {report.player ? (
-                          <>
-                            <div className="font-bold text-green-300 flex justify-between">
-                                <span>{report.player.name}</span>
-                                <span className="text-white bg-green-800 px-1">{report.player.position}</span>
-                            </div>
-                            <div className="my-1 opacity-80 italic">"{report.description}"</div>
-                            <div className="flex justify-between items-end mt-2 text-[10px] uppercase">
-                                <span>Est. Skill: {report.player.skill}</span>
-                                {report.sourceTeamId ? (
-                                    <span className="text-red-400 font-bold">RIVAL: {teams.find(t => t.id === report.sourceTeamId)?.name}</span>
-                                ) : (
-                                    <span className="text-cyan-400 font-bold">FREE AGENT</span>
-                                )}
-                            </div>
-                          </>
-                      ) : (
-                          <div className="text-red-400 italic">MISHAP: {report.description}</div>
-                      )}
-                  </div>
-              ))}
-          </div>
-      </div>
+      <ScoutingReportsFeed
+        reports={reports}
+        teams={teams}
+        selectedReportId={selectedReport?.id || null}
+        onSelectReport={(report) => {
+          setSelectedReport(report);
+          setDealFeedback("");
+        }}
+      />
 
       {/* RIGHT: DEAL DESK */}
-      <div className="bg-black border-2 border-green-800 flex flex-col p-4 relative">
-          <div className="absolute top-0 right-0 bg-green-900 text-[10px] px-2">BACKROOM</div>
-          <h2 className="text-xl font-bold uppercase text-center border-b-2 border-green-700 pb-2 mb-4">NEGOTIATION</h2>
-          
-          {selectedReport ? (
-              <div className="flex-1 flex flex-col">
-                  <div className="bg-green-900/20 p-3 border border-green-600 mb-4">
-                      <div className="text-xs opacity-60 uppercase mb-1">Target Asset</div>
-                      <div className="text-xl font-bold text-white">{selectedReport.player.name}</div>
-                      <div className="flex gap-4 text-xs mt-1">
-                          <span>AGE: {selectedReport.player.age}</span>
-                          <span>POS: {selectedReport.player.position}</span>
-                          <span>POT: {'*'.repeat(Math.ceil(selectedReport.player.potential/20))}</span>
-                      </div>
-                      {selectedReport.sourceTeamId && (
-                           <div className="mt-2 text-xs text-red-300 border-t border-red-900 pt-1">
-                               ⚠ CONTRACTED TO: {teams.find(t => t.id === selectedReport.sourceTeamId)?.name}
-                               <br/>
-                               (Higher difficulty to sign)
-                           </div>
-                      )}
-                  </div>
-
-                  <div className="text-xs uppercase mb-2 font-bold opacity-70">Select Approach:</div>
-                  <div className="space-y-2 overflow-y-auto flex-1 custom-scrollbar pr-1">
-                      {DIRTY_DEALS.map(deal => (
-                          <button
-                            type="button"
-                            key={deal.id}
-                            onClick={() => handleAttemptDeal(deal)}
-                            disabled={wallet < deal.cost}
-                            className={`w-full text-left p-2 border transition-all flex justify-between items-center group
-                                ${wallet < deal.cost ? 'border-gray-800 opacity-40 cursor-not-allowed' : 'border-green-700 hover:bg-green-900/40 hover:border-green-400'}
-                            `}
-                          >
-                              <div className="flex items-center gap-2">
-                                  {getIcon(deal.id)}
-                                  <div>
-                                      <div className="font-bold text-sm">{deal.label}</div>
-                                      <div className="text-[10px] opacity-60 hidden group-hover:block">{deal.description}</div>
-                                  </div>
-                              </div>
-                              <div className="font-bold text-amber-400 text-sm whitespace-nowrap">{deal.cost} P</div>
-                          </button>
-                      ))}
-                  </div>
-              </div>
-          ) : (
-              <div className="flex-1 flex flex-col items-center justify-center opacity-40 text-center">
-                  <Briefcase className="w-16 h-16 mb-4"/>
-                  <p>SELECT A REPORT FROM THE FEED TO OPEN NEGOTIATIONS.</p>
-              </div>
-          )}
-
-          {/* Feedback Area */}
-          <div className="mt-4 min-h-[60px] border border-green-600 bg-black p-2 text-xs font-mono text-green-300">
-             <span className="opacity-50 mr-2">LOG:</span>
-             {dealFeedback || "Waiting for user input..."}
-          </div>
-      </div>
+      <DealNegotiationDesk
+        selectedTarget={selectedReport ? {
+          name: selectedReport.player.name,
+          age: selectedReport.player.age,
+          position: selectedReport.player.position,
+          potential: selectedReport.player.potential,
+          sourceTeamId: selectedReport.sourceTeamId,
+          sourceTeamName: selectedReport.sourceTeamId ? teams.find(t => t.id === selectedReport.sourceTeamId)?.name : undefined
+        } : null}
+        wallet={wallet}
+        teams={teams}
+        onAttemptDeal={handleAttemptDeal}
+        dealFeedback={dealFeedback}
+      />
     </div>
   );
 };

@@ -536,7 +536,7 @@ const App = () => {
             }
 
             // Regenerate TP at end of week (10 base TP)
-            trainingPoints = 10;
+            trainingPoints = 3;
 
             return { ...p, skill, stamina, morale, fatigue, isInjured, injuryWeeksLeft, potential, trainingPoints };
         });
