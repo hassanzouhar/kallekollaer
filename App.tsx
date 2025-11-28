@@ -706,21 +706,21 @@ const App = () => {
   return (
     <RetroLayout title={view === GameView.DASHBOARD ? undefined : (view === GameView.LOCKER_ROOM ? "LOCKER ROOM" : view)} wallet={userTeam.wallet}>
       {/* Navigation Bar */}
-      <nav className="flex flex-wrap gap-2 md:gap-4 mb-6 border-b-2 border-green-800 pb-4">
-        <RetroButton onClick={() => setView(GameView.DASHBOARD)} className={view === GameView.DASHBOARD ? 'bg-green-700 text-black' : ''}><BarChart3 className="inline mr-2 w-4 h-4"/>Dash</RetroButton>
-        <RetroButton onClick={() => setView(GameView.ROSTER)} className={view === GameView.ROSTER ? 'bg-green-700 text-black' : ''}><Users className="inline mr-2 w-4 h-4"/>Roster</RetroButton>
-        <RetroButton onClick={() => setView(GameView.TRAINING)} className={view === GameView.TRAINING ? 'bg-green-700 text-black' : ''}><Dumbbell className="inline mr-2 w-4 h-4"/>Train</RetroButton>
-        <RetroButton onClick={() => setView(GameView.SCOUTING)} className={view === GameView.SCOUTING ? 'bg-green-700 text-black' : ''}><ScanSearch className="inline mr-2 w-4 h-4"/>Scouts</RetroButton>
-        <RetroButton onClick={() => setView(GameView.OFFICE)} className={view === GameView.OFFICE ? 'bg-green-700 text-black' : ''}><Building2 className="inline mr-2 w-4 h-4"/>Office</RetroButton>
-        <RetroButton onClick={() => setView(GameView.LEAGUE)} className={view === GameView.LEAGUE ? 'bg-green-700 text-black' : ''}><Trophy className="inline mr-2 w-4 h-4"/>League</RetroButton>
-        <div className="ml-auto flex items-center gap-2">
+      <nav className="flex flex-wrap gap-2 mb-4 sm:mb-6 border-b-2 border-green-800 pb-3 sm:pb-4">
+        <RetroButton onClick={() => setView(GameView.DASHBOARD)} className={view === GameView.DASHBOARD ? 'bg-green-700 text-black' : ''}><BarChart3 className="inline mr-1 sm:mr-2 w-4 h-4"/>Dash</RetroButton>
+        <RetroButton onClick={() => setView(GameView.ROSTER)} className={view === GameView.ROSTER ? 'bg-green-700 text-black' : ''}><Users className="inline mr-1 sm:mr-2 w-4 h-4"/>Roster</RetroButton>
+        <RetroButton onClick={() => setView(GameView.TRAINING)} className={view === GameView.TRAINING ? 'bg-green-700 text-black' : ''}><Dumbbell className="inline mr-1 sm:mr-2 w-4 h-4"/>Train</RetroButton>
+        <RetroButton onClick={() => setView(GameView.SCOUTING)} className={view === GameView.SCOUTING ? 'bg-green-700 text-black' : ''}><ScanSearch className="inline mr-1 sm:mr-2 w-4 h-4"/>Scouts</RetroButton>
+        <RetroButton onClick={() => setView(GameView.OFFICE)} className={view === GameView.OFFICE ? 'bg-green-700 text-black' : ''}><Building2 className="inline mr-1 sm:mr-2 w-4 h-4"/>Office</RetroButton>
+        <RetroButton onClick={() => setView(GameView.LEAGUE)} className={view === GameView.LEAGUE ? 'bg-green-700 text-black' : ''}><Trophy className="inline mr-1 sm:mr-2 w-4 h-4"/>League</RetroButton>
+        <div className="w-full sm:w-auto sm:ml-auto flex items-center gap-2 justify-between sm:justify-end">
              <RetroButton onClick={handleManualSave} className="text-xs py-1 px-2">
-               <Save className="inline mr-1 w-3 h-3"/> Save
+               <Save className="inline mr-1 w-3 h-3"/><span className="hidden sm:inline"> Save</span>
              </RetroButton>
              <RetroButton onClick={handleExportSave} className="text-xs py-1 px-2">
-               <Download className="inline mr-1 w-3 h-3"/> Export
+               <Download className="inline mr-1 w-3 h-3"/><span className="hidden sm:inline"> Export</span>
              </RetroButton>
-             <div className="bg-green-900/50 px-2 py-2 border border-green-600 text-xs text-center">
+             <div className="bg-green-900/50 px-2 py-2 border border-green-600 text-xs text-center whitespace-nowrap">
                <div>{phase === 'REGULAR_SEASON' ? `WEEK ${currentWeek}` : 'PLAYOFFS'}</div>
              </div>
         </div>
@@ -779,20 +779,20 @@ const App = () => {
       )}
 
       {view === GameView.LOCKER_ROOM && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 min-h-0">
               <TacticsBoard team={userTeam} onUpdateTactics={handleUpdateTactics} />
-              <div className="flex flex-col gap-6">
-                  <div className="bg-black border-2 border-green-700 p-4">
-                      <h2 className="text-xl font-bold border-b border-green-700 pb-2 mb-4 uppercase">Opponent Intel</h2>
+              <div className="flex flex-col gap-4 sm:gap-6">
+                  <div className="bg-black border-2 border-green-700 p-3 sm:p-4">
+                      <h2 className="text-lg sm:text-xl font-bold border-b border-green-700 pb-2 mb-3 sm:mb-4 uppercase">Opponent Intel</h2>
                       <div className="text-center">
-                          <div className="text-4xl font-bold text-red-500">{nextOpponent.name}</div>
-                          <div className="text-sm opacity-70 mt-1">from {nextOpponent.city}</div>
+                          <div className="text-3xl sm:text-4xl font-bold text-red-500">{nextOpponent.name}</div>
+                          <div className="text-xs sm:text-sm opacity-70 mt-1">from {nextOpponent.city}</div>
                       </div>
                   </div>
-                  <div className="bg-black border-2 border-green-700 p-4 flex-1 flex flex-col">
+                  <div className="bg-black border-2 border-green-700 p-3 sm:p-4 flex-1 flex flex-col min-h-0">
                       <div className="mt-auto pt-4 space-y-2">
-                          <RetroButton onClick={() => setView(GameView.ROSTER)} className="w-full text-sm">ADJUST LINES</RetroButton>
-                          <RetroButton onClick={() => setView(GameView.MATCH)} variant="primary" className="w-full py-4 text-xl animate-pulse"><Play className="inline mr-2 w-6 h-6"/> START MATCH</RetroButton>
+                          <RetroButton onClick={() => setView(GameView.ROSTER)} className="w-full text-xs sm:text-sm">ADJUST LINES</RetroButton>
+                          <RetroButton onClick={() => setView(GameView.MATCH)} variant="primary" className="w-full py-3 sm:py-4 text-lg sm:text-xl animate-pulse"><Play className="inline mr-2 w-5 h-5 sm:w-6 sm:h-6"/> START MATCH</RetroButton>
                       </div>
                   </div>
               </div>
