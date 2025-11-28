@@ -22,32 +22,32 @@ export const TacticsBoard: React.FC<TacticsBoardProps> = ({ team, onUpdateTactic
   };
 
   return (
-    <div className="bg-black border-2 border-green-800 p-4 h-full">
-      <h2 className="text-xl font-bold uppercase border-b-2 border-green-700 pb-2 mb-6 text-center text-green-300 tracking-widest">
+    <div className="bg-black border-2 border-green-800 p-3 sm:p-4 min-h-0">
+      <h2 className="text-lg sm:text-xl font-bold uppercase border-b-2 border-green-700 pb-2 mb-4 sm:mb-6 text-center text-green-300 tracking-widest">
         Tactical Mainframe
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
         
         {/* OFFENSIVE STYLE */}
         <div>
-          <div className="flex items-center gap-2 mb-4 text-cyan-400">
-            <Sword className="w-5 h-5" />
-            <h3 className="text-lg font-bold uppercase">Playstyle Strategy</h3>
+          <div className="flex items-center gap-2 mb-3 sm:mb-4 text-cyan-400">
+            <Sword className="w-4 h-4 sm:w-5 sm:h-5" />
+            <h3 className="text-base sm:text-lg font-bold uppercase">Playstyle Strategy</h3>
           </div>
           <div className="space-y-2">
             {TACTICAL_STYLES.map((t) => (
               <button
                 key={t.id}
                 onClick={() => handleStyleChange(t.id)}
-                className={`w-full text-left p-3 border-2 transition-all relative group
-                  ${currentStyle === t.id 
-                    ? 'border-cyan-500 bg-cyan-900/30 text-cyan-300' 
+                className={`w-full text-left p-2 sm:p-3 border-2 transition-all relative group
+                  ${currentStyle === t.id
+                    ? 'border-cyan-500 bg-cyan-900/30 text-cyan-300'
                     : 'border-green-900 hover:border-green-600 text-gray-400'}
                 `}
               >
-                <div className="font-bold text-sm uppercase">{t.label}</div>
-                <div className="text-[10px] opacity-70 mt-1">{t.desc}</div>
+                <div className="font-bold text-xs sm:text-sm uppercase">{t.label}</div>
+                <div className="text-[9px] sm:text-[10px] opacity-70 mt-1">{t.desc}</div>
                 {currentStyle === t.id && (
                   <div className="absolute top-2 right-2 w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
                 )}
@@ -58,44 +58,44 @@ export const TacticsBoard: React.FC<TacticsBoardProps> = ({ team, onUpdateTactic
 
         {/* DEFENSIVE AGGRESSION */}
         <div>
-          <div className="flex items-center gap-2 mb-4 text-red-400">
-            <Shield className="w-5 h-5" />
-            <h3 className="text-lg font-bold uppercase">Physicality</h3>
+          <div className="flex items-center gap-2 mb-3 sm:mb-4 text-red-400">
+            <Shield className="w-4 h-4 sm:w-5 sm:h-5" />
+            <h3 className="text-base sm:text-lg font-bold uppercase">Physicality</h3>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-2 sm:space-y-4">
             {AGGRESSION_LEVELS.map((a) => (
               <button
                 key={a.id}
                 onClick={() => handleAggressionChange(a.id)}
-                className={`w-full p-3 border-2 transition-all relative flex justify-between items-center
-                  ${currentAggression === a.id 
-                    ? 'border-red-500 bg-red-900/30 text-red-300' 
+                className={`w-full p-2 sm:p-3 border-2 transition-all relative flex justify-between items-center
+                  ${currentAggression === a.id
+                    ? 'border-red-500 bg-red-900/30 text-red-300'
                     : 'border-green-900 hover:border-green-600 text-gray-400'}
                 `}
               >
                 <div className="text-left">
-                    <div className="font-bold text-sm uppercase">{a.label}</div>
-                    <div className="text-[10px] opacity-70 mt-1">{a.desc}</div>
+                    <div className="font-bold text-xs sm:text-sm uppercase">{a.label}</div>
+                    <div className="text-[9px] sm:text-[10px] opacity-70 mt-1">{a.desc}</div>
                 </div>
                 {currentAggression === a.id && (
-                   <Activity className="w-5 h-5 animate-pulse text-red-500"/>
+                   <Activity className="w-4 h-4 sm:w-5 sm:h-5 animate-pulse text-red-500"/>
                 )}
               </button>
             ))}
           </div>
 
           {/* SUMMARY BOX */}
-          <div className="mt-8 border border-green-600 bg-green-900/10 p-3">
-             <h4 className="text-xs font-bold uppercase mb-2 text-green-400 flex items-center gap-2">
+          <div className="mt-4 sm:mt-6 lg:mt-8 border border-green-600 bg-green-900/10 p-2 sm:p-3">
+             <h4 className="text-[10px] sm:text-xs font-bold uppercase mb-2 text-green-400 flex items-center gap-2">
                 <Zap className="w-3 h-3"/> Predicted Impact
              </h4>
-             <ul className="text-[10px] space-y-1 font-mono opacity-80">
+             <ul className="text-[9px] sm:text-[10px] space-y-1 font-mono opacity-80">
                 <li>
-                    GOAL CHANCE: 
+                    GOAL CHANCE:
                     {currentStyle === TacticStyle.DUMP_AND_CHASE || currentStyle === TacticStyle.COUNTER_ATTACK ? ' MODERATE' : ' HIGH'}
                 </li>
                 <li>
-                    FATIGUE RATE: 
+                    FATIGUE RATE:
                     {currentStyle === TacticStyle.DUMP_AND_CHASE || currentAggression === AggressionLevel.HIGH ? ' HIGH' : ' NORMAL'}
                 </li>
                 <li>
@@ -103,7 +103,7 @@ export const TacticsBoard: React.FC<TacticsBoardProps> = ({ team, onUpdateTactic
                     {currentAggression === AggressionLevel.ENFORCER ? ' CRITICAL' : currentAggression === AggressionLevel.HIGH ? ' HIGH' : ' LOW'}
                 </li>
              </ul>
-             <div className="mt-3 pt-3 border-t border-green-800 text-[10px] opacity-70">
+             <div className="mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-green-800 text-[9px] sm:text-[10px] opacity-70">
                <div className="font-bold text-green-400 mb-1">LINE TACTICS:</div>
                <div>• L1-L2: Offensive lines (most ice time)</div>
                <div>• L3-L4: Defensive/checking lines</div>
