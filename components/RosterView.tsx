@@ -8,6 +8,7 @@ import { getPlayerImage, getCRTImageStyle } from '../utils/imageHelpers';
 interface RosterViewProps {
   team: Team;
   onUpdateLineAssignment?: (playerId: string, line: LineAssignment) => void;
+  onReleasePlayer?: (playerId: string) => void;
 }
 
 const POSITION_ORDER = {
@@ -120,7 +121,7 @@ const PlayerCard: React.FC<{
     );
 };
 
-export const RosterView: React.FC<RosterViewProps> = ({ team, onUpdateLineAssignment }) => {
+export const RosterView: React.FC<RosterViewProps> = ({ team, onUpdateLineAssignment, onReleasePlayer }) => {
   const [selectedPlayerId, setSelectedPlayerId] = useState<string | null>(null);
   const [inspectingPlayer, setInspectingPlayer] = useState<Player | null>(null);
 
@@ -214,7 +215,7 @@ export const RosterView: React.FC<RosterViewProps> = ({ team, onUpdateLineAssign
 
   return (
     <div className="flex flex-col lg:flex-row gap-4 h-full min-h-[600px] relative">
-      <PlayerModal player={inspectingPlayer} onClose={() => setInspectingPlayer(null)} />
+      <PlayerModal player={inspectingPlayer} onClose={() => setInspectingPlayer(null)} onReleasePlayer={onReleasePlayer} />
 
       {/* LINES COLUMN */}
       <div className="flex-1 overflow-y-auto custom-scrollbar pr-2 pb-10">

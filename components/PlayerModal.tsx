@@ -1,15 +1,23 @@
 import React from 'react';
 import { Player } from '../types';
-import { X, TrendingUp, Zap, Brain, Shield, Hand } from 'lucide-react';
+import { X, TrendingUp, Zap, Brain, Shield, Hand, UserX } from 'lucide-react';
 import { getPlayerImage, getCRTImageStyle } from '../utils/imageHelpers';
 
 interface PlayerModalProps {
   player: Player | null;
   onClose: () => void;
+  onReleasePlayer?: (playerId: string) => void;
 }
 
-export const PlayerModal: React.FC<PlayerModalProps> = ({ player, onClose }) => {
+export const PlayerModal: React.FC<PlayerModalProps> = ({ player, onClose, onReleasePlayer }) => {
   if (!player) return null;
+
+  const handleReleaseClick = () => {
+    if (window.confirm(`Are you sure you want to release ${player.name} to free agency?`)) {
+      onReleasePlayer?.(player.id);
+      onClose();
+    }
+  };
 
   // Calculate derived grades
   const getGrade = (val: number) => {
@@ -163,6 +171,19 @@ export const PlayerModal: React.FC<PlayerModalProps> = ({ player, onClose }) => 
                     </div>
                 </div>
             </div>
+
+            {/* Release Player Button */}
+            {onReleasePlayer && (
+                <div className="mt-6">
+                    <button
+                        onClick={handleReleaseClick}
+                        className="w-full bg-red-900/20 border border-red-600 text-red-400 hover:bg-red-900/40 hover:text-red-300 transition-colors py-3 px-4 font-bold uppercase tracking-wider flex items-center justify-center gap-2"
+                    >
+                        <UserX className="w-5 h-5" />
+                        Release to Free Agency
+                    </button>
+                </div>
+            )}
 
         </div>
       </div>

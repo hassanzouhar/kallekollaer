@@ -1,4 +1,4 @@
-import { Team, GameState, GameView, ScheduledMatch, SeasonPhase, PlayoffSeries, MatchResult, Scout, ScoutingReport, JobOffer } from '../types';
+import { Team, GameState, GameView, ScheduledMatch, SeasonPhase, PlayoffSeries, MatchResult, Scout, ScoutingReport, JobOffer, Player } from '../types';
 
 const SAVE_KEY = 'iskalde_kaeller_save_v1';
 const AUTOSAVE_KEY = 'iskalde_kaeller_autosave_v1';
@@ -31,6 +31,7 @@ export interface SaveGame {
   scoutingReports: ScoutingReport[];
   dugnadCooldown: boolean;
   newsFeed: string[];
+  freeAgents?: Player[];
 
   // Metadata
   savedAt: string;

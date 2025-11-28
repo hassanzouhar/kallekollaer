@@ -75,7 +75,8 @@ const App = () => {
   const [hiredScouts, setHiredScouts] = useState<Scout[]>([]);
   const [scoutingReports, setScoutingReports] = useState<ScoutingReport[]>([]);
   const [dugnadCooldown, setDugnadCooldown] = useState(false);
-  
+  const [freeAgents, setFreeAgents] = useState<Player[]>([]);
+
   const [newsFeed, setNewsFeed] = useState<string[]>([]);
 
   const userTeam = teams.find(t => t.id === userTeamId) || teams[0]; // Safety fallback
@@ -100,7 +101,8 @@ const App = () => {
       hiredScouts,
       scoutingReports,
       dugnadCooldown,
-      newsFeed
+      newsFeed,
+      freeAgents
     };
     saveGame(currentState, true);
   };
@@ -128,6 +130,7 @@ const App = () => {
       setScoutingReports(savedGame.scoutingReports);
       setDugnadCooldown(savedGame.dugnadCooldown);
       setNewsFeed(savedGame.newsFeed);
+      setFreeAgents(savedGame.freeAgents || []);
     }
   };
 
@@ -647,6 +650,16 @@ const App = () => {
   const handleUpdateLineAssignment = (pid: string, l: LineAssignment) => {
       setTeams(prev => prev.map(t => t.id === userTeamId ? { ...t, roster: t.roster.map(p => p.id === pid ? { ...p, line: l } : p) } : t));
   };
+  const handleReleasePlayer = (pid: string) => {
+      const player = userTeam.roster.find(p => p.id === pid);
+      if (player) {
+          // Remove player from team roster
+          setTeams(prev => prev.map(t => t.id === userTeamId ? { ...t, roster: t.roster.filter(p => p.id !== pid) } : t));
+          // Add to free agents list
+          setFreeAgents(prev => [...prev, player]);
+          addNews(`${player.name} released to free agency`);
+      }
+  };
   const handleUpdateTactics = (s: TacticStyle, a: AggressionLevel) => {
       setTeams(prev => prev.map(t => t.id === userTeamId ? { ...t, tactics: { style: s, aggression: a } } : t));
   };
@@ -799,7 +812,7 @@ const App = () => {
           </div>
       )}
 
-      {view === GameView.ROSTER && <RosterView team={userTeam} onUpdateLineAssignment={handleUpdateLineAssignment} />}
+      {view === GameView.ROSTER && <RosterView team={userTeam} onUpdateLineAssignment={handleUpdateLineAssignment} onReleasePlayer={handleReleasePlayer} />}
       {view === GameView.TRAINING && <TrainingCamp team={userTeam} onUpdatePlayerFocus={handleUpdatePlayerFocus} onBulkUpdate={handleBulkUpdateFocus} />}
       {view === GameView.SCOUTING && <ScoutingAndDeals wallet={userTeam.wallet} hiredScouts={hiredScouts} reports={scoutingReports} teams={teams} onHire={handleHireScout} onFire={handleFireScout} onSignPlayer={handleSignPlayer} />}
       {view === GameView.OFFICE && <FrontOffice team={userTeam} onUpgradeStaff={handleUpgradeStaff} onBuyUpgrade={handleBuyUpgrade} onDugnad={handleDugnad} dugnadCooldown={dugnadCooldown} />}
