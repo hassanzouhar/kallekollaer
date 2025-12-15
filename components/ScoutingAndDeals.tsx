@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Scout, ScoutingReport, DirtyDeal, Team } from '../types';
+import React, { useState, useMemo } from 'react';
+import { Scout, ScoutingReport, DirtyDeal, Team, Player } from '../types';
 import { RetroButton } from './RetroButton';
 import { AVAILABLE_SCOUTS } from '../constants';
 import { DealNegotiationDesk } from './DealNegotiationDesk';
@@ -9,23 +9,38 @@ interface ScoutingAndDealsProps {
   wallet: number;
   hiredScouts: Scout[];
   reports: ScoutingReport[];
+  freeAgents: Player[];
   teams: Team[];
   onHire: (scout: Scout) => void;
   onFire: (scoutId: string) => void;
   onSignPlayer: (report: ScoutingReport, deal: DirtyDeal) => void;
 }
 
-export const ScoutingAndDeals: React.FC<ScoutingAndDealsProps> = ({ 
-  wallet, 
-  hiredScouts, 
-  reports, 
+export const ScoutingAndDeals: React.FC<ScoutingAndDealsProps> = ({
+  wallet,
+  hiredScouts,
+  reports,
+  freeAgents,
   teams,
-  onHire, 
+  onHire,
   onFire,
   onSignPlayer
 }) => {
   const [selectedReport, setSelectedReport] = useState<ScoutingReport | null>(null);
   const [dealFeedback, setDealFeedback] = useState<string>("");
+
+  // Convert free agents to scouting reports and merge with existing reports
+  const allReports = useMemo(() => {
+    const freeAgentReports: ScoutingReport[] = freeAgents.map(player => ({
+      id: `fa-${player.id}`,
+      scoutName: 'Free Agent Market',
+      date: 'Available Now',
+      description: 'FREE AGENT - Recently released player seeking new team',
+      player,
+      sourceTeamId: undefined
+    }));
+    return [...reports, ...freeAgentReports];
+  }, [reports, freeAgents]);
 
   const isHired = (id: string) => hiredScouts.some(s => s.id === id);
 
@@ -107,7 +122,7 @@ export const ScoutingAndDeals: React.FC<ScoutingAndDealsProps> = ({
 
       {/* CENTER: REPORT FEED */}
       <ScoutingReportsFeed
-        reports={reports}
+        reports={allReports}
         teams={teams}
         selectedReportId={selectedReport?.id || null}
         onSelectReport={(report) => {

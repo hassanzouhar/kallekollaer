@@ -74,8 +74,9 @@ const App = () => {
   // Economy & Scouting State
   const [hiredScouts, setHiredScouts] = useState<Scout[]>([]);
   const [scoutingReports, setScoutingReports] = useState<ScoutingReport[]>([]);
+  const [freeAgents, setFreeAgents] = useState<Player[]>([]);
   const [dugnadCooldown, setDugnadCooldown] = useState(false);
-  
+
   const [newsFeed, setNewsFeed] = useState<string[]>([]);
 
   const userTeam = teams.find(t => t.id === userTeamId) || teams[0]; // Safety fallback
@@ -99,6 +100,7 @@ const App = () => {
       adviceCache,
       hiredScouts,
       scoutingReports,
+      freeAgents,
       dugnadCooldown,
       newsFeed
     };
@@ -126,6 +128,7 @@ const App = () => {
       setAdviceCache(savedGame.adviceCache);
       setHiredScouts(savedGame.hiredScouts);
       setScoutingReports(savedGame.scoutingReports);
+      setFreeAgents(savedGame.freeAgents || []);
       setDugnadCooldown(savedGame.dugnadCooldown);
       setNewsFeed(savedGame.newsFeed);
     }
@@ -628,7 +631,7 @@ const App = () => {
   };
 
   // --- UI HANDLERS ---
-  
+
   const handleHireScout = (scout: Scout) => { if (userTeam.wallet >= scout.costPerWeek) setHiredScouts(prev => [...prev, scout]); };
   const handleFireScout = (id: string) => setHiredScouts(prev => prev.filter(s => s.id !== id));
   const handleSignPlayer = (report: ScoutingReport, deal: DirtyDeal) => {
@@ -636,6 +639,14 @@ const App = () => {
           setTeams(prev => prev.map(t => t.id === userTeamId ? { ...t, wallet: t.wallet - deal.cost, roster: [...t.roster, report.player] } : t));
           setScoutingReports(prev => prev.filter(r => r.id !== report.id));
           alert("Signed!");
+      }
+  };
+  const handleReleasePlayer = (playerId: string) => {
+      const player = userTeam.roster.find(p => p.id === playerId);
+      if (player && confirm(`Release ${player.name} to free agency?`)) {
+          setTeams(prev => prev.map(t => t.id === userTeamId ? { ...t, roster: t.roster.filter(p => p.id !== playerId) } : t));
+          setFreeAgents(prev => [...prev, player]);
+          addNews(`${player.name} released to free agency`);
       }
   };
   const handleUpdatePlayerFocus = (pid: string, f: TrainingFocus) => {
@@ -799,9 +810,9 @@ const App = () => {
           </div>
       )}
 
-      {view === GameView.ROSTER && <RosterView team={userTeam} onUpdateLineAssignment={handleUpdateLineAssignment} />}
+      {view === GameView.ROSTER && <RosterView team={userTeam} onUpdateLineAssignment={handleUpdateLineAssignment} onReleasePlayer={handleReleasePlayer} />}
       {view === GameView.TRAINING && <TrainingCamp team={userTeam} onUpdatePlayerFocus={handleUpdatePlayerFocus} onBulkUpdate={handleBulkUpdateFocus} />}
-      {view === GameView.SCOUTING && <ScoutingAndDeals wallet={userTeam.wallet} hiredScouts={hiredScouts} reports={scoutingReports} teams={teams} onHire={handleHireScout} onFire={handleFireScout} onSignPlayer={handleSignPlayer} />}
+      {view === GameView.SCOUTING && <ScoutingAndDeals wallet={userTeam.wallet} hiredScouts={hiredScouts} reports={scoutingReports} freeAgents={freeAgents} teams={teams} onHire={handleHireScout} onFire={handleFireScout} onSignPlayer={handleSignPlayer} />}
       {view === GameView.OFFICE && <FrontOffice team={userTeam} onUpgradeStaff={handleUpgradeStaff} onBuyUpgrade={handleBuyUpgrade} onDugnad={handleDugnad} dugnadCooldown={dugnadCooldown} />}
       {view === GameView.LEAGUE && <LeagueView teams={teams} schedule={schedule} currentWeek={currentWeek} phase={phase} playoffSeries={playoffSeries} />}
       {view === GameView.MATCH && <MatchSimulator homeTeam={nextOpponentId === userTeamId ? userTeam : nextOpponent} awayTeam={nextOpponentId === userTeamId ? nextOpponent : userTeam} onMatchComplete={handleMatchComplete} />}
