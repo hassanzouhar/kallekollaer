@@ -1,6 +1,6 @@
 import React from 'react';
 import { Player } from '../types';
-import { X, TrendingUp, Zap, Brain, Shield, Hand, UserMinus } from 'lucide-react';
+import { X, Zap, Brain, Shield, Hand, UserMinus } from 'lucide-react';
 import { getPlayerImage, getCRTImageStyle } from '../utils/imageHelpers';
 
 interface PlayerModalProps {
