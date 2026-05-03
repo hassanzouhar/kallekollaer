@@ -638,6 +638,7 @@ const App = () => {
       if (userTeam.wallet >= deal.cost) {
           setTeams(prev => prev.map(t => t.id === userTeamId ? { ...t, wallet: t.wallet - deal.cost, roster: [...t.roster, report.player] } : t));
           setScoutingReports(prev => prev.filter(r => r.id !== report.id));
+          setFreeAgents(prev => prev.filter(p => p.id !== report.player.id));
           alert("Signed!");
       }
   };
